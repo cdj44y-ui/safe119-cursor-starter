@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAFE119 — 안전보건관리체계 자가진단</title>
+  <meta name="description" content="중처법 시행령 제4조 9대 핵심요소 기준, 67문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <style>
+    :root {
+      /* Warm Neutral Foundation — Claude-inspired */
+      --sand-50:  #FDFCFB;
+      --sand-100: #FAF8F5;
+      --sand-200: #F0ECE5;
+      --sand-300: #E3DDD3;
+      --sand-400: #C9C2B6;
+      --sand-500: #A49C8E;
+      --sand-600: #7D766A;
+      --sand-700: #5C564D;
+      --sand-800: #3D3935;
+      --sand-900: #1F1D1A;
+
+      /* Brand — Warm Copper */
+      --copper: #B5694F;
+      --copper-hover: #A05A42;
+      --copper-light: #F7EDE8;
+
+      /* Ink */
+      --ink: #1F1D1A;
+      --ink-2: #3D3935;
+      --ink-3: #5C564D;
+      --ink-4: #7D766A;
+      --ink-5: #A49C8E;
+
+      /* Semantic — muted, warm */
+      --red-text: #8B3A3A;
+      --red-bg:   #F9EEEE;
+      --amber-text: #7A5B1F;
+      --amber-bg:   #FCF5E5;
+      --green-text: #3A6B4A;
+      --green-bg:   #EEF6F0;
+
+      /* System */
+      --surface: var(--sand-50);
+      --surface-warm: var(--sand-100);
+      --surface-card: #FFFFFF;
+      --border: var(--sand-300);
+      --border-light: var(--sand-200);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --shadow-sm: 0 1px 3px rgba(31,29,26,0.04);
+      --shadow-md: 0 4px 16px rgba(31,29,26,0.06);
+      --shadow-lg: 0 8px 32px rgba(31,29,26,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--surface);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: 'ss01', 'ss02';
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+
+    /* ─────────────────────────
+       Top Banner
+    ───────────────────────── */
+    .top-banner {
+      background: var(--ink);
+      color: rgba(255,255,255,0.75);
+      padding: 9px 0;
+      font-size: 12.5px;
+      letter-spacing: -0.1px;
+    }
+    .top-banner .container {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .top-banner .tag {
+      background: var(--red-text);
+      color: #fff;
+      padding: 1px 7px;
+      border-radius: 2px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .top-banner .hl { flex: 1; font-weight: 400; }
+    .top-banner .hl b { color: #F5D78E; font-weight: 600; }
+    .top-banner .meta { color: rgba(255,255,255,0.3); font-size: 11px; }
+    .top-banner .x-btn {
+      background: none; border: none; color: rgba(255,255,255,0.25);
+      font-size: 15px; cursor: pointer; padding: 0; line-height: 1;
+    }
+    .top-banner .x-btn:hover { color: rgba(255,255,255,0.6); }
+    .sub-line {
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 5px 0;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+    }
+    .sub-line .container { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .sub-line .chip {
+      background: rgba(255,255,255,0.05);
+      padding: 1px 7px;
+      border-radius: 2px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 600;
+      font-size: 10.5px;
+    }
+
+    /* ─────────────────────────
+       Navigation
+    ───────────────────────── */
+    .nav {
+      background: rgba(253,252,251,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 14px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-size: 16px; font-weight: 800;
+      color: var(--ink); letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--copper); }
+    .nav-right { display: flex; gap: 24px; align-items: center; }
+    .nav-right a {
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-4); transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--ink); }
+    .nav-right .btn-nav {
+      background: var(--ink);
+      color: #fff;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .nav-right .btn-nav:hover { background: var(--ink-2); }
+
+    /* ─────────────────────────
+       STEP 1 — Hero
+    ───────────────────────── */
+    .hero {
+      padding: 88px 0 72px;
+      background: linear-gradient(180deg, var(--sand-100) 0%, var(--surface) 100%);
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 600;
+      color: var(--red-text);
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--red-bg);
+      border-radius: 3px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4.2vw, 44px);
+      font-weight: 800;
+      line-height: 1.32;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -1.2px;
+      max-width: 640px;
+    }
+    .hero h1 .em { color: var(--copper); }
+    .hero h1 .ul {
+      text-decoration: underline;
+      text-decoration-color: var(--copper);
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+    .hero-desc {
+      font-size: 16px; color: var(--ink-3);
+      max-width: 520px; line-height: 1.9;
+      margin-bottom: 28px;
+    }
+    .hero-desc .kw {
+      background: var(--amber-bg);
+      color: var(--amber-text);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .hero-micro {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--ink-4);
+      margin-bottom: 32px;
+    }
+    .hero-micro .pill {
+      background: var(--green-bg);
+      color: var(--green-text);
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 11.5px;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--copper);
+      color: #fff;
+      font-size: 15px; font-weight: 700;
+      padding: 14px 30px;
+      border-radius: var(--radius);
+      border: none; cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(181,105,79,0.2);
+      letter-spacing: -0.2px;
+    }
+    .btn-primary:hover {
+      background: var(--copper-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(181,105,79,0.25);
+    }
+    .cta-note {
+      display: block; margin-top: 10px;
+      font-size: 11.5px; color: var(--ink-5);
+    }
+
+    .hero-meta {
+      display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: 12px; color: var(--ink-4); font-weight: 500;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .hero-chips {
+      display: flex; gap: 8px; margin-top: 28px; flex-wrap: wrap;
+    }
+    .hero-chip {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 88px;
+    }
+    .hero-chip .val { font-size: 13px; font-weight: 800; color: var(--ink-2); }
+    .hero-chip .lbl { font-size: 10.5px; color: var(--ink-5); margin-top: 1px; }
+
+    /* ─────────────────────────
+       Section Utilities
+    ───────────────────────── */
+    .sec { padding: 80px 0; }
+    .sec-alt { background: var(--sand-100); }
+    .eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .eyebrow.warm { color: var(--copper); }
+    .eyebrow.muted { color: var(--ink-5); }
+    .eyebrow.red { color: var(--red-text); }
+    .heading {
+      font-size: 26px; font-weight: 800;
+      color: var(--ink); letter-spacing: -0.8px;
+      line-height: 1.35; margin-bottom: 10px;
+    }
+    .sub {
+      font-size: 14.5px; color: var(--ink-4);
+      line-height: 1.85; max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .divider {
+      width: 32px; height: 2px;
+      background: var(--sand-400);
+      margin-bottom: 24px;
+    }
+
+    /* ─────────────────────────
+       STEP 2 — Problem
+    ───────────────────────── */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 40px;
+    }
+    .pain-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: box-shadow 0.3s;
+    }
+    .pain-card:hover { box-shadow: var(--shadow-md); }
+    .pain-card .num {
+      font-size: 10px; font-weight: 700;
+      color: var(--ink-5); letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .pain-card .t {
+      font-size: 15px; font-weight: 700;
+      color: var(--ink); line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .pain-card .d {
+      font-size: 13px; color: var(--ink-4); line-height: 1.8;
+    }
+    .pain-card .d strong { color: var(--red-text); font-weight: 600; }
+
+    .quote-box {
+      background: var(--ink);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      color: rgba(255,255,255,0.85);
+    }
+    .quote-box blockquote {
+      font-size: 18px; font-weight: 500;
+      line-height: 1.75; margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+    .quote-box blockquote em {
+      font-style: normal; color: #F5D78E;
+    }
+    .quote-box .attr {
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .quote-box .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .quote-box .tag-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 11px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+
+    /* ─────────────────────────
+       STEP 3 — Before / After
+    ───────────────────────── */
+    .ba-layout {
+      display: grid; grid-template-columns: 1fr 40px 1fr;
+      align-items: stretch;
+    }
+    .ba-col {
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+    }
+    .ba-col.bef { background: #FBF6F1; border: 1px solid #EDE4D8; }
+    .ba-col.aft { background: #F4F9F5; border: 1px solid #D6E8DA; }
+    .ba-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 3px;
+      display: inline-block; margin-bottom: 18px;
+    }
+    .ba-col.bef .ba-label { background: var(--amber-bg); color: var(--amber-text); }
+    .ba-col.aft .ba-label { background: var(--green-bg); color: var(--green-text); }
+    .ba-row {
+      display: flex; gap: 8px; align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 13px; color: var(--ink-3); line-height: 1.65;
+    }
+    .ba-row .ic { flex-shrink: 0; margin-top: 2px; font-size: 13px; opacity: 0.7; }
+    .ba-mid {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--sand-400); font-size: 18px;
+    }
+
+    /* ─────────────────────────
+       STEP 4 — Trust
+    ───────────────────────── */
+    .trust-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .card-expert {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .card-expert .org {
+      font-size: 11px; color: var(--ink-5);
+      font-weight: 500; letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+    .card-expert .name {
+      font-size: 20px; font-weight: 800;
+      color: var(--ink); margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .card-expert .bio {
+      font-size: 13.5px; color: var(--ink-4);
+      line-height: 1.8; margin-bottom: 18px;
+    }
+    .badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .badge-item {
+      background: var(--copper-light);
+      color: var(--copper);
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-size: 11.5px; font-weight: 600;
+    }
+    .tag-row { display: flex; gap: 5px; flex-wrap: wrap; }
+    .tag-item-s {
+      background: var(--sand-100);
+      color: var(--ink-4);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 10.5px; font-weight: 500;
+    }
+
+    .stat-stack { display: flex; flex-direction: column; gap: 10px; }
+    .stat-row {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+      transition: box-shadow 0.2s;
+    }
+    .stat-row:hover { box-shadow: var(--shadow-sm); }
+    .stat-row .val {
+      font-size: 22px; font-weight: 800;
+      min-width: 68px; line-height: 1;
+    }
+    .stat-row .val.r { color: var(--red-text); }
+    .stat-row .val.a { color: var(--amber-text); }
+    .stat-row .val.d { color: var(--ink-2); }
+    .stat-row .info .label { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+    .stat-row .info .desc { font-size: 11px; color: var(--ink-5); }
+
+    .source-line {
+      font-size: 11px; color: var(--ink-5); margin-top: 20px;
+      padding-top: 14px; border-top: 1px solid var(--border-light);
+    }
+    .source-line a { color: var(--copper); text-decoration: underline; text-decoration-color: rgba(181,105,79,0.3); }
+
+    /* ─────────────────────────
+       STEP 5 — Product
+    ───────────────────────── */
+    .steps-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 56px;
+    }
+    .step-box {
+      background: var(--sand-100);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 22px 14px;
+      text-align: center;
+      position: relative;
+    }
+    .step-box::after {
+      content: '\2192'; position: absolute;
+      right: -11px; top: 50%; transform: translateY(-50%);
+      font-size: 13px; color: var(--sand-400);
+    }
+    .step-box:last-child::after { display: none; }
+    .step-box .sn {
+      width: 26px; height: 26px;
+      background: var(--ink);
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      margin: 0 auto 8px;
+    }
+    .step-box .st { font-size: 13px; font-weight: 700; color: var(--ink-2); margin-bottom: 3px; }
+    .step-box .sd { font-size: 11px; color: var(--ink-5); line-height: 1.5; }
+
+    .el-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 14px;
+    }
+    .el-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: border-color 0.2s;
+    }
+    .el-card:hover { border-color: var(--copper); }
+    .el-card .el-no {
+      font-size: 10px; font-weight: 700;
+      color: var(--copper); letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .el-card .el-t {
+      font-size: 13.5px; font-weight: 700;
+      color: var(--ink-2); line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .el-card .el-c { font-size: 11px; color: var(--ink-5); }
+    .el-note {
+      background: var(--sand-100);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 12px; color: var(--ink-4); line-height: 1.85;
+    }
+    .el-note strong { color: var(--ink-3); }
+
+    .ind-section { margin-top: 48px; }
+    .ind-title {
+      font-size: 15px; font-weight: 700; color: var(--ink-2);
+      margin-bottom: 16px; letter-spacing: -0.2px;
+    }
+    .top-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 20px;
+    }
+    .top-item {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 18px; position: relative; overflow: hidden;
+    }
+    .top-item::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    }
+    .top-item:nth-child(1)::before { background: var(--red-text); }
+    .top-item:nth-child(2)::before { background: var(--amber-text); }
+    .top-item:nth-child(3)::before { background: var(--ink-3); }
+    .top-item .r { font-size: 10px; font-weight: 700; color: var(--ink-5); letter-spacing: 0.5px; }
+    .top-item .n { font-size: 16px; font-weight: 700; color: var(--ink); }
+    .top-item .p { font-size: 12px; color: var(--ink-4); }
+    .top-item .dd { font-size: 11px; color: var(--red-text); font-weight: 600; margin-top: 3px; }
+
+    .bars { margin-top: 16px; }
+    .bar-r { display: flex; align-items: center; margin-bottom: 7px; gap: 10px; }
+    .bar-l { width: 68px; font-size: 12px; font-weight: 600; color: var(--ink-3); text-align: right; flex-shrink: 0; }
+    .bar-t { flex: 1; background: var(--sand-200); height: 20px; border-radius: 3px; overflow: hidden; }
+    .bar-f {
+      height: 100%; border-radius: 3px;
+      display: flex; align-items: center;
+      padding-left: 7px;
+      font-size: 10px; font-weight: 700; color: #fff;
+      transition: width 1s ease;
+    }
+    .bar-f.c1 { background: var(--red-text); }
+    .bar-f.c2 { background: var(--amber-text); }
+    .bar-f.c3 { background: var(--ink-3); }
+
+    /* ─────────────────────────
+       STEP 6 — Offer
+    ───────────────────────── */
+    .offer-wrap {
+      padding: 80px 0;
+      background: linear-gradient(180deg, var(--sand-100) 0%, var(--sand-200) 100%);
+    }
+    .offer-box {
+      background: var(--surface-card);
+      border: 1px solid var(--copper);
+      border-radius: 16px;
+      padding: 52px 40px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
+    }
+    .offer-box::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--copper), #D4A06A, var(--copper));
+    }
+    .offer-tag {
+      display: inline-block;
+      background: var(--copper);
+      color: #fff;
+      padding: 4px 16px;
+      border-radius: 3px;
+      font-size: 11.5px; font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .offer-title {
+      font-size: 28px; font-weight: 800;
+      color: var(--ink); margin-bottom: 12px;
+      letter-spacing: -0.8px;
+    }
+    .offer-desc {
+      font-size: 14.5px; color: var(--ink-4);
+      max-width: 440px; margin: 0 auto 28px;
+      line-height: 1.85;
+    }
+    .offer-pills {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .offer-pill {
+      background: var(--green-bg);
+      color: var(--green-text);
+      padding: 5px 13px;
+      border-radius: 4px;
+      font-size: 12.5px; font-weight: 600;
+    }
+    .offer-alert {
+      background: var(--amber-bg);
+      border: 1px solid #EBD9A8;
+      border-radius: var(--radius);
+      padding: 13px 20px;
+      margin: 24px auto 0;
+      max-width: 460px;
+      font-size: 12.5px; color: var(--amber-text); line-height: 1.75;
+    }
+    .offer-alert strong { color: var(--red-text); }
+
+    /* ─────────────────────────
+       STEP 7 — FAQ
+    ───────────────────────── */
+    .faq-list { max-width: 640px; }
+    .faq-item { border-bottom: 1px solid var(--border-light); padding: 16px 0; }
+    .faq-item:first-child { border-top: 1px solid var(--border-light); }
+    .faq-q {
+      font-size: 14.5px; font-weight: 600; color: var(--ink-2);
+      cursor: pointer;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--copper); }
+    .faq-q .toggle {
+      font-size: 16px; color: var(--ink-5);
+      transition: transform 0.3s; flex-shrink: 0;
+    }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-size: 13px; color: var(--ink-4); line-height: 1.9;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 10px; }
+    .faq-item.open .toggle { transform: rotate(45deg); }
+
+    /* ─────────────────────────
+       Linked / CTA / Footer
+    ───────────────────────── */
+    .linked-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .linked-box .ll { font-size: 10px; font-weight: 700; color: var(--copper); letter-spacing: 0.5px; margin-bottom: 3px; }
+    .linked-box .lt { font-size: 16px; font-weight: 700; color: var(--ink-2); margin-bottom: 4px; }
+    .linked-box .ld { font-size: 12.5px; color: var(--ink-4); max-width: 420px; }
+    .linked-box .ld strong { color: var(--ink-3); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--ink-2);
+      color: var(--ink-2);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 12.5px; font-weight: 600;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-outline:hover { background: var(--ink); color: #fff; }
+
+    .final-cta { text-align: center; }
+    .final-cta .fc-h {
+      font-size: 26px; font-weight: 800;
+      color: var(--ink); margin-bottom: 10px;
+      letter-spacing: -0.7px;
+    }
+    .final-cta .fc-p {
+      font-size: 14px; color: var(--ink-4);
+      max-width: 460px; margin: 0 auto 28px;
+      line-height: 1.85;
+    }
+    .cta-pair { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn-dark {
+      background: var(--ink);
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: var(--radius);
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: -0.2px;
+    }
+    .btn-dark:hover { background: var(--ink-2); }
+
+    .disc-box {
+      background: var(--sand-100);
+      border-left: 2px solid var(--sand-400);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+    }
+    .disc-box p { font-size: 11.5px; color: var(--ink-4); line-height: 1.9; }
+    .disc-box strong { color: var(--ink-3); }
+
+    .footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.35);
+      padding: 28px 0;
+      font-size: 11.5px; line-height: 1.9;
+    }
+    .footer strong { color: rgba(255,255,255,0.6); }
+
+    /* ─────────────────────────
+       Responsive
+    ───────────────────────── */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .pain-grid, .el-grid, .top-row { grid-template-columns: 1fr; }
+      .hero { padding: 56px 0 44px; }
+      .hero h1 { font-size: 25px; }
+      .ba-layout { grid-template-columns: 1fr; gap: 10px; }
+      .ba-mid { transform: rotate(90deg); padding: 4px 0; }
+      .trust-layout { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: repeat(2, 1fr); }
+      .step-box::after { display: none; }
+      .offer-box { padding: 36px 24px; }
+      .offer-title { font-size: 22px; }
+      .linked-box { flex-direction: column; text-align: center; }
+      .nav-right a:not(.btn-nav) { display: none; }
+      .bar-l { width: 52px; font-size: 11px; }
+      .quote-box { padding: 28px 24px; }
+      .quote-box blockquote { font-size: 15px; }
+      .sec { padding: 56px 0; }
+    }
+
+    /* Animation */
+    .fade-up {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ══ Banner ══ -->
+<div class="top-banner" id="banner">
+  <div class="container">
+    <span class="tag">속보</span>
+    <span class="hl">"산재 사망은 <b>미필적 고의에 의한 살인</b>" — 이재명 대통령, 징벌적 손해배상 검토 지시</span>
+    <span class="meta">2025.7.29</span>
+    <button class="x-btn" onclick="document.getElementById('banner').style.display='none'" aria-label="닫기">&times;</button>
+  </div>
+  <div class="sub-line">
+    <div class="container">
+      <span>2025년 3분기 사고사망자</span>
+      <span class="chip">457명</span>
+      <span>전년 대비</span>
+      <span class="chip" style="color:#FCA5A5">+3.2%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Nav ══ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-logo">SAFE<span>119</span></div>
+    <div class="nav-right">
+      <a href="#product">진단 소개</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://free119.site" target="_blank" rel="noopener">근로자성 진단</a>
+      <a href="https://calendly.com/cdj44y/15min" target="_blank" rel="noopener" class="btn-nav">상담 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ STEP 1 — Hero ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow fade-up">기소 121건 · 유죄율 89.3%</div>
+
+    <h1 class="fade-up">경영책임자 <span class="ul">기소</span> 전에,<br><span class="em">안전보건관리체계</span><br>10분 만에 점검하세요</h1>
+
+    <p class="hero-desc fade-up">
+      중처법 시행령 제4조 <span class="kw">9대 핵심요소</span> 기준
+      <span class="kw">67문항</span> 자가진단.<br>
+      이행 수준 확인부터 <span class="kw">조치 가이드</span>까지 한 번에.
+    </p>
+
+    <div class="hero-micro fade-up">
+      <span class="pill">무료</span>
+      회원가입 없음 · 10분 · PDF 리포트 즉시 제공
+    </div>
+
+    <a href="/diagnosis" class="btn-primary fade-up" id="diagnosis">무료 진단 시작하기</a>
+    <span class="cta-note">개인정보 수집 없음 · 100% 무료 · 결과 즉시 확인</span>
+
+    <div class="hero-meta fade-up">
+      <div class="hero-meta-item">&#9878;&#65039; 안전공학 박사 + 노무사 설계</div>
+      <div class="hero-meta-item">&#128200; 고용노동부 통계 기반</div>
+      <div class="hero-meta-item">&#128196; KOSHA 가이드 준거</div>
+    </div>
+
+    <div class="hero-chips fade-up">
+      <div class="hero-chip"><div class="val">9대</div><div class="lbl">핵심요소</div></div>
+      <div class="hero-chip"><div class="val">67</div><div class="lbl">문항</div></div>
+      <div class="hero-chip"><div class="val">A~D</div><div class="lbl">등급 판정</div></div>
+      <div class="hero-chip"><div class="val">PDF</div><div class="lbl">리포트</div></div>
+      <div class="hero-chip"><div class="val">~10분</div><div class="lbl">소요시간</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STEP 2 — Problem ══ -->
+<section class="sec sec-alt">
+  <div class="container">
+    <div class="eyebrow red fade-up">혹시 이런 상황이신가요?</div>
+    <h2 class="heading fade-up">경영책임자라면<br>지금 이 순간에도 위험합니다</h2>
+    <p class="sub fade-up">중대재해처벌법은 사고 발생 여부와 관계없이, 체계를 구축하지 않은 것 자체를 처벌합니다.</p>
+
+    <div class="pain-grid fade-up">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <div class="t">"안전보건관리체계?<br>서류만 있으면 되는 거 아닌가요?"</div>
+        <div class="d">서류만 갖춘 형식적 체계는 수사 시 <strong>면책 사유가 되지 않습니다.</strong> 실질적 이행 여부가 핵심입니다.</div>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <div class="t">"사고가 안 났으니<br>괜찮겠지..."</div>
+        <div class="d">중처법은 <strong>사고 발생 여부와 관계없이</strong> 의무 불이행 자체를 처벌합니다. 고용노동부 감독은 예고 없이 옵니다.</div>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <div class="t">"컨설팅 받자니 비용이 부담,<br>혼자 하자니 어디서부터..."</div>
+        <div class="d">9대 핵심요소별로 <strong>무엇을 점검해야 하는지</strong>조차 모르는 사업장이 대부분입니다.</div>
+      </div>
+    </div>
+
+    <div class="quote-box fade-up">
+      <blockquote>"산재가 거듭되면 <em>회생이 어려울 만큼의 엄벌</em>을 받아야 합니다.<br>기업에게 이익의 몇 배에 해당하는 고액의 벌금, 과징금이 있어야 법을 지킬 것입니다."</blockquote>
+      <div class="attr">— 이재명 대통령, 2025.7.29 제33회 국무회의</div>
+      <div class="tags">
+        <span class="tag-item">징벌적 손해배상 검토</span>
+        <span class="tag-item">공공입찰 참여 제한</span>
+        <span class="tag-item">반복 사고 시 영업정지</span>
+        <span class="tag-item">과태료 현실화</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STEP 3 — Before / After ══ -->
+<section class="sec">
+  <div class="container">
+    <div class="eyebrow muted fade-up">BEFORE &rarr; AFTER</div>
+    <h2 class="heading fade-up">10분 진단이 만드는 차이</h2>
+    <p class="sub fade-up">같은 사업장이라도 체계 점검 여부에 따라 감독·수사 대응력이 완전히 달라집니다.</p>
+
+    <div class="ba-layout fade-up">
+      <div class="ba-col bef">
+        <span class="ba-label">BEFORE — 진단 전</span>
+        <div class="ba-row"><span class="ic">&#10060;</span><span>"안전보건관리체계? 형식적으로 해놨는데..."</span></div>
+        <div class="ba-row"><span class="ic">&#10060;</span><span>9대 핵심요소 중 어디가 빠졌는지 모름</span></div>
+        <div class="ba-row"><span class="ic">&#10060;</span><span>감독 오면 무엇을 보여줘야 하는지 막막</span></div>
+        <div class="ba-row"><span class="ic">&#10060;</span><span>사고 발생 시 경영책임자 기소 가능성 높음</span></div>
+        <div class="ba-row"><span class="ic">&#10060;</span><span>어디서부터 개선해야 할지 우선순위 불명확</span></div>
+      </div>
+      <div class="ba-mid">&rarr;</div>
+      <div class="ba-col aft">
+        <span class="ba-label">AFTER — 진단 후</span>
+        <div class="ba-row"><span class="ic">&#9989;</span><span>67문항 기반 이행 수준 A~D등급 확인 완료</span></div>
+        <div class="ba-row"><span class="ic">&#9989;</span><span>핵심요소별 미이행 항목 리스크등급 파악</span></div>
+        <div class="ba-row"><span class="ic">&#9989;</span><span>감독관·검사·경찰 3관점 리스크 분석 확보</span></div>
+        <div class="ba-row"><span class="ic">&#9989;</span><span>즉시/단기/중기 개선 우선순위 액션플랜 수립</span></div>
+        <div class="ba-row"><span class="ic">&#9989;</span><span>전문가 상담 시 핵심 포인트 사전 정리 완료</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STEP 4 — Trust ══ -->
+<section class="sec sec-alt" id="expert">
+  <div class="container">
+    <div class="eyebrow warm fade-up">전문가가 직접 설계한 진단 도구</div>
+    <h2 class="heading fade-up">안전 &times; 노동 &times; HR<br>통합 관점으로 만들었습니다</h2>
+    <div class="divider fade-up"></div>
+
+    <div class="trust-layout fade-up">
+      <div class="card-expert">
+        <div class="org">노무법인 위너스</div>
+        <div class="name">조대진 노무사</div>
+        <p class="bio">사고 구조와 법적 책임을 안전·노동·HR 통합 관점으로 정리합니다. 단일 분야가 아닌, 세 축을 하나의 시스템으로 다루는 트라이브리드 전문가입니다.</p>
+        <div class="badge-row">
+          <span class="badge-item">안전공학 박사</span>
+          <span class="badge-item">공인노무사 15년</span>
+          <span class="badge-item">대기업 HR 실무</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag-item-s">중대재해처벌법 대응</span>
+          <span class="tag-item-s">안전보건관리체계 구축</span>
+          <span class="tag-item-s">위험성평가 설계</span>
+          <span class="tag-item-s">수사·감독 대응</span>
+          <span class="tag-item-s">도급·용역 안전관리</span>
+        </div>
+      </div>
+
+      <div class="stat-stack">
+        <div class="stat-row">
+          <div class="val r">121건</div>
+          <div class="info"><div class="label">검찰 기소</div><div class="desc">경영책임자 중심 · 2022~2025</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="val a">89.3%</div>
+          <div class="info"><div class="label">유죄 판결 비율</div><div class="desc">1심 기준 · 50명 유죄</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="val r">457명</div>
+          <div class="info"><div class="label">사고사망자 (2025 3Q)</div><div class="desc">전년 대비 +3.2% 증가</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="val d">85.7%</div>
+          <div class="info"><div class="label">집행유예 비율</div><div class="desc">실형 약 8% · 벌금형 약 6%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="source-line">
+      출처: <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a>,
+      <a href="https://eiec.kdi.re.kr" target="_blank" rel="noopener">KDI</a>,
+      <a href="https://www.korea.kr" target="_blank" rel="noopener">정책브리핑</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══ STEP 5 — Product ══ -->
+<section class="sec" id="product">
+  <div class="container">
+    <div class="eyebrow warm fade-up">진단 프로세스</div>
+    <h2 class="heading fade-up">이렇게 진단합니다</h2>
+    <p class="sub fade-up">회원가입 없이, 4단계로 안전보건관리체계 이행 수준을 점검합니다.</p>
+
+    <div class="steps-row fade-up">
+      <div class="step-box">
+        <div class="sn">1</div>
+        <div class="st">사업장 정보 입력</div>
+        <div class="sd">업종·규모·인원<br>기본 정보 선택</div>
+      </div>
+      <div class="step-box">
+        <div class="sn">2</div>
+        <div class="st">67문항 응답</div>
+        <div class="sd">O / X / △ / N·A<br>12 STEP 순차</div>
+      </div>
+      <div class="step-box">
+        <div class="sn">3</div>
+        <div class="st">결과 리포트</div>
+        <div class="sd">종합등급 + 요소별<br>리스크 분석</div>
+      </div>
+      <div class="step-box">
+        <div class="sn">4</div>
+        <div class="st">PDF 다운로드</div>
+        <div class="sd">액션플랜 포함<br>리포트 저장</div>
+      </div>
+    </div>
+
+    <div class="eyebrow muted fade-up">중처법 시행령 제4조</div>
+    <h2 class="heading fade-up">진단 영역 : 9대 핵심요소</h2>
+    <p class="sub fade-up">경영책임자가 구축·이행해야 하는 안전보건관리체계의 핵심 구성요소입니다.</p>
+
+    <div class="el-grid fade-up">
+      <div class="el-card"><div class="el-no">제1호</div><div class="el-t">안전·보건 목표와<br>경영방침 설정</div><div class="el-c">3문항</div></div>
+      <div class="el-card"><div class="el-no">제2호</div><div class="el-t">안전·보건<br>전담 조직 구성</div><div class="el-c">3문항</div></div>
+      <div class="el-card"><div class="el-no">제3호</div><div class="el-t">유해·위험요인<br>확인·개선 절차</div><div class="el-c">4문항</div></div>
+      <div class="el-card"><div class="el-no">제4호</div><div class="el-t">인력·시설·장비<br>및 예산 확보</div><div class="el-c">3문항</div></div>
+      <div class="el-card"><div class="el-no">제5호</div><div class="el-t">안전보건관리책임자<br>권한·예산·평가</div><div class="el-c">3문항</div></div>
+      <div class="el-card"><div class="el-no">제6호</div><div class="el-t">안전관리자 배치<br>및 업무시간 보장</div><div class="el-c">2문항</div></div>
+      <div class="el-card"><div class="el-no">제7호</div><div class="el-t">종사자 의견<br>청취 절차</div><div class="el-c">2문항</div></div>
+      <div class="el-card"><div class="el-no">제8호</div><div class="el-t">중대산업재해<br>대비 매뉴얼</div><div class="el-c">3문항</div></div>
+      <div class="el-card"><div class="el-no">제9호</div><div class="el-t">도급·용역·위탁<br>안전·보건 기준</div><div class="el-c">3문항</div></div>
+    </div>
+
+    <div class="el-note fade-up">
+      위 9대 핵심요소 외에 <strong>경영책임자 역할(제4조)</strong>, <strong>종사자 보호(제5조)</strong>,
+      <strong>도급관리(제7조)</strong>, <strong>의견청취(제8조)</strong>,
+      <strong>이행점검·보고(제9조)</strong>, <strong>서류보존(제10조)</strong>도 함께 점검합니다. 총 12 STEP · 67문항.
+    </div>
+
+    <div class="ind-section fade-up">
+      <div class="ind-title">업종별 사고사망자 현황 (2025년 3분기 누적)</div>
+      <div class="top-row">
+        <div class="top-item"><div class="r">TOP 1</div><div class="n">건설업</div><div class="p">비중 약 46%</div><div class="dd">210명 (전년比 +7명)</div></div>
+        <div class="top-item"><div class="r">TOP 2</div><div class="n">기타 업종</div><div class="p">비중 약 28%</div><div class="dd">128명 (전년比 +22명)</div></div>
+        <div class="top-item"><div class="r">TOP 3</div><div class="n">제조업</div><div class="p">비중 약 26%</div><div class="dd">119명 (전년比 -15명)</div></div>
+      </div>
+      <div class="bars">
+        <div class="bar-r"><span class="bar-l">건설업</span><div class="bar-t"><div class="bar-f c1" style="width:46%">210명</div></div></div>
+        <div class="bar-r"><span class="bar-l">기타</span><div class="bar-t"><div class="bar-f c2" style="width:28%">128명</div></div></div>
+        <div class="bar-r"><span class="bar-l">제조업</span><div class="bar-t"><div class="bar-f c3" style="width:26%">119명</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STEP 6 — Offer ══ -->
+<section class="offer-wrap">
+  <div class="container">
+    <div class="offer-box fade-up">
+      <div class="offer-tag">완전 무료 · 제한 없음</div>
+      <h2 class="offer-title">지금 바로, 무료로 진단받으세요</h2>
+      <p class="offer-desc">회원가입 없이, 10분이면 안전보건관리체계 이행 수준을 확인할 수 있습니다.</p>
+      <div class="offer-pills">
+        <span class="offer-pill">&#10003; 회원가입 불필요</span>
+        <span class="offer-pill">&#10003; 개인정보 수집 없음</span>
+        <span class="offer-pill">&#10003; PDF 리포트 무료</span>
+        <span class="offer-pill">&#10003; 67문항 전체 무료</span>
+      </div>
+      <a href="/diagnosis" class="btn-primary">무료 진단 시작하기 — 10분이면 끝</a>
+      <div class="offer-alert">
+        <strong>징벌적 손해배상 검토 중</strong> — 감독·수사 강도가 높아지고 있습니다.
+        체계 점검을 미루면, 예고 없는 감독에 무방비 상태가 됩니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STEP 7 — FAQ ══ -->
+<section class="sec" id="faq">
+  <div class="container">
+    <div class="eyebrow muted fade-up">FAQ</div>
+    <h2 class="heading fade-up" style="margin-bottom:28px">자주 묻는 질문</h2>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>이 진단은 법적 효력이 있나요?</span><span class="toggle">+</span></div>
+        <div class="faq-a">아닙니다. 본 진단은 중처법 시행령·KOSHA 가이드 취지를 바탕으로 한 <strong>참고용 자가진단</strong>입니다. 법적 효력이 있는 공식 판정이나 법률 자문이 아닙니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>어떤 사업장이 대상인가요?</span><span class="toggle">+</span></div>
+        <div class="faq-a">중대재해처벌법은 <strong>상시 근로자 5인 이상</strong> 사업장에 적용됩니다(2024.1.27.~). 업종 무관, 모든 사업장이 대상입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>진단에 얼마나 걸리나요?</span><span class="toggle">+</span></div>
+        <div class="faq-a">67문항, 약 <strong>10분</strong>이면 충분합니다. O(이행) / X(미이행) / △(일부이행) / N/A(해당없음) 중 선택하면 됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>개인정보를 수집하나요?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><strong>수집하지 않습니다.</strong> 회원가입 없이 진단 가능하며, 데이터는 브라우저에만 저장됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>결과 리포트에는 무엇이 포함되나요?</span><span class="toggle">+</span></div>
+        <div class="faq-a">종합 등급(A~D), 9대 핵심요소별 이행률 차트, 고위험 미이행 항목 리스트, 감독관·검사·경찰 3관점 리스크 분석, 즉시/단기/중기 액션플랜이 포함됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>진단 후 전문가 상담도 받을 수 있나요?</span><span class="toggle">+</span></div>
+        <div class="faq-a">네. <strong>안전공학 박사 + 공인노무사</strong>가 중대재해처벌법 대응부터 수사·감독 대응까지 통합 자문을 제공합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Linked ══ -->
+<section class="sec sec-alt" style="padding:40px 0">
+  <div class="container">
+    <div class="linked-box fade-up">
+      <div>
+        <div class="ll">연계 서비스</div>
+        <div class="lt">근로자성 자가진단</div>
+        <p class="ld">SAFE119는 <strong>안전보건관리체계 진단</strong>에 특화되어 있습니다. <strong>근로자성·위장고용 점검</strong>은 별도 서비스에서 확인하실 수 있습니다.</p>
+      </div>
+      <a href="https://free119.site" target="_blank" rel="noopener" class="btn-outline">free119.site &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Final CTA ══ -->
+<section class="sec">
+  <div class="container">
+    <div class="final-cta fade-up">
+      <h2 class="fc-h">지금 우리 사업장을 점검하세요</h2>
+      <p class="fc-p">경영책임자 기소 전에, 10분 자가진단으로 안전보건관리체계 이행 수준을 확인하세요.</p>
+      <div class="cta-pair">
+        <a href="/diagnosis" class="btn-primary">무료 진단 시작하기</a>
+        <a href="https://calendly.com/cdj44y/15min" target="_blank" rel="noopener" class="btn-dark">전문가 상담 신청</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Disclaimer ══ -->
+<section style="padding:20px 0">
+  <div class="container">
+    <div class="disc-box">
+      <p>본 사이트는 <strong>참고용 자가진단</strong>을 안내합니다. 중대재해처벌법 시행령·KOSHA 가이드 취지를 바탕으로 한 점검 도구일 뿐, <strong>법적 효력이 있는 공식 판정·법률 자문이 아닙니다.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer class="footer">
+  <div class="container">
+    <p><strong>노무법인 위너스</strong> | 대표 조대진<br>Tel. 02-2138-0240 | Email. cdj44y@gmail.com</p>
+  </div>
+</footer>
+
+<script>
+const o = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => o.observe(el));
+</script>
+</body>
+</html>

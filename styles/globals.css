@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+@layer base {
+  html {
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+  body {
+    @apply bg-sand-50 text-ink leading-relaxed;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-copper text-white font-bold py-3.5 px-8 rounded transition-all duration-200 hover:bg-copper-hover hover:-translate-y-0.5;
+    box-shadow: 0 2px 8px rgba(181,105,79,0.2);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(181,105,79,0.25);
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-ink text-white font-semibold py-3 px-6 rounded transition-all duration-200 hover:bg-ink-2;
+  }
+  .section-padding {
+    @apply py-20;
+  }
+  .container-narrow {
+    @apply max-w-[960px] mx-auto px-7;
+  }
+}
