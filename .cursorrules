@@ -64,7 +64,7 @@ Semantic (muted):
    - result/ → (Cursor에서 추가 구현 — GradeCard, ElementChart 등)
    - ui/ → Badge, Button, Card
 9. 상태 관리: store/diagnosisStore.ts (Zustand)
-10. 진단 응답: O(이행) / X(미이행) / △(일부이행) / N/A(해당없음) 4지선택
+10. 진단 응답: O(이행) / X(미이행) / △(일부이행) 3지선택 (N/A는 UI에서 제외, 점수 로직은 호환용으로 유지)
 
 ## 프로젝트 구조 (구현 완료)
 ```
