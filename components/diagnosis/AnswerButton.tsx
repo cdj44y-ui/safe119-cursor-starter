@@ -1,14 +1,15 @@
 'use client';
 
-import { AnswerValue } from '@/data/questions';
+/** 진단 화면에서 선택 가능한 응답 (해당없음 제외) */
+export type DiagnosisAnswerOption = 'O' | 'triangle' | 'X';
 
 interface AnswerButtonProps {
-  value: AnswerValue;
+  value: DiagnosisAnswerOption;
   selected: boolean;
   onClick: () => void;
 }
 
-const answerConfig: Record<Exclude<AnswerValue, null>, { label: string; icon: string; color: string; selectedBg: string; selectedBorder: string }> = {
+const answerConfig: Record<DiagnosisAnswerOption, { label: string; icon: string; color: string; selectedBg: string; selectedBorder: string }> = {
   O: {
     label: '이행 완료 (O)',
     icon: '✅',
@@ -29,13 +30,6 @@ const answerConfig: Record<Exclude<AnswerValue, null>, { label: string; icon: st
     color: 'text-semantic-red-text',
     selectedBg: 'bg-semantic-red-bg',
     selectedBorder: 'border-semantic-red-text',
-  },
-  NA: {
-    label: '해당없음 (N/A)',
-    icon: '➖',
-    color: 'text-ink-4',
-    selectedBg: 'bg-sand-200',
-    selectedBorder: 'border-ink-4',
   },
 };
 

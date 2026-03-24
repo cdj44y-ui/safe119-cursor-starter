@@ -73,10 +73,6 @@ export default function ResultPage() {
                 <div className="text-xl font-extrabold text-semantic-red-text">{result.xCount}</div>
                 <div className="text-[10px] text-ink-5">미이행(X)</div>
               </div>
-              <div className="text-center">
-                <div className="text-xl font-extrabold text-ink-5">{result.naCount}</div>
-                <div className="text-[10px] text-ink-5">해당없음</div>
-              </div>
             </div>
           </div>
 

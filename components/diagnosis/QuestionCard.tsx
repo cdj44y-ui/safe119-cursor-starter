@@ -1,7 +1,9 @@
 'use client';
 
 import { Question, AnswerValue } from '@/data/questions';
-import AnswerButton from './AnswerButton';
+import AnswerButton, { type DiagnosisAnswerOption } from './AnswerButton';
+
+const ANSWER_OPTIONS: DiagnosisAnswerOption[] = ['O', 'triangle', 'X'];
 import Badge from '../ui/Badge';
 
 interface QuestionCardProps {
@@ -69,7 +71,7 @@ export default function QuestionCard({
 
       {/* Answer buttons */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {(['O', 'triangle', 'X', 'NA'] as AnswerValue[]).map((value) => (
+        {ANSWER_OPTIONS.map((value) => (
           <AnswerButton
             key={value}
             value={value}
