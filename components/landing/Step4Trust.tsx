@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { statistics } from '@/data/statistics';
 
 export default function Step4Trust() {
@@ -25,30 +26,57 @@ export default function Step4Trust() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Expert Card */}
-          <div className="bg-white border border-sand-200 rounded-lg p-7">
-            <div className="text-xs text-ink-5 mb-2">노무법인 위너스</div>
+          {/* Expert Card — FREE119 근로자성 리스크 톤과 정합 */}
+          <div className="bg-white border border-sand-200 rounded-lg p-7 flex flex-col">
+            <div className="text-xs text-ink-5 mb-2">노무법인 위너스 · 진단 도구 설계</div>
             <h3 className="text-lg font-extrabold text-ink mb-1">조대진 노무사</h3>
+            <p className="text-[11px] font-semibold text-copper mb-3">
+              안전공학 박사 × 공인노무사 · 근로자성·근로감독 리스크 실무
+            </p>
             <p className="text-[13px] text-ink-4 leading-relaxed mb-4">
-              안전공학 박사 &times; 공인노무사 15년 &times; 대기업 HR 실무
-              <br />
-              사고·책임·성과를 하나의 시스템으로 다루는 트라이브리드 전문가
+              계약서 제목이 아니라 <strong className="text-ink-3">실질관계</strong>로 판단되는 근로자성,
+              위장고용·3.3% 감독 이슈와 중대재해·안전보건 책임은 현장에서 함께 붙습니다. 현대카드·삼성서울병원
+              인사 출신으로 <strong className="text-ink-3">안전 × 노동 × HR</strong>을 한 흐름으로 설계합니다.
             </p>
 
             <div className="flex flex-wrap gap-1.5 mb-4">
-              {['안전공학 박사', '공인노무사 15년', '대기업 HR 실무'].map((badge) => (
+              {['안전공학 박사', '공인노무사 15년', '근로자성 자문', '대기업 HR 실무'].map((badge) => (
                 <span key={badge} className="text-[10.5px] bg-copper-light text-copper px-2 py-0.5 rounded font-semibold">
                   {badge}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-1.5">
-              {['중대재해 대응', '안전보건체계 구축', '위험성평가', '수사·감독 대응', '직장내괴롭힘', 'HR제도설계'].map((tag) => (
+            <div className="flex flex-wrap gap-1.5 mb-5">
+              {[
+                '중대재해 대응',
+                '안전보건체계 구축',
+                '근로자성 리스크',
+                '위탁·도급 구조',
+                '수사·감독 대응',
+                'HR제도설계',
+              ].map((tag) => (
                 <span key={tag} className="text-[10px] bg-sand-100 text-ink-4 px-1.5 py-0.5 rounded">
                   {tag}
                 </span>
               ))}
+            </div>
+
+            <div className="mt-auto flex flex-col sm:flex-row gap-2 sm:items-center">
+              <Link
+                href="/about"
+                className="text-[12px] font-bold text-copper hover:text-ink underline underline-offset-2"
+              >
+                전문가 소개 자세히 →
+              </Link>
+              <a
+                href="https://free119.site/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] text-ink-5 hover:text-ink"
+              >
+                FREE119 근로자성 안내
+              </a>
             </div>
           </div>
 

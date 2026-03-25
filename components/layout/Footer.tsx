@@ -38,6 +38,15 @@ export default function Footer() {
           <p className="text-[10px] text-sand-600 leading-relaxed max-w-lg">
             노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 000-00-00000
             <br />
+            Tel.{' '}
+            <a href="tel:0221380240" className="hover:text-sand-400">
+              02-2138-0240
+            </a>{' '}
+            | Email.{' '}
+            <a href="mailto:cdj44y@gmail.com" className="hover:text-sand-400 break-all">
+              cdj44y@gmail.com
+            </a>
+            <br />
             본 자가진단은 참고용이며 법적 효력이 없습니다. 정확한 법률 검토는 전문가 상담을 이용하세요.
           </p>
           <p className="text-[10px] text-sand-600">

@@ -55,16 +55,30 @@ export default function DiagnosisPage() {
 
   const handleAnswer = (answer: AnswerValue) => {
     if (!currentQuestion) return;
+    const prev = answers[currentQuestion.id];
+    const wasUnanswered = prev === undefined || prev === null;
+    const isChange = wasUnanswered || prev !== answer;
+
     setAnswer(currentQuestion.id, answer);
+
+    // 마지막 문항을 처음 응답한 경우 → 근로자성 진단(free119)처럼 바로 결과로
+    if (isLastQuestion && wasUnanswered) {
+      completeDiagnosis();
+      router.push('/result');
+      return;
+    }
+
+    // 같은 응답을 다시 누른 경우(복귀 후 확인 등)에는 이동하지 않음
+    if (!isChange) return;
+
+    if (!isLastQuestion) {
+      nextQuestion();
+    }
   };
 
   const handleComplete = () => {
     completeDiagnosis();
     router.push('/result');
-  };
-
-  const handleNext = () => {
-    nextQuestion();
   };
 
   if (!currentQuestion) {
@@ -96,7 +110,7 @@ export default function DiagnosisPage() {
               rel="noopener noreferrer"
               className="text-[11px] text-ink-4 hover:text-ink font-medium"
             >
-              연계사이트
+              FREE119 근로자성 진단
             </a>
           </div>
 
@@ -150,24 +164,14 @@ export default function DiagnosisPage() {
           onAnswer={handleAnswer}
         />
 
-        {/* Navigation */}
+        {/* Navigation — 다음 버튼 없이 응답 선택으로 이동(연계 근로자성 진단과 동일 UX) */}
         <NavigationBar
           onPrev={prevQuestion}
-          onNext={handleNext}
           canGoPrev={canGoPrev}
-          canGoNext={true}
-          isLast={isLastQuestion}
+          showResultCta={isAllComplete()}
           onComplete={handleComplete}
         />
 
-        {/* 진단 완료 안내 (all answered) */}
-        {isAllComplete() && !isLastQuestion && (
-          <div className="mt-6 bg-semantic-green-bg border border-semantic-green-text/20 rounded-lg p-4 text-center">
-            <p className="text-sm font-bold text-semantic-green-text">
-              모든 문항 응답 완료! 마지막 문항으로 이동하여 &ldquo;진단 완료&rdquo; 버튼을 눌러주세요.
-            </p>
-          </div>
-        )}
       </main>
 
       {/* Footer Disclaimer */}

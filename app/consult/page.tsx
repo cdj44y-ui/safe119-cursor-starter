@@ -20,19 +20,25 @@ export default function ConsultPage() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {/* Calendly Embed Placeholder */}
             <div className="bg-white border border-sand-200 rounded-lg p-8">
               <h2 className="text-lg font-extrabold text-ink mb-4">비대면 상담 예약</h2>
-              <p className="text-[13px] text-ink-4 leading-relaxed mb-6">
-                아래 Calendly 위젯을 통해 편리한 시간에 상담을 예약하세요.
+              <p className="text-[13px] text-ink-4 leading-relaxed mb-4">
+                Calendly로 편한 시간을 선택하거나, 우측 연락처로 문의해 주세요.
               </p>
-              {/* TODO: Calendly 임베드 — Cursor에서 아래 주석을 실제 Calendly URL로 교체하세요 */}
-              <div className="bg-sand-100 border border-sand-200 rounded-lg p-12 text-center">
-                <p className="text-sm text-ink-5">
-                  Calendly 임베드 영역
-                  <br />
-                  <span className="text-[11px]">(Cursor에서 Calendly URL을 설정하세요)</span>
-                </p>
+              <a
+                href="https://calendly.com/cdj44y/15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full sm:w-auto bg-ink text-white font-semibold py-3 px-6 rounded-md text-sm hover:bg-ink-2 transition-colors mb-4"
+              >
+                Calendly에서 15분 예약하기
+              </a>
+              <div className="rounded-lg overflow-hidden border border-sand-200 bg-sand-50 min-h-[520px]">
+                <iframe
+                  title="Calendly 예약"
+                  src="https://calendly.com/cdj44y/15min"
+                  className="w-full h-[520px] border-0"
+                />
               </div>
             </div>
 
@@ -42,11 +48,18 @@ export default function ConsultPage() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-xs font-bold text-ink-5 uppercase tracking-wider mb-1">전화</h3>
-                  <p className="text-sm text-ink font-medium">000-0000-0000</p>
+                  <a href="tel:0221380240" className="text-sm text-ink font-medium hover:text-copper">
+                    02-2138-0240
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xs font-bold text-ink-5 uppercase tracking-wider mb-1">이메일</h3>
-                  <p className="text-sm text-ink font-medium">consult@winners.co.kr</p>
+                  <a
+                    href="mailto:cdj44y@gmail.com"
+                    className="text-sm text-ink font-medium hover:text-copper break-all"
+                  >
+                    cdj44y@gmail.com
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xs font-bold text-ink-5 uppercase tracking-wider mb-1">운영 시간</h3>
