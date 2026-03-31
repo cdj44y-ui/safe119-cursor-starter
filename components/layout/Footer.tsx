@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-sand-800 pt-6 flex flex-col sm:flex-row justify-between gap-4">
           <p className="text-[10px] text-sand-600 leading-relaxed max-w-lg">
-            노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 000-00-00000
+            노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666
             <br />
             Tel.{' '}
             <a href="tel:0221380240" className="hover:text-sand-400">
