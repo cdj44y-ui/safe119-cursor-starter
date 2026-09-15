@@ -49,7 +49,7 @@ export const questions: Question[] = [
     question: '경영책임자가 안전보건 확보의무의 최종 책임자임을 인식하고, 안전보건관리체계 구축·이행을 직접 총괄하고 있는가?',
     riskLevel: 'high',
     legalBasis: '중대재해처벌법 제4조',
-    reference: '대법원 2023도1234 판결',
+    reference: '대법원 2023. 12. 28. 선고 2023도12316 판결',
     guidance: '경영책임자의 안전보건 확보의무는 위임·위탁할 수 없는 고유 의무입니다. 이사회 또는 경영회의에서 안전보건 안건을 정기적으로 다루어야 합니다.',
   },
   {
@@ -401,7 +401,7 @@ export const questions: Question[] = [
     category: '안전보건 비용',
     question: '도급·용역·위탁 계약 시 안전보건을 위한 비용을 별도로 계상하고, 적정하게 지급하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '중처법 시행령 제4조 제9호, 산안법 제90조',
+    legalBasis: '중처법 시행령 제4조 제9호',
     guidance: '안전보건 비용을 별도 항목으로 계상하고, 수급인이 이를 안전보건 목적에 사용하도록 관리해야 합니다.',
   },
   {
@@ -425,7 +425,7 @@ export const questions: Question[] = [
     category: '반기 1회 이행점검',
     question: '안전보건관리체계 구축·이행 사항에 대하여 반기 1회 이상 점검을 실시하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '중처법 시행령 제5조 제1항',
+    legalBasis: '중처법 시행령 제5조 제2항 제1호',
     guidance: '반기 1회 이상 전체 안전보건관리체계의 이행 현황을 점검하고, 결과를 경영책임자에게 보고해야 합니다.',
   },
   {
@@ -436,7 +436,7 @@ export const questions: Question[] = [
     category: '점검 결과 조치',
     question: '이행점검 결과 미비 사항에 대해 시정·개선 조치를 취하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '중처법 시행령 제5조 제1항',
+    legalBasis: '중처법 시행령 제5조 제2항 제2호',
     guidance: '점검에서 발견된 미비 사항에 대해 시정 기한을 정하고, 이행 여부를 추적·관리해야 합니다.',
   },
   {
@@ -447,7 +447,7 @@ export const questions: Question[] = [
     category: '점검 기록 관리',
     question: '이행점검 결과를 문서화하여 보존하고 있는가?',
     riskLevel: 'medium',
-    legalBasis: '중처법 시행령 제5조 제2항',
+    legalBasis: '중처법 시행령 제13조',
     guidance: '이행점검 기록(점검일, 점검자, 점검 내용, 결과, 조치 사항)을 5년간 보존해야 합니다.',
   },
   {
@@ -469,7 +469,7 @@ export const questions: Question[] = [
     category: '위원회 의결 이행',
     question: '산업안전보건위원회에서 의결된 사항을 성실히 이행하고 있는가?',
     riskLevel: 'medium',
-    legalBasis: '산안법 제24조 제5항',
+    legalBasis: '산안법 제24조 제4항',
     guidance: '위원회 의결 사항의 이행 현황을 추적하고, 미이행 시 사유와 대안을 마련해야 합니다.',
   },
   {
@@ -513,7 +513,7 @@ export const questions: Question[] = [
     category: '채용·변경 시 교육',
     question: '신규 채용 시 및 작업내용 변경 시 안전보건교육을 실시하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '산안법 제29조, 제31조',
+    legalBasis: '산안법 제29조',
     guidance: '신규 채용 시 8시간(일용근로자 1시간), 작업내용 변경 시 2시간의 교육을 실시해야 합니다.',
   },
   {
@@ -612,7 +612,7 @@ export const questions: Question[] = [
     category: '개인보호구',
     question: '종사자에게 적절한 개인보호구를 지급하고 착용을 관리하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '산안법 제38조 제4항',
+    legalBasis: '산업안전보건기준에 관한 규칙 제32조',
     guidance: '작업 특성에 맞는 안전모, 안전화, 보안경, 방진마스크 등을 지급하고 착용을 확인해야 합니다.',
   },
   {
@@ -733,7 +733,7 @@ export const questions: Question[] = [
     category: '안전문화 활동',
     question: '사업장 안전문화 활성화를 위한 활동(안전캠페인, 안전제안, 우수사례 공유 등)을 실시하고 있는가?',
     riskLevel: 'low',
-    legalBasis: '산안법 제4조',
+    legalBasis: '산안법 제5조',
     guidance: '안전문화 활동을 정기적으로 실시하여 종사자의 안전의식을 높이고, 자율 안전관리 문화를 조성해야 합니다.',
   },
   {
@@ -755,7 +755,7 @@ export const questions: Question[] = [
     category: '서류 보존',
     question: '안전보건관리체계 관련 서류를 5년간 보존하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '중처법 시행령 제5조 제2항',
+    legalBasis: '중처법 시행령 제13조',
     guidance: '안전보건 목표·방침, 점검 결과, 회의록, 교육기록 등을 5년간 체계적으로 보존해야 합니다.',
   },
   {
@@ -799,7 +799,7 @@ export const questions: Question[] = [
     category: '종합 서류관리',
     question: '안전보건 관련 서류를 체계적으로 분류·관리하여, 감독·수사 시 즉시 제출할 수 있는 상태를 유지하고 있는가?',
     riskLevel: 'high',
-    legalBasis: '중처법 시행령 제5조, 산안법 제164조',
+    legalBasis: '중처법 시행령 제13조, 산안법 제164조',
     guidance: '서류를 전자문서 또는 문서함으로 체계적으로 관리하고, 감독관 요청 시 즉시 제출 가능한 상태를 유지해야 합니다.',
   },
 ];
