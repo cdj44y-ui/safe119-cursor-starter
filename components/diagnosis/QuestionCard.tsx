@@ -50,11 +50,11 @@ export default function QuestionCard({
 
       {/* Legal basis & Reference */}
       <div className="flex flex-wrap gap-2 mb-6">
-        <span className="text-[11px] bg-sand-100 text-ink-4 px-2 py-0.5 rounded font-medium">
+        <span className="text-xs bg-sand-100 text-ink-4 px-2 py-0.5 rounded font-medium">
           근거: {question.legalBasis}
         </span>
         {question.reference && (
-          <span className="text-[11px] bg-sand-100 text-ink-5 px-2 py-0.5 rounded">
+          <span className="text-xs bg-sand-100 text-ink-5 px-2 py-0.5 rounded">
             참고: {question.reference}
           </span>
         )}

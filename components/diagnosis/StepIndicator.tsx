@@ -16,7 +16,7 @@ export default function StepIndicator() {
           <button
             key={step.step}
             onClick={() => goToStep(step.step)}
-            className={`px-2.5 py-1 rounded text-[10.5px] font-semibold transition-all cursor-pointer border ${
+            className={`px-2.5 py-1 rounded text-xs font-semibold transition-all cursor-pointer border ${
               isActive
                 ? 'bg-copper text-white border-copper'
                 : isComplete

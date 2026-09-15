@@ -32,7 +32,7 @@ export default function NavigationBar({
           결과 보기
         </Button>
       ) : (
-        <p className="text-[11px] text-ink-5 text-right leading-snug max-w-[220px] sm:max-w-none">
+        <p className="text-xs text-ink-5 text-right leading-snug max-w-[220px] sm:max-w-none">
           응답을 선택하면 다음 문항으로 이동합니다
         </p>
       )}
