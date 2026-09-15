@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-sand-800 pt-6 flex flex-col sm:flex-row justify-between gap-4">
-          <p className="text-[10px] text-sand-600 leading-relaxed max-w-lg">
+          <p className="text-xs text-sand-600 leading-relaxed max-w-lg">
             노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666
             <br />
             Tel.{' '}
@@ -49,7 +49,7 @@ export default function Footer() {
             <br />
             본 자가진단은 참고용이며 법적 효력이 없습니다. 정확한 법률 검토는 전문가 상담을 이용하세요.
           </p>
-          <p className="text-[10px] text-sand-600">
+          <p className="text-xs text-sand-600">
             &copy; {new Date().getFullYear()} SAFE119. All rights reserved.
           </p>
         </div>

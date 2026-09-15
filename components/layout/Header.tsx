@@ -10,10 +10,10 @@ export default function Header() {
           SAFE<span className="text-copper">119</span>
         </Link>
         <div className="flex gap-6 items-center">
-          <Link href="/about" className="text-[13px] font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
+          <Link href="/about" className="text-sm font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
             전문가 소개
           </Link>
-          <Link href="/consult" className="text-[13px] font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
+          <Link href="/consult" className="text-sm font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
             상담 신청
           </Link>
           <Link
