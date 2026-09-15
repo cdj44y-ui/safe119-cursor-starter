@@ -35,7 +35,7 @@ export default function Step7Faq() {
   return (
     <section className="py-20 bg-sand-100">
       <div className="max-w-[960px] mx-auto px-7">
-        <span className="text-[11px] font-bold text-ink-5 uppercase tracking-[1.2px] block mb-2.5">
+        <span className="text-xs font-bold text-ink-5 uppercase tracking-[1.2px] block mb-2.5">
           자주 묻는 질문
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
@@ -50,14 +50,14 @@ export default function Step7Faq() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full text-left px-6 py-4 flex justify-between items-center cursor-pointer"
               >
-                <span className="text-[14px] font-bold text-ink pr-4">Q. {faq.q}</span>
+                <span className="text-sm font-bold text-ink pr-4">Q. {faq.q}</span>
                 <span className="text-ink-5 text-lg flex-shrink-0 transition-transform duration-200" style={{ transform: openIndex === i ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                   ▾
                 </span>
               </button>
               {openIndex === i && (
                 <div className="px-6 pb-4">
-                  <p className="text-[13px] text-ink-4 leading-relaxed">{faq.a}</p>
+                  <p className="text-sm text-ink-4 leading-relaxed">{faq.a}</p>
                 </div>
               )}
             </div>

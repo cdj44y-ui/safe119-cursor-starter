@@ -20,7 +20,7 @@ export default function Step3BeforeAfter() {
   return (
     <section className="py-20 bg-sand-100">
       <div className="max-w-[960px] mx-auto px-7">
-        <span className="text-[11px] font-bold text-copper uppercase tracking-[1.2px] block mb-2.5">
+        <span className="text-xs font-bold text-copper uppercase tracking-[1.2px] block mb-2.5">
           Before → After
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
@@ -37,7 +37,7 @@ export default function Step3BeforeAfter() {
             </h3>
             <ul className="space-y-3">
               {beforeItems.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-[13px] text-ink-3 leading-relaxed">
+                <li key={item} className="flex items-start gap-2 text-sm text-ink-3 leading-relaxed">
                   <span className="text-semantic-red-text mt-0.5">❌</span>
                   {item}
                 </li>
@@ -53,7 +53,7 @@ export default function Step3BeforeAfter() {
             </h3>
             <ul className="space-y-3">
               {afterItems.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-[13px] text-ink-3 leading-relaxed">
+                <li key={item} className="flex items-start gap-2 text-sm text-ink-3 leading-relaxed">
                   <span className="text-semantic-green-text mt-0.5">✅</span>
                   {item}
                 </li>

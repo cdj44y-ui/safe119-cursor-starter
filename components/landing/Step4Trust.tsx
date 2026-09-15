@@ -14,14 +14,14 @@ export default function Step4Trust() {
   return (
     <section className="py-20">
       <div className="max-w-[960px] mx-auto px-7">
-        <span className="text-[11px] font-bold text-copper uppercase tracking-[1.2px] block mb-2.5">
+        <span className="text-xs font-bold text-copper uppercase tracking-[1.2px] block mb-2.5">
           전문가가 직접 설계한 진단 도구
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
         <h2 className="text-[26px] font-extrabold text-ink tracking-tight leading-tight mb-2.5">
           안전 &times; 노동 &times; HR 통합 관점으로 만들었습니다
         </h2>
-        <p className="text-[14.5px] text-ink-4 leading-relaxed max-w-[520px] mb-10">
+        <p className="text-sm text-ink-4 leading-relaxed max-w-[520px] mb-10">
           사고만 보는 안전전문가도, 법만 보는 노무사도 아닙니다.
         </p>
 
@@ -30,10 +30,10 @@ export default function Step4Trust() {
           <div className="bg-white border border-sand-200 rounded-lg p-7 flex flex-col">
             <div className="text-xs text-ink-5 mb-2">노무법인 위너스 · 진단 도구 설계</div>
             <h3 className="text-lg font-extrabold text-ink mb-1">조대진 노무사</h3>
-            <p className="text-[11px] font-semibold text-copper mb-3">
+            <p className="text-xs font-semibold text-copper mb-3">
               안전공학 박사 × 공인노무사 · 근로자성·근로감독 리스크 실무
             </p>
-            <p className="text-[13px] text-ink-4 leading-relaxed mb-4">
+            <p className="text-sm text-ink-4 leading-relaxed mb-4">
               계약서 제목이 아니라 <strong className="text-ink-3">실질관계</strong>로 판단되는 근로자성,
               위장고용·3.3% 감독 이슈와 중대재해·안전보건 책임은 현장에서 함께 붙습니다. 현대카드·삼성서울병원
               인사 출신으로 <strong className="text-ink-3">안전 × 노동 × HR</strong>을 한 흐름으로 설계합니다.
@@ -41,7 +41,7 @@ export default function Step4Trust() {
 
             <div className="flex flex-wrap gap-1.5 mb-4">
               {['안전공학 박사', '공인노무사 15년', '근로자성 자문', '대기업 HR 실무'].map((badge) => (
-                <span key={badge} className="text-[10.5px] bg-copper-light text-copper px-2 py-0.5 rounded font-semibold">
+                <span key={badge} className="text-xs bg-copper-light text-copper px-2 py-0.5 rounded font-semibold">
                   {badge}
                 </span>
               ))}
@@ -56,7 +56,7 @@ export default function Step4Trust() {
                 '수사·감독 대응',
                 'HR제도설계',
               ].map((tag) => (
-                <span key={tag} className="text-[10px] bg-sand-100 text-ink-4 px-1.5 py-0.5 rounded">
+                <span key={tag} className="text-xs bg-sand-100 text-ink-4 px-1.5 py-0.5 rounded">
                   {tag}
                 </span>
               ))}
@@ -65,7 +65,7 @@ export default function Step4Trust() {
             <div className="mt-auto flex flex-col sm:flex-row gap-2 sm:items-center">
               <Link
                 href="/about"
-                className="text-[12px] font-bold text-copper hover:text-ink underline underline-offset-2"
+                className="text-sm font-bold text-copper hover:text-ink underline underline-offset-2"
               >
                 전문가 소개 자세히 →
               </Link>
@@ -73,7 +73,7 @@ export default function Step4Trust() {
                 href="https://free119.site/about"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] text-ink-5 hover:text-ink"
+                className="text-xs text-ink-5 hover:text-ink"
               >
                 FREE119 근로자성 안내
               </a>
@@ -86,13 +86,13 @@ export default function Step4Trust() {
               <div key={stat.label} className="bg-sand-50 border border-sand-200 rounded-lg p-4 text-center">
                 <div className="text-2xl font-extrabold text-ink mb-1">{stat.value}</div>
                 <div className="text-xs font-bold text-copper mb-1">{stat.label}</div>
-                <div className="text-[10px] text-ink-5 leading-snug">{stat.desc}</div>
+                <div className="text-xs text-ink-5 leading-snug">{stat.desc}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="text-[10px] text-ink-5 mt-4">
+        <p className="text-xs text-ink-5 mt-4">
           출처: 고용노동부 산업재해 통계, KDI 정책포럼, 정책브리핑 (2025)
         </p>
       </div>

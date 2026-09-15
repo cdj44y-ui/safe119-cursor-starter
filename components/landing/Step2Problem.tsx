@@ -6,14 +6,14 @@ export default function Step2Problem() {
   return (
     <section className="py-20">
       <div className="max-w-[960px] mx-auto px-7">
-        <span className="text-[11px] font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
+        <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
           혹시 이런 상황이신가요?
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
         <h2 className="text-[26px] font-extrabold text-ink tracking-tight leading-tight mb-2.5">
           경영책임자라면 지금 이 순간에도 위험합니다
         </h2>
-        <p className="text-[14.5px] text-ink-4 leading-relaxed max-w-[520px] mb-10">
+        <p className="text-sm text-ink-4 leading-relaxed max-w-[520px] mb-10">
           중처법은 사고 발생 여부와 관계없이, 체계 미구축 자체를 처벌합니다.
         </p>
 
@@ -40,9 +40,9 @@ export default function Step2Problem() {
               key={pain.num}
               className="bg-white border border-sand-200 rounded-lg p-7 transition-shadow hover:shadow-md"
             >
-              <span className="text-[11px] font-bold text-copper">{pain.num}</span>
-              <p className="text-[15px] font-bold text-ink mt-3 mb-3 leading-snug">{pain.quote}</p>
-              <p className="text-[13px] text-ink-4 leading-relaxed">{pain.desc}</p>
+              <span className="text-xs font-bold text-copper">{pain.num}</span>
+              <p className="text-base font-bold text-ink mt-3 mb-3 leading-snug">{pain.quote}</p>
+              <p className="text-sm text-ink-4 leading-relaxed">{pain.desc}</p>
             </div>
           ))}
         </div>
@@ -59,7 +59,7 @@ export default function Step2Problem() {
             {presidentQuote.policies.map((policy) => (
               <span
                 key={policy}
-                className="text-[11px] bg-white/10 text-white/70 px-2 py-0.5 rounded font-medium"
+                className="text-xs bg-white/10 text-white/70 px-2 py-0.5 rounded font-medium"
               >
                 {policy}
               </span>

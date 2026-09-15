@@ -23,7 +23,7 @@ export default function Step1Hero() {
         {/* Description */}
         <p className="text-base text-ink-3 max-w-[520px] leading-relaxed mb-7">
           중처법 시행령 제4조{' '}
-          <span className="bg-semantic-amber-bg text-semantic-amber-text px-1.5 py-0.5 rounded text-[13px] font-semibold">
+          <span className="bg-semantic-amber-bg text-semantic-amber-text px-1.5 py-0.5 rounded text-sm font-semibold">
             9대 핵심요소
           </span>{' '}
           기준 67문항 자가진단.
@@ -32,18 +32,18 @@ export default function Step1Hero() {
         </p>
 
         {/* Social Proof */}
-        <div className="flex items-center gap-2 text-[13px] text-ink-4 mb-8">
-          <span className="bg-semantic-green-bg text-semantic-green-text px-2.5 py-0.5 rounded text-[11.5px] font-bold">
+        <div className="flex items-center gap-2 text-sm text-ink-4 mb-8">
+          <span className="bg-semantic-green-bg text-semantic-green-text px-2.5 py-0.5 rounded text-xs font-bold">
             무료
           </span>
           <span>회원가입 없음 · 10분 소요 · PDF 결과 리포트 즉시 제공</span>
         </div>
 
         {/* CTA */}
-        <Link href="/diagnosis" className="btn-primary text-[15px] font-bold">
+        <Link href="/diagnosis" className="btn-primary text-base font-bold">
           🔍 무료 진단 시작하기
         </Link>
-        <span className="block mt-2.5 text-[11.5px] text-ink-5">
+        <span className="block mt-2.5 text-xs text-ink-5">
           🔒 개인정보 수집 없음 · 100% 무료 · 결과 즉시 확인
         </span>
 
@@ -70,8 +70,8 @@ export default function Step1Hero() {
             { val: '~10분', lbl: '소요시간' },
           ].map((c) => (
             <div key={c.lbl} className="bg-white border border-sand-200 rounded-md px-3.5 py-2 text-center min-w-[88px]">
-              <div className="text-[13px] font-extrabold text-ink-2">{c.val}</div>
-              <div className="text-[10.5px] text-ink-5 mt-0.5">{c.lbl}</div>
+              <div className="text-sm font-extrabold text-ink-2">{c.val}</div>
+              <div className="text-xs text-ink-5 mt-0.5">{c.lbl}</div>
             </div>
           ))}
         </div>

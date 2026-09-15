@@ -4,7 +4,7 @@ export default function LinkedService() {
   return (
     <section className="py-16">
       <div className="max-w-[960px] mx-auto px-7">
-        <span className="text-[11px] font-bold text-ink-5 uppercase tracking-[1.2px] block mb-2.5">
+        <span className="text-xs font-bold text-ink-5 uppercase tracking-[1.2px] block mb-2.5">
           연계 서비스
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
