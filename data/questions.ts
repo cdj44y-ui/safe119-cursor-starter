@@ -10,6 +10,7 @@ export interface Question {
   legalBasis: string;
   reference?: string;
   guidance?: string;
+  plainTip?: string;
 }
 
 export type AnswerValue = 'O' | 'X' | 'triangle' | 'NA' | null;
@@ -51,6 +52,7 @@ export const questions: Question[] = [
     legalBasis: '중대재해처벌법 제4조',
     reference: '대법원 2023. 12. 28. 선고 2023도12316 판결',
     guidance: '경영책임자의 안전보건 확보의무는 위임·위탁할 수 없는 고유 의무입니다. 이사회 또는 경영회의에서 안전보건 안건을 정기적으로 다루어야 합니다.',
+    plainTip: '안전 문제를 남에게 미루지 않고, 대표님이 직접 챙기고 있나요?',
   },
   {
     id: 2, step: 1,
@@ -62,6 +64,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중대재해처벌법 제4조, 산안법 제17조',
     guidance: '안전보건 총괄책임자는 경영책임자에게 직접 보고할 수 있어야 하며, 중간 관리층에 의해 정보가 차단되어서는 안 됩니다.',
+    plainTip: '안전 담당자가 중간에서 막히지 않고 대표님께 바로 보고할 수 있나요?',
   },
 
   // ═══════ STEP 2: 종사자 보호대상 확인 (4문항) ═══════
@@ -75,6 +78,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중대재해처벌법 제2조 제7호',
     guidance: '종사자에는 직접 고용 근로자뿐 아니라 도급·용역·위탁 관계의 종사자, 특수형태근로종사자 등이 모두 포함됩니다.',
+    plainTip: '정규직뿐 아니라 하청 직원, 배달기사 등도 우리 회사가 지켜야 할 사람으로 보고 있나요?',
   },
   {
     id: 4, step: 2,
@@ -86,6 +90,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중대재해처벌법 제2조 제7호',
     guidance: '종사자 현황은 분기 1회 이상 갱신하여 관리하고, 신규 도급·용역 계약 시 즉시 반영해야 합니다.',
+    plainTip: '누가 우리 회사에서 일하는지(직접고용·하청 등) 최신 정보로 파악하고 있나요?',
   },
   {
     id: 5, step: 2,
@@ -97,6 +102,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중대재해처벌법 제5조, 산안법 제63조',
     guidance: '수급인 근로자도 보호대상 종사자에 포함되며, 동일한 수준의 안전보건 조치가 필요합니다.',
+    plainTip: '하청업체 직원에게도 우리 직원과 같은 수준으로 안전 조치를 해주고 있나요?',
   },
   {
     id: 6, step: 2,
@@ -108,6 +114,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제29조, 제31조',
     guidance: '신규 채용 시 교육, 작업내용 변경 시 교육, 특별안전보건교육을 누락 없이 실시해야 합니다.',
+    plainTip: '정규직뿐 아니라 하청 직원까지 빠짐없이 안전교육을 받고 기록을 남기고 있나요?',
   },
 
   // ═══════ STEP 3: 가. 안전·보건 목표와 경영방침 (3문항) ═══════
@@ -122,6 +129,7 @@ export const questions: Question[] = [
     legalBasis: '중처법 시행령 제4조 제1호',
     reference: 'KOSHA GUIDE P-119-2022',
     guidance: '안전보건 목표는 측정 가능한 지표(사고율, 교육이수율 등)를 포함하여 구체적으로 설정해야 합니다.',
+    plainTip: '올해 안전 목표를 숫자로(예: 사고 0건) 구체적으로 정했나요?',
   },
   {
     id: 8, step: 3,
@@ -133,6 +141,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제1호',
     guidance: '경영방침은 경영책임자가 서명하고, 사업장 내 게시·교육·인트라넷 등을 통해 종사자에게 전달되어야 합니다.',
+    plainTip: '대표님이 정한 안전 방침을 직원들이 실제로 알고 있나요?',
   },
   {
     id: 9, step: 3,
@@ -144,6 +153,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제1호',
     guidance: '반기 1회 이상 목표 달성 현황을 점검하고, 미달성 항목에 대해 원인 분석 및 개선 계획을 수립해야 합니다.',
+    plainTip: '정한 목표를 잘 지키고 있는지 주기적으로 확인하고, 안 되면 대책을 세우고 있나요?',
   },
 
   // ═══════ STEP 4: 나. 전담 조직 구성 (3문항) ═══════
@@ -157,6 +167,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제2호',
     guidance: '전담 조직은 다른 업무와 겸임하지 않는 독립된 조직이어야 하며, 충분한 인력과 권한을 부여해야 합니다.',
+    plainTip: '안전만 전담하는 부서나 팀이 따로 있나요? (다른 업무와 겸임이 아닌 별도 조직)',
   },
   {
     id: 11, step: 4,
@@ -168,6 +179,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제2호, 산안법 제17~19조',
     guidance: '산업안전보건법상 안전관리자·보건관리자 선임 기준 이상의 전문 인력을 배치해야 합니다.',
+    plainTip: '그 전담 조직에 안전 전문 인력이 충분히 배치돼 있나요?',
   },
   {
     id: 12, step: 4,
@@ -179,6 +191,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제2호',
     guidance: '전담 조직의 보고 라인은 경영책임자까지 직보 체계를 갖추어야 합니다.',
+    plainTip: '전담 조직이 형식뿐이지 않고, 실제 의사결정에 목소리를 낼 수 있나요?',
   },
 
   // ═══════ STEP 5: 다. 유해·위험요인 확인·개선 (4문항) ═══════
@@ -193,6 +206,7 @@ export const questions: Question[] = [
     legalBasis: '중처법 시행령 제4조 제3호, 산안법 제36조',
     reference: 'KOSHA GUIDE P-120-2022',
     guidance: '위험성평가는 최초평가 후 매년 정기평가를 실시하고, 작업변경·사고발생 시 수시평가를 해야 합니다.',
+    plainTip: '우리 사업장에 어떤 위험이 있는지 정기적으로 점검(위험성평가)하고 있나요?',
   },
   {
     id: 14, step: 5,
@@ -204,6 +218,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제3호',
     guidance: '위험성평가 결과 허용 불가능한 위험에 대해 감소 대책(제거·대체·공학적·관리적·개인보호구)을 수립·이행해야 합니다.',
+    plainTip: '위험하다고 확인된 부분을 실제로 개선하고 있나요?',
   },
   {
     id: 15, step: 5,
@@ -215,6 +230,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제3호',
     guidance: '개선 조치 이행 현황을 월 1회 이상 점검하고, 미이행 사항에 대해 독촉·보완 조치를 취해야 합니다.',
+    plainTip: '고치기로 한 부분이 진짜로 고쳐졌는지 다시 확인하고 있나요?',
   },
   {
     id: 16, step: 5,
@@ -226,6 +242,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제3호, 산안법 제36조 제2항',
     guidance: '위험성평가 시 해당 작업을 수행하는 종사자가 직접 참여하여 위험요인을 도출해야 합니다.',
+    plainTip: '위험한 부분을 찾을 때 실제로 그 일을 하는 직원의 의견을 듣고 있나요?',
   },
 
   // ═══════ STEP 6: 라. 인력·시설·장비·예산 (3문항) ═══════
@@ -239,6 +256,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제4호, 산안법 제17~19조',
     guidance: '안전관리자, 보건관리자, 산업보건의 등을 법정 기준 이상으로 선임해야 합니다.',
+    plainTip: '법에서 정한 기준 이상으로 안전 담당 인력을 두고 있나요?',
   },
   {
     id: 18, step: 6,
@@ -250,6 +268,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제4호',
     guidance: '안전보호장비, 비상대피시설, 소화설비, 환기설비 등을 법정 기준 이상으로 확보·유지해야 합니다.',
+    plainTip: '안전장비, 대피시설, 소화설비 등을 충분히 갖추고 관리하고 있나요?',
   },
   {
     id: 19, step: 6,
@@ -261,6 +280,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제4호',
     guidance: '안전보건 예산은 별도 항목으로 편성하고, 전년도 대비 적정 수준 이상을 편성·집행해야 합니다.',
+    plainTip: '안전을 위한 예산을 따로 떼어 놓고 충분히 쓰고 있나요?',
   },
 
   // ═══════ STEP 7: 마. 권한·예산·평가 기준 (3문항) ═══════
@@ -274,6 +294,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제5호',
     guidance: '작업중지권, 예산 집행권, 인력 요청권 등 실질적 권한을 부여하고 문서화해야 합니다.',
+    plainTip: '안전 담당자가 필요하면 작업을 멈추게 하거나 예산을 쓸 수 있는 실제 권한이 있나요?',
   },
   {
     id: 21, step: 7,
@@ -285,6 +306,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제5호',
     guidance: '안전보건 관련 긴급 예산 집행 시 별도 결재 없이 사용할 수 있는 한도를 설정해야 합니다.',
+    plainTip: '안전 담당자가 급할 때 별도 결재 없이 바로 쓸 수 있는 비상 예산이 있나요?',
   },
   {
     id: 22, step: 7,
@@ -296,6 +318,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제5호',
     guidance: '안전보건 성과를 KPI에 반영하고, 인사평가·승진·보상에 연계해야 합니다.',
+    plainTip: '안전을 잘 챙긴 직원이 인사평가에서 실제로 좋은 평가를 받나요?',
   },
 
   // ═══════ STEP 8: 바. 안전관리자 배치·시간보장 (2문항) ═══════
@@ -309,6 +332,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제6호, 산안법 제17~19조',
     guidance: '안전관리자·보건관리자를 법정 기준에 따라 선임하되, 겸임·위탁이 아닌 전담 배치를 우선 검토해야 합니다.',
+    plainTip: '안전관리자·보건관리자를 법 기준에 맞게 제대로 두고 있나요? (겸임보다 전담이 바람직)',
   },
   {
     id: 24, step: 8,
@@ -320,6 +344,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제6호',
     guidance: '안전보건 업무 외 다른 업무를 과도하게 부여하지 않아야 하며, 전담 시간을 보장해야 합니다.',
+    plainTip: '안전 담당자가 다른 업무에 치여 정작 안전 업무를 못 하고 있지는 않나요?',
   },
 
   // ═══════ STEP 9: 사. 종사자 의견 청취 (2문항) ═══════
@@ -333,6 +358,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제7호, 산안법 제24조',
     guidance: '산업안전보건위원회, 안전보건 간담회, 제안제도, 설문조사 등의 의견 청취 절차를 마련해야 합니다.',
+    plainTip: '직원들이 안전에 대해 의견을 낼 수 있는 자리(회의·설문 등)가 정기적으로 있나요?',
   },
   {
     id: 26, step: 9,
@@ -344,6 +370,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제7호',
     guidance: '접수된 의견의 처리 결과를 종사자에게 피드백하고, 개선 조치 내용을 공유해야 합니다.',
+    plainTip: '직원이 낸 의견이 어떻게 처리됐는지 다시 알려주고 있나요?',
   },
 
   // ═══════ STEP 10: 아. 중대산업재해 대비 매뉴얼 (3문항) ═══════
@@ -357,6 +384,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제8호',
     guidance: '사고 유형별 대응 절차, 보고 체계, 피해자 구호, 재발방지 대책 수립 절차 등을 포함해야 합니다.',
+    plainTip: '사고가 났을 때 누가 무엇을 해야 하는지 정리된 매뉴얼이 있나요?',
   },
   {
     id: 28, step: 10,
@@ -368,6 +396,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제8호',
     guidance: '반기 1회 이상 비상대응 훈련을 실시하고, 훈련 결과를 바탕으로 매뉴얼을 개선해야 합니다.',
+    plainTip: '그 매뉴얼대로 실제 훈련을 해본 적이 있나요?',
   },
   {
     id: 29, step: 10,
@@ -379,6 +408,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제8호',
     guidance: '연 1회 이상 매뉴얼의 적절성을 검토하고, 법령 개정·사고 사례 등을 반영하여 갱신해야 합니다.',
+    plainTip: '그 매뉴얼이 오래돼서 지금 상황과 안 맞는 부분은 없나요?',
   },
 
   // ═══════ STEP 11: 자. 도급·용역·위탁 기준 (3문항) ═══════
@@ -392,6 +422,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제9호, 산안법 제61조',
     guidance: '수급인의 산재율, 안전관리 능력, 안전보건 자격 등을 평가하는 기준을 마련하고 적용해야 합니다.',
+    plainTip: '하청업체를 고를 때 그 업체가 안전을 잘 지키는지도 함께 보고 뽑나요?',
   },
   {
     id: 31, step: 11,
@@ -403,6 +434,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제4조 제9호',
     guidance: '안전보건 비용을 별도 항목으로 계상하고, 수급인이 이를 안전보건 목적에 사용하도록 관리해야 합니다.',
+    plainTip: '하청업체에 안전을 위한 비용을 따로 챙겨주고, 실제로 안전에 쓰이는지 확인하나요?',
   },
   {
     id: 32, step: 11,
@@ -414,6 +446,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제4조 제9호, 산안법 제63~66조',
     guidance: '수급인에 대한 정기 안전보건 점검(월 1회 이상)을 실시하고, 위반 시 시정을 요구해야 합니다.',
+    plainTip: '하청업체가 안전을 잘 지키고 있는지 정기적으로 확인하나요?',
   },
 
   // ═══════ STEP 12: 이행점검·의견청취·서류보존 (35문항) ═══════
@@ -427,6 +460,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제5조 제2항 제1호',
     guidance: '반기 1회 이상 전체 안전보건관리체계의 이행 현황을 점검하고, 결과를 경영책임자에게 보고해야 합니다.',
+    plainTip: '지금까지 만든 안전 체계가 실제로 잘 돌아가는지 6개월에 한 번은 점검하나요?',
   },
   {
     id: 34, step: 12,
@@ -438,6 +472,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제5조 제2항 제2호',
     guidance: '점검에서 발견된 미비 사항에 대해 시정 기한을 정하고, 이행 여부를 추적·관리해야 합니다.',
+    plainTip: '점검에서 발견된 문제를 실제로 고치고 있나요?',
   },
   {
     id: 35, step: 12,
@@ -449,6 +484,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중처법 시행령 제13조',
     guidance: '이행점검 기록(점검일, 점검자, 점검 내용, 결과, 조치 사항)을 5년간 보존해야 합니다.',
+    plainTip: '점검한 내용을 기록으로 남겨두고 있나요?',
   },
   {
     id: 36, step: 12,
@@ -460,6 +496,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제24조',
     guidance: '근로자 위원과 사용자 위원 동수로 구성하고, 분기 1회 이상 회의를 개최하며 회의록을 작성·보존해야 합니다.',
+    plainTip: '노사가 함께 안전을 논의하는 회의를 3개월에 한 번은 열고 있나요?',
   },
   {
     id: 37, step: 12,
@@ -471,6 +508,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제24조 제4항',
     guidance: '위원회 의결 사항의 이행 현황을 추적하고, 미이행 시 사유와 대안을 마련해야 합니다.',
+    plainTip: '그 회의에서 정한 내용을 실제로 지키고 있나요?',
   },
   {
     id: 38, step: 12,
@@ -482,6 +520,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제25조',
     guidance: '상시근로자 100인 이상 사업장은 안전보건관리규정을 작성하여 각 사업장에 비치해야 합니다.',
+    plainTip: '우리 회사만의 안전 규정집이 문서로 만들어져 있나요?',
   },
   {
     id: 39, step: 12,
@@ -493,6 +532,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제25조, 제26조',
     guidance: '법령 개정, 공정 변경, 사고 발생 등에 따라 안전보건관리규정을 적시에 개정해야 합니다.',
+    plainTip: '그 규정집이 법이 바뀌거나 상황이 바뀌면 같이 업데이트되나요?',
   },
   {
     id: 40, step: 12,
@@ -504,6 +544,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제29조',
     guidance: '사무직 매분기 3시간, 비사무직 매월 2시간의 안전보건교육을 실시해야 합니다.',
+    plainTip: '매달·매분기 정해진 안전교육을 빠짐없이 하고 있나요?',
   },
   {
     id: 41, step: 12,
@@ -515,6 +556,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제29조',
     guidance: '신규 채용 시 8시간(일용근로자 1시간), 작업내용 변경 시 2시간의 교육을 실시해야 합니다.',
+    plainTip: '새로 온 직원이나 하는 일이 바뀐 직원에게 그때그때 안전교육을 하나요?',
   },
   {
     id: 42, step: 12,
@@ -526,6 +568,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제29조 제3항',
     guidance: '유해위험작업 38개 항목에 해당하는 작업 시 16시간(단기 2시간) 특별교육을 실시해야 합니다.',
+    plainTip: '특히 위험한 작업을 하는 직원에게는 별도로 더 자세한 교육을 하나요?',
   },
   {
     id: 43, step: 12,
@@ -537,6 +580,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제29조',
     guidance: '교육일지, 출석부, 교육자료 등을 교육 실시 후 3년간 보존해야 합니다.',
+    plainTip: '누가 언제 무슨 교육을 받았는지 기록을 남기고 있나요?',
   },
   {
     id: 44, step: 12,
@@ -548,6 +592,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제125조',
     guidance: '유해인자 취급 사업장은 6개월(발암물질 3개월)마다 작업환경측정을 실시해야 합니다.',
+    plainTip: '유해물질이 있는 작업장의 공기 등을 주기적으로 측정하나요?',
   },
   {
     id: 45, step: 12,
@@ -559,6 +604,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제129~131조',
     guidance: '일반건강진단(사무직 2년, 비사무직 1년), 특수건강진단(유해인자별 주기)을 누락 없이 실시해야 합니다.',
+    plainTip: '직원들이 정기적으로 건강검진을 받고 있나요?',
   },
   {
     id: 46, step: 12,
@@ -570,6 +616,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제132조',
     guidance: '건강진단 결과 유소견자에 대해 의사 소견에 따라 적절한 사후관리 조치를 취해야 합니다.',
+    plainTip: '건강검진에서 이상 소견이 나온 직원에게 후속 조치(부서이동·근무시간 조정 등)를 하나요?',
   },
   {
     id: 47, step: 12,
@@ -581,6 +628,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제93조',
     guidance: '프레스, 크레인, 리프트, 압력용기 등 안전검사 대상 기계기구는 정기 안전검사를 받아야 합니다.',
+    plainTip: '위험한 기계(크레인·프레스 등)를 정기적으로 검사받고 있나요?',
   },
   {
     id: 48, step: 12,
@@ -592,6 +640,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제98조',
     guidance: '자체검사 대상 기계기구에 대해 검사 주기에 따라 자체검사를 실시하고 3년간 기록을 보존해야 합니다.',
+    plainTip: '그 외 기계들도 우리 회사 자체적으로 점검하고 기록을 남기나요?',
   },
   {
     id: 49, step: 12,
@@ -603,6 +652,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제114~116조',
     guidance: 'MSDS를 취급 장소에 비치하고, 종사자에게 유해성·위험성, 취급 주의사항 등을 교육해야 합니다.',
+    plainTip: '화학물질을 쓰는 곳에 그 물질의 위험성을 알려주는 안내서(MSDS)를 비치하고 알려주나요?',
   },
   {
     id: 50, step: 12,
@@ -614,6 +664,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산업안전보건기준에 관한 규칙 제32조',
     guidance: '작업 특성에 맞는 안전모, 안전화, 보안경, 방진마스크 등을 지급하고 착용을 확인해야 합니다.',
+    plainTip: '안전모, 안전화 같은 보호장비를 나눠주고 실제로 착용하는지 확인하나요?',
   },
   {
     id: 51, step: 12,
@@ -625,6 +676,7 @@ export const questions: Question[] = [
     riskLevel: 'low',
     legalBasis: '산안법 제37조',
     guidance: '금지, 경고, 지시, 안내 표지를 관련 장소에 부착하고, 훼손·변색 시 교체해야 합니다.',
+    plainTip: '위험한 곳에 경고 표지판을 붙여놨나요?',
   },
   {
     id: 52, step: 12,
@@ -636,6 +688,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제64조',
     guidance: '2개월에 1회 이상 수급인과 합동 안전보건점검을 실시하고 결과를 기록·보존해야 합니다.',
+    plainTip: '하청업체와 함께 현장 안전점검을 정기적으로 하나요?',
   },
   {
     id: 53, step: 12,
@@ -647,6 +700,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제65조',
     guidance: '유해·위험요인, 안전보건 조치, 비상 연락 체계 등을 수급인에게 문서로 제공해야 합니다.',
+    plainTip: '하청업체에 우리 현장의 위험 정보를 문서로 미리 알려주나요?',
   },
   {
     id: 54, step: 12,
@@ -658,6 +712,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제58~59조',
     guidance: '도급 금지 대상 작업을 확인하고, 승인 대상 작업은 고용노동부 장관의 승인을 받아야 합니다.',
+    plainTip: '특히 위험한 작업을 하청 줄 때는 미리 확인·승인 절차를 거치나요?',
   },
   {
     id: 55, step: 12,
@@ -669,6 +724,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제38조, KOSHA GUIDE',
     guidance: '위험작업 전 작업허가서를 발행하고, 안전조치 확인 후 작업을 개시해야 합니다.',
+    plainTip: '밀폐공간, 불 쓰는 작업, 높은 곳 작업 등은 시작 전에 허가를 받고 하나요?',
   },
   {
     id: 56, step: 12,
@@ -680,6 +736,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제36조, KOSHA GUIDE P-82',
     guidance: '설비·공정·원재료·작업방법 변경 시 위험성평가를 포함한 변경관리 절차를 거쳐야 합니다.',
+    plainTip: '설비나 작업방식을 바꿀 때 안전에 미치는 영향을 미리 검토하나요?',
   },
   {
     id: 57, step: 12,
@@ -691,6 +748,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제38조, 시행규칙 제37조',
     guidance: '화재, 폭발, 누출 등 비상상황별 대응 절차를 수립하고, 연 1회 이상 훈련을 실시해야 합니다.',
+    plainTip: '불이 나거나 물질이 샜을 때 어떻게 대응할지 계획이 있고, 훈련도 해봤나요?',
   },
   {
     id: 58, step: 12,
@@ -702,6 +760,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: 'KOSHA GUIDE P-106',
     guidance: '아차사고 보고 절차를 마련하고, 보고된 사례를 분석하여 재발방지 대책에 반영해야 합니다.',
+    plainTip: '큰 사고로 이어질 뻔한 \'아찔한 순간\'도 보고받고 분석하나요?',
   },
   {
     id: 59, step: 12,
@@ -713,6 +772,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제57조',
     guidance: '산업재해 발생 시 지체 없이 원인을 조사하고, 유사 재해 방지를 위한 대책을 수립·이행해야 합니다.',
+    plainTip: '사고가 나면 원인을 파악하고 재발 방지 대책을 세우나요?',
   },
   {
     id: 60, step: 12,
@@ -724,6 +784,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제57조',
     guidance: '중대재해는 즉시, 일반재해는 1개월 이내 고용노동부에 산업재해 조사표를 제출해야 합니다.',
+    plainTip: '사고가 나면 정해진 기한 안에 고용노동부에 신고하나요?',
   },
   {
     id: 61, step: 12,
@@ -735,6 +796,7 @@ export const questions: Question[] = [
     riskLevel: 'low',
     legalBasis: '산안법 제5조',
     guidance: '안전문화 활동을 정기적으로 실시하여 종사자의 안전의식을 높이고, 자율 안전관리 문화를 조성해야 합니다.',
+    plainTip: '안전 캠페인이나 우수사례 공유 같은 활동을 하고 있나요?',
   },
   {
     id: 62, step: 12,
@@ -746,6 +808,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '중대재해처벌법 제4조',
     guidance: '경영책임자의 현장 방문, 안전회의 주재, 안전 메시지 발신 등 가시적 안전리더십 활동이 필요합니다.',
+    plainTip: '대표님이 직접 현장을 둘러보거나 안전회의에 참석하나요?',
   },
   {
     id: 63, step: 12,
@@ -757,6 +820,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제13조',
     guidance: '안전보건 목표·방침, 점검 결과, 회의록, 교육기록 등을 5년간 체계적으로 보존해야 합니다.',
+    plainTip: '지금까지의 안전 관련 서류들을 5년간 잘 보관하고 있나요?',
   },
   {
     id: 64, step: 12,
@@ -768,6 +832,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제36조, 시행규칙 제37조',
     guidance: '위험성평가 결과, 위험 감소 대책, 이행 현황을 포함한 기록을 3년간 보존해야 합니다.',
+    plainTip: '위험성평가한 내용을 문서로 남겨서 보관하고 있나요?',
   },
   {
     id: 65, step: 12,
@@ -779,6 +844,7 @@ export const questions: Question[] = [
     riskLevel: 'medium',
     legalBasis: '산안법 제63~66조',
     guidance: '도급 관련 안전보건 서류(계약서, 합동점검 기록, 정보제공 문서 등)를 계약 종료 후 3년간 보존해야 합니다.',
+    plainTip: '하청업체와 주고받은 안전 관련 서류(계약서·점검기록 등)를 보관하고 있나요?',
   },
   {
     id: 66, step: 12,
@@ -790,6 +856,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '산안법 제57조',
     guidance: '산업재해 조사표, 원인 분석 보고서, 재발방지 대책서를 5년간 보존해야 합니다.',
+    plainTip: '사고가 났을 때 작성한 조사표와 재발방지 대책서를 보관하고 있나요?',
   },
   {
     id: 67, step: 12,
@@ -801,6 +868,7 @@ export const questions: Question[] = [
     riskLevel: 'high',
     legalBasis: '중처법 시행령 제13조, 산안법 제164조',
     guidance: '서류를 전자문서 또는 문서함으로 체계적으로 관리하고, 감독관 요청 시 즉시 제출 가능한 상태를 유지해야 합니다.',
+    plainTip: '감독관이 갑자기 서류를 요구해도 바로 꺼내 보여줄 수 있게 정리돼 있나요?',
   },
 ];
 
