@@ -79,7 +79,7 @@ export default function AboutPage() {
           <div className="relative max-w-[1100px] mx-auto px-7 pt-16 pb-20 md:pt-24 md:pb-28">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
               <div className="max-w-3xl">
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-copper mb-6">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Expert · 노무법인 위너스
                 </p>
                 <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold text-white leading-[1.05] tracking-tight">
@@ -87,7 +87,7 @@ export default function AboutPage() {
                   <span className="text-sand-500 font-bold"> 노무사</span>
                 </h1>
                 <div className="mt-8 h-px w-24 bg-gradient-to-r from-copper to-transparent" />
-                <p className="mt-8 text-[15px] md:text-base leading-relaxed text-sand-400 max-w-2xl">
+                <p className="mt-8 text-base md:text-base leading-relaxed text-sand-400 max-w-2xl">
                   <span className="text-white font-semibold">
                     안전공학 박사 × 공인노무사 × 근로자성·고용감독 리스크 실무
                   </span>
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 {['안전공학 박사', '공인노무사 15년', '대기업 HR', '근로자성 자문'].map((badge) => (
                   <span
                     key={badge}
-                    className="font-mono text-[10px] uppercase tracking-wider text-sand-300 border border-white/15 px-3 py-1.5 bg-white/[0.03]"
+                    className="font-mono text-xs uppercase tracking-wider text-sand-300 border border-white/15 px-3 py-1.5 bg-white/[0.03]"
                   >
                     {badge}
                   </span>
@@ -124,7 +124,7 @@ export default function AboutPage() {
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
               <div className="lg:w-[38%] shrink-0">
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-copper mb-6">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Risk layer
                 </p>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
@@ -153,7 +153,7 @@ export default function AboutPage() {
                 ].map((row) => (
                   <div key={row.title} className="bg-[#0a0908] p-6 md:p-8">
                     <h3 className="text-sm font-bold text-white mb-3">{row.title}</h3>
-                    <p className="text-[13.5px] text-sand-500 leading-relaxed">{row.body}</p>
+                    <p className="text-sm text-sand-500 leading-relaxed">{row.body}</p>
                   </div>
                 ))}
               </div>
@@ -166,12 +166,12 @@ export default function AboutPage() {
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-copper mb-6">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Scope
                 </p>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">전문 영역</h2>
               </div>
-              <p className="text-[13px] text-sand-500 max-w-md lg:text-right">
+              <p className="text-sm text-sand-500 max-w-md lg:text-right">
                 근로자성·고용 구조 문제는{' '}
                 <span className="text-white font-semibold">진단 → 방어 → 재설계</span> 순서로 정리할 때 같은
                 분쟁이 반복되지 않습니다.
@@ -185,15 +185,15 @@ export default function AboutPage() {
                 >
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <h3 className="text-base font-extrabold text-white leading-snug">{block.title}</h3>
-                    <span className="font-mono text-[10px] text-copper shrink-0 pt-1">{'//'}</span>
+                    <span className="font-mono text-xs text-copper shrink-0 pt-1">{'//'}</span>
                   </div>
-                  <p className="text-[13px] font-medium text-sand-400 mb-6 border-l-2 border-copper/60 pl-3">
+                  <p className="text-sm font-medium text-sand-400 mb-6 border-l-2 border-copper/60 pl-3">
                     {block.subtitle}
                   </p>
-                  <ul className="space-y-3 text-[12.5px] text-sand-500 leading-snug mt-auto">
+                  <ul className="space-y-3 text-sm text-sand-500 leading-snug mt-auto">
                     {block.items.map((item) => (
                       <li key={item} className="flex gap-3">
-                        <span className="text-copper/80 font-mono text-[10px] mt-0.5">—</span>
+                        <span className="text-copper/80 font-mono text-xs mt-0.5">—</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -207,7 +207,7 @@ export default function AboutPage() {
         {/* 왜 조대진 — 번호 스트립 */}
         <section className="bg-[#0c0b09]">
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
-            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-copper mb-6">
+            <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
               Method
             </p>
             <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
@@ -226,7 +226,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white mb-3">{b.title}</h3>
-                    <p className="text-[13.5px] text-sand-500 leading-relaxed max-w-2xl">{b.body}</p>
+                    <p className="text-sm text-sand-500 leading-relaxed max-w-2xl">{b.body}</p>
                   </div>
                 </div>
               ))}
@@ -239,8 +239,8 @@ export default function AboutPage() {
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row gap-10 lg:items-stretch">
               <div className="flex-1 border border-white/10 p-6 md:p-8 bg-white/[0.02]">
-                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-copper mb-4">Link</p>
-                <p className="text-[13px] text-sand-500 leading-relaxed">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-4">Link</p>
+                <p className="text-sm text-sand-500 leading-relaxed">
                   <span className="text-white font-semibold">연계 안내:</span> 근로자성 자가진단·프리랜서 구분 점검은{' '}
                   <a
                     href="https://free119.site"
