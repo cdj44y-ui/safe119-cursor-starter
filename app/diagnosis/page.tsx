@@ -93,10 +93,10 @@ export default function DiagnosisPage() {
           {/* Header row */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <Link href="/consult" className="text-[11px] text-ink-4 hover:text-ink font-medium">
+              <Link href="/consult" className="text-xs text-ink-4 hover:text-ink font-medium">
                 비대면 상담
               </Link>
-              <Link href="/" className="text-[11px] text-ink-4 hover:text-ink font-medium">
+              <Link href="/" className="text-xs text-ink-4 hover:text-ink font-medium">
                 처음으로
               </Link>
             </div>
@@ -108,7 +108,7 @@ export default function DiagnosisPage() {
               href="https://free119.site"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] text-ink-4 hover:text-ink font-medium"
+              className="text-xs text-ink-4 hover:text-ink font-medium"
             >
               FREE119 근로자성 진단
             </a>
@@ -132,22 +132,22 @@ export default function DiagnosisPage() {
       <main className="max-w-[960px] mx-auto px-7 py-8">
         {/* Step Header */}
         <div className="mb-6">
-          <span className="text-[11px] font-bold text-copper uppercase tracking-[1.2px]">
+          <span className="text-xs font-bold text-copper uppercase tracking-[1.2px]">
             STEP {currentStep} / {STEPS.length}
           </span>
           <h2 className="text-xl font-extrabold text-ink mt-1 mb-1">{stepInfo?.name}</h2>
-          <p className="text-[13px] text-ink-4 leading-relaxed">{stepInfo?.description}</p>
-          <p className="text-[11px] text-ink-5 mt-1">
+          <p className="text-sm text-ink-4 leading-relaxed">{stepInfo?.description}</p>
+          <p className="text-xs text-ink-5 mt-1">
             관련 조문: {stepInfo?.article}
           </p>
         </div>
 
         {/* Disclaimer (collapsible) */}
         <details className="mb-6 bg-sand-100 border border-sand-200 rounded-lg">
-          <summary className="px-4 py-2.5 text-[11px] text-ink-5 cursor-pointer font-medium">
+          <summary className="px-4 py-2.5 text-xs text-ink-5 cursor-pointer font-medium">
             면책 안내 (클릭하여 펼치기)
           </summary>
-          <div className="px-4 pb-3 text-[11px] text-ink-5 leading-relaxed">
+          <div className="px-4 pb-3 text-xs text-ink-5 leading-relaxed">
             본 진단은 중처법 시행령 제4조·KOSHA 7대 핵심요소를 참고한 자가진단입니다.
             법적 효력이 없으며, 정확한 법률 검토는 전문가 상담을 이용하세요.
           </div>
