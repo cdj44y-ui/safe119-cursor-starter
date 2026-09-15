@@ -16,7 +16,8 @@ export default function StepIndicator() {
           <button
             key={step.step}
             onClick={() => goToStep(step.step)}
-            className={`px-2.5 py-1 rounded text-xs font-semibold transition-all cursor-pointer border ${
+            title={step.name}
+            className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold transition-all cursor-pointer border ${
               isActive
                 ? 'bg-copper text-white border-copper'
                 : isComplete
@@ -25,7 +26,7 @@ export default function StepIndicator() {
             }`}
             aria-label={`STEP ${step.step}: ${step.name}`}
           >
-            {step.label}
+            {step.step}
           </button>
         );
       })}
