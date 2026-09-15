@@ -43,10 +43,17 @@ export default function QuestionCard({
         <Badge variant={risk.variant}>{risk.label}</Badge>
       </div>
 
-      {/* Question text */}
-      <h3 className="text-lg font-bold text-ink leading-relaxed mb-4">
+      {/* Question text — 법률 문항 원문(그대로 유지) */}
+      <h3 className="text-lg font-bold text-ink leading-relaxed mb-2">
         {question.question}
       </h3>
+
+      {/* 쉬운 설명 — 법률 문항은 그대로 두고, 이해를 돕는 짧은 풀이만 추가 */}
+      {question.plainTip && (
+        <p className="text-sm text-ink-4 leading-relaxed mb-4">
+          <span className="font-semibold text-copper">쉽게 말하면</span> {question.plainTip}
+        </p>
+      )}
 
       {/* Legal basis & Reference */}
       <div className="flex flex-wrap gap-2 mb-6">
