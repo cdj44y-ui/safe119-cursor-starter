@@ -31,7 +31,7 @@ export default function ConsultPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full sm:w-auto bg-ink text-white font-semibold py-3 px-6 rounded-md text-sm hover:bg-ink-2 transition-colors mb-4"
               >
-                Calendly에서 15분 예약하기
+                Calendly에서 30분 예약하기
               </a>
               <div className="rounded-lg overflow-hidden border border-sand-200 bg-sand-50 min-h-[520px]">
                 <iframe
