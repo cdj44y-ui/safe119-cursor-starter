@@ -63,15 +63,15 @@ export default function ResultPage() {
             <div className="flex justify-center gap-6 flex-wrap">
               <div className="text-center">
                 <div className="text-xl font-extrabold text-semantic-green-text">{result.oCount}</div>
-                <div className="text-[10px] text-ink-5">이행(O)</div>
+                <div className="text-xs text-ink-5">이행(O)</div>
               </div>
               <div className="text-center">
                 <div className="text-xl font-extrabold text-semantic-amber-text">{result.triangleCount}</div>
-                <div className="text-[10px] text-ink-5">일부이행(△)</div>
+                <div className="text-xs text-ink-5">일부이행(△)</div>
               </div>
               <div className="text-center">
                 <div className="text-xl font-extrabold text-semantic-red-text">{result.xCount}</div>
-                <div className="text-[10px] text-ink-5">미이행(X)</div>
+                <div className="text-xs text-ink-5">미이행(X)</div>
               </div>
             </div>
           </div>
@@ -83,10 +83,10 @@ export default function ResultPage() {
               {result.stepScores.map((ss) => (
                 <div key={ss.step}>
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-[13px] font-bold text-ink">
+                    <span className="text-sm font-bold text-ink">
                       {ss.stepLabel}. {ss.stepName}
                     </span>
-                    <span className="text-[13px] font-bold" style={{ color: GRADE_DESCRIPTIONS[ss.grade].color }}>
+                    <span className="text-sm font-bold" style={{ color: GRADE_DESCRIPTIONS[ss.grade].color }}>
                       {ss.percentage}% {gradeEmoji[ss.grade]}
                     </span>
                   </div>
@@ -115,15 +115,15 @@ export default function ResultPage() {
                 {result.immediateActions.map((q) => (
                   <div key={q.id} className="bg-semantic-red-bg border border-semantic-red-text/10 rounded-lg p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-[13px] font-bold text-ink leading-snug">{q.question}</h3>
+                      <h3 className="text-sm font-bold text-ink leading-snug">{q.question}</h3>
                       <Badge variant="danger">고위험</Badge>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-2">
-                      <span className="text-[10px] bg-white text-ink-4 px-1.5 py-0.5 rounded">{q.stepLabel}. {q.stepName}</span>
-                      <span className="text-[10px] bg-white text-ink-5 px-1.5 py-0.5 rounded">{q.legalBasis}</span>
+                      <span className="text-xs bg-white text-ink-4 px-1.5 py-0.5 rounded">{q.stepLabel}. {q.stepName}</span>
+                      <span className="text-xs bg-white text-ink-5 px-1.5 py-0.5 rounded">{q.legalBasis}</span>
                     </div>
                     {q.guidance && (
-                      <p className="text-[11px] text-semantic-red-text leading-relaxed">
+                      <p className="text-xs text-semantic-red-text leading-relaxed">
                         💡 {q.guidance}
                       </p>
                     )}
@@ -148,7 +148,7 @@ export default function ResultPage() {
                   </h3>
                   <ul className="space-y-1.5">
                     {view.items.map((item, i) => (
-                      <li key={i} className="text-[12px] text-ink-3 leading-relaxed">• {item}</li>
+                      <li key={i} className="text-sm text-ink-3 leading-relaxed">• {item}</li>
                     ))}
                   </ul>
                 </div>
@@ -191,7 +191,7 @@ export default function ResultPage() {
                 // PDF 다운로드 — Cursor에서 lib/generatePdf.ts 구현 후 연결
                 alert('PDF 다운로드 기능은 Cursor에서 lib/generatePdf.ts를 구현한 후 연결하세요.');
               }}
-              className="btn-primary text-[15px]"
+              className="btn-primary text-base"
             >
               📋 결과 PDF 다운로드
             </button>
