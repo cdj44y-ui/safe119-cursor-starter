@@ -1,7 +1,36 @@
+'use client';
+
+import { useMemo } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import TallyEmbed from '@/components/ui/TallyEmbed';
+import { buildTallyEmbedUrl } from '@/lib/tally';
+import { useDiagnosisStore } from '@/store/diagnosisStore';
+import { calculateTotalResult, GRADE_DESCRIPTIONS } from '@/lib/calculateScore';
 
 export default function ConsultPage() {
+  const answers = useDiagnosisStore((state) => state.answers);
+  const isAllComplete = useDiagnosisStore((state) => state.isAllComplete);
+
+  const diagnosisSummary = useMemo(() => {
+    if (Object.keys(answers).length === 0 || !isAllComplete()) return null;
+    const result = calculateTotalResult(answers);
+    return {
+      percentage: result.overallPercentage,
+      grade: result.overallGrade,
+      label: GRADE_DESCRIPTIONS[result.overallGrade].label,
+    };
+  }, [answers, isAllComplete]);
+
+  const tallySrc = useMemo(
+    () =>
+      buildTallyEmbedUrl({
+        grade: diagnosisSummary ? `[SAFE119] ${diagnosisSummary.label}` : '[SAFE119]',
+        score: diagnosisSummary ? `${diagnosisSummary.percentage}점` : undefined,
+      }),
+    [diagnosisSummary]
+  );
+
   return (
     <>
       <Header />
@@ -14,32 +43,24 @@ export default function ConsultPage() {
           <h1 className="text-[28px] font-extrabold text-ink tracking-tight mb-4">
             전문가 상담 신청
           </h1>
-          <p className="text-sm text-ink-4 leading-relaxed max-w-lg mb-10">
+          <p className="text-sm text-ink-4 leading-relaxed max-w-lg mb-4">
             안전공학 박사 + 공인노무사의 통합 자문을 받아보세요.
             중대재해처벌법 안전보건관리체계 구축·이행점검을 원스톱으로 지원합니다.
           </p>
 
+          {diagnosisSummary && (
+            <p className="text-sm text-copper bg-copper-light rounded-lg px-4 py-3 max-w-lg mb-6 leading-relaxed">
+              방금 진행한 자가진단 결과({diagnosisSummary.percentage}점 · {diagnosisSummary.label})가 문의 내용에 함께 전달됩니다.
+            </p>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div className="bg-white border border-sand-200 rounded-lg p-8">
-              <h2 className="text-lg font-extrabold text-ink mb-4">비대면 상담 예약</h2>
+              <h2 className="text-lg font-extrabold text-ink mb-4">상담 신청 폼</h2>
               <p className="text-sm text-ink-4 leading-relaxed mb-4">
-                Calendly로 편한 시간을 선택하거나, 우측 연락처로 문의해 주세요.
+                아래 폼을 제출하시면 담당 노무사(조대진)에게 바로 접수됩니다.
               </p>
-              <a
-                href="https://calendly.com/cdj44y/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full sm:w-auto bg-ink text-white font-semibold py-3 px-6 rounded-md text-sm hover:bg-ink-2 transition-colors mb-4"
-              >
-                Calendly에서 30분 예약하기
-              </a>
-              <div className="rounded-lg overflow-hidden border border-sand-200 bg-sand-50 min-h-[520px]">
-                <iframe
-                  title="Calendly 예약"
-                  src="https://calendly.com/cdj44y/30min"
-                  className="w-full h-[520px] border-0"
-                />
-              </div>
+              <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
             </div>
 
             {/* Contact Info */}
