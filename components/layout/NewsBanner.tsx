@@ -28,8 +28,8 @@ export default function NewsBanner() {
       </div>
       <div className="bg-white/[0.03] border-t border-white/[0.05] py-1.5">
         <div className="max-w-[960px] mx-auto px-7 flex gap-2.5 flex-wrap items-center text-xs text-white/35">
-          <span className="bg-white/5 px-2 py-0.5 rounded-sm text-white/60 font-semibold text-xs">2025 3Q</span>
-          <span>누적 사고사망자 457명 · 전년 대비 +3.2%</span>
+          <span className="bg-white/5 px-2 py-0.5 rounded-sm text-white/60 font-semibold text-xs">2026 상반기</span>
+          <span>재해조사 대상 사망사고 253명 · 전년동기 대비 -11.8%</span>
           <span className="bg-white/5 px-2 py-0.5 rounded-sm text-white/60 font-semibold text-xs">기소</span>
           <span>121건 · 유죄율 89.3%</span>
         </div>
