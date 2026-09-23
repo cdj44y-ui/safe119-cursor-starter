@@ -48,7 +48,7 @@ export default function Step2Problem() {
         </div>
 
         {/* Real Case — 실제 사례 (출처가 명확한 공개 보도만 인용) */}
-        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-10">
+        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-4">
           <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
             실제 사례
           </span>
@@ -60,6 +60,23 @@ export default function Step2Problem() {
           </p>
           <p className="text-xs text-ink-5 mt-3">
             출처: 연합뉴스TV, &ldquo;한솔제지 대표, 중대재해처벌법 위반 혐의 송치&rdquo; (2026.1.29)
+          </p>
+        </div>
+
+        {/* Real Case 2 — 1심 판결까지 나온 사례 (확정 전 명시) */}
+        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-10">
+          <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
+            실제 사례
+          </span>
+          <p className="text-sm text-ink-3 leading-relaxed">
+            2022년 9월, 경기 김포시 펌프장 증설 공사 현장에서 이동식 크레인 붐이 부러져 지상에 있던 60대
+            근로자가 숨지는 사고가 있었습니다. 2026년 9월 인천지법 부천지원은 신구건설 대표이사에게 산업재해치사
+            및 중대재해처벌법 위반 혐의로 징역 1년 4개월의 실형을, 법인에는 벌금 2억 5,000만원을 각각
+            선고했습니다(현장소장 징역 1년, 크레인 운전기사 금고 8개월·집행유예 2년).{' '}
+            <span className="font-semibold text-ink">1심 선고이며, 상소 여부에 따라 결과가 바뀔 수 있어 아직 확정된 것은 아닙니다.</span>
+          </p>
+          <p className="text-xs text-ink-5 mt-3">
+            출처: 연합뉴스 (2026.9.10), 파이낸셜포스트 (2026.9.11)
           </p>
         </div>
 
