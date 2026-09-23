@@ -5,23 +5,23 @@ export const statistics = {
   prosecution: {
     total: 121,
     label: '검찰 기소',
-    description: '중처법 시행 이후 누적 기소 건수',
+    description: '중처법 시행(2022.1.27) 이후 누적 기소 건수 (매일노동뉴스 전수조사)',
   },
   convictionRate: {
     value: 89.3,
     label: '유죄율',
-    description: '기소 건 중 유죄 판결 비율',
+    description: '1심 기소 건 중 유죄 판결 비율 (국회입법조사처, 2025.8 기준)',
   },
   deaths: {
-    total: 457,
+    total: 253,
     label: '사고사망자',
-    description: '2025년 3분기 누적 사고사망자',
-    yoyChange: '+3.2%',
+    description: '2026년 상반기 재해조사 대상 사망사고(고용노동부, 2026.7.15 발표)',
+    yoyChange: '-11.8%',
   },
   probation: {
     value: 85.7,
     label: '집행유예',
-    description: '유죄 판결 중 집행유예 비율',
+    description: '유죄 판결 중 집행유예 비율 (국회입법조사처, 2025.8 기준)',
   },
 };
 
