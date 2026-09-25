@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import 'pretendard/dist/web/variable/pretendardvariable.css';
 import '@/styles/globals.css';
 import { getSiteUrl } from '@/lib/site';
 
