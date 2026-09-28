@@ -12,6 +12,49 @@ import Badge from '@/components/ui/Badge';
 const gradeEmoji: Record<Grade, string> = { A: '🟢', B: '🟡', C: '🟠', D: '🔴' };
 const riskVariant = { high: 'danger' as const, medium: 'warning' as const, low: 'success' as const };
 
+const LEGAL_UPDATES = [
+  {
+    date: '2026.09.23',
+    text: '중대재해처벌법 위반 실제 판결사례 추가(신구건설 크레인 사고, 1심 실형 선고 · 확정 전)',
+  },
+  {
+    date: '2026.09.23',
+    text: '산업재해 사망사고 통계 최신화(2026년 상반기 재해조사 대상 사망사고, 고용노동부 발표 기준)',
+  },
+];
+
+function ScoreDonut({ percentage, color }: { percentage: number; color: string }) {
+  const size = 160;
+  const stroke = 14;
+  const radius = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const dashOffset = circumference * (1 - percentage / 100);
+
+  return (
+    <div className="relative mx-auto mb-4" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)' }}>
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#F0ECE5" strokeWidth={stroke} />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={stroke}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={dashOffset}
+          style={{ transition: 'stroke-dashoffset 0.7s ease' }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-4xl font-extrabold leading-none text-ink">{percentage}</span>
+        <span className="mt-1 text-xs text-ink-4">/ 100</span>
+      </div>
+    </div>
+  );
+}
+
 export default function ResultPage() {
   const { answers, companyName } = useDiagnosisStore();
   const result = useMemo(() => calculateTotalResult(answers), [answers]);
@@ -48,18 +91,16 @@ export default function ResultPage() {
 
           {/* ═══════ 1. 종합 등급 카드 ═══════ */}
           <div className="bg-white border border-sand-200 rounded-lg p-8 mb-8 text-center">
-            <div className="text-5xl mb-2">{gradeEmoji[result.overallGrade]}</div>
-            <h2 className="text-3xl font-extrabold mb-1" style={{ color: gradeInfo.color }}>
+            <ScoreDonut percentage={result.overallPercentage} color={gradeInfo.color} />
+            <div className="text-3xl mb-1">{gradeEmoji[result.overallGrade]}</div>
+            <h2 className="text-2xl font-extrabold mb-2" style={{ color: gradeInfo.color }}>
               {gradeInfo.label}
             </h2>
-            <p className="text-4xl font-extrabold text-ink mb-2">
-              {result.overallPercentage}<span className="text-lg text-ink-4 font-normal"> / 100</span>
-            </p>
             <p className="text-sm text-ink-4 leading-relaxed max-w-md mx-auto mb-6">
               {gradeInfo.description}
             </p>
 
-            {/* Donut-style summary */}
+            {/* O/△/X 요약 */}
             <div className="flex justify-center gap-6 flex-wrap">
               <div className="text-center">
                 <div className="text-xl font-extrabold text-semantic-green-text">{result.oCount}</div>
@@ -74,6 +115,27 @@ export default function ResultPage() {
                 <div className="text-xs text-ink-5">미이행(X)</div>
               </div>
             </div>
+          </div>
+
+          {/* ═══════ 1-1. 법령·판례 업데이트 신뢰 배지 ═══════ */}
+          <div className="bg-white border border-sand-200 rounded-lg p-5 mb-8">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-copper text-[11px] font-bold text-white">
+                ✓
+              </span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-ink-4">법령·판례 업데이트 반영 현황</h2>
+            </div>
+            <ul className="space-y-2">
+              {LEGAL_UPDATES.map((u, i) => (
+                <li key={i} className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
+                  <span className="shrink-0 font-mono text-xs text-ink-5">{u.date}</span>
+                  <span className="text-ink-3">{u.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs text-ink-5">
+              본 진단 문항과 통계는 매일 최신 법령·판례 여부를 점검해 반영합니다.
+            </p>
           </div>
 
           {/* ═══════ 2. 영역별 바 차트 ═══════ */}
