@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
 import Step1Hero from '@/components/landing/Step1Hero';
+import RiskAssessmentBanner from '@/components/landing/RiskAssessmentBanner';
 import Step2Problem from '@/components/landing/Step2Problem';
 import Step3BeforeAfter from '@/components/landing/Step3BeforeAfter';
 import Step4Trust from '@/components/landing/Step4Trust';
@@ -20,6 +21,8 @@ export default function HomePage() {
       <main>
         {/* STEP 1: Hero / Headline */}
         <Step1Hero />
+        {/* 위험성평가 자가진단표 — 집중 배너 */}
+        <RiskAssessmentBanner />
         {/* STEP 2: Problem / Agitation */}
         <Step2Problem />
         {/* STEP 3: Before / After */}
