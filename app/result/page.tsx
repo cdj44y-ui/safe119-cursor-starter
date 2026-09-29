@@ -200,14 +200,17 @@ export default function ResultPage() {
             <h2 className="text-lg font-extrabold text-ink mb-4">수사·감독 관점 리스크 분석</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { title: '감독관 관점', icon: '🔍', items: result.investigatorView.inspector },
-                { title: '검사 관점', icon: '⚖️', items: result.investigatorView.prosecutor },
-                { title: '경찰 관점', icon: '🚔', items: result.investigatorView.police },
+                { title: '감독관 관점', icon: '🔍', items: result.investigatorView.inspector, badgeBg: 'bg-semantic-amber-bg' },
+                { title: '검사 관점', icon: '⚖️', items: result.investigatorView.prosecutor, badgeBg: 'bg-semantic-red-bg' },
+                { title: '경찰 관점', icon: '🚔', items: result.investigatorView.police, badgeBg: 'bg-copper-light' },
               ].map((view) => (
                 <div key={view.title} className="bg-sand-50 border border-sand-200 rounded-lg p-4">
-                  <h3 className="text-sm font-bold text-ink mb-2">
-                    {view.icon} {view.title}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm ${view.badgeBg}`}>
+                      {view.icon}
+                    </span>
+                    <h3 className="text-sm font-bold text-ink">{view.title}</h3>
+                  </div>
                   <ul className="space-y-1.5">
                     {view.items.map((item, i) => (
                       <li key={i} className="text-sm text-ink-3 leading-relaxed">• {item}</li>
