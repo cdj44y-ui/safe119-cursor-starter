@@ -250,6 +250,15 @@ export default function AboutPage() {
                   >
                     FREE119 (free119.site)
                   </a>
+                  에서, 임금체불·연장근로 등 근로감독 리스크 점검은{' '}
+                  <a
+                    href="https://risk119.site"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-copper font-semibold underline underline-offset-4 decoration-copper/40 hover:text-white transition-colors"
+                  >
+                    RISK119 (risk119.site)
+                  </a>
                   에서 확인하실 수 있습니다. 본 SAFE119는 중대재해처벌법 안전보건관리체계 이행 점검에 특화되어 있습니다.
                 </p>
               </div>
