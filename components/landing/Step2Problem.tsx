@@ -64,7 +64,7 @@ export default function Step2Problem() {
         </div>
 
         {/* Real Case 2 — 1심 판결까지 나온 사례 (확정 전 명시) */}
-        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-10">
+        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-4">
           <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
             실제 사례
           </span>
@@ -77,6 +77,41 @@ export default function Step2Problem() {
           </p>
           <p className="text-xs text-ink-5 mt-3">
             출처: 연합뉴스 (2026.9.10), 파이낸셜포스트 (2026.9.11)
+          </p>
+        </div>
+
+        {/* Real Case 3 — 대형 인명피해 + 서류 위변조 정황 (수사·송치 단계, 확정 전 명시) */}
+        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-4">
+          <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
+            실제 사례
+          </span>
+          <p className="text-sm text-ink-3 leading-relaxed">
+            2026년 3월, 대전 대덕구의 자동차부품 제조공장(안전공업)에서 화재가 발생해 14명이 숨지고 60명이
+            다쳤습니다. 경찰 조사 결과 화재 확산 원인으로 기름때(슬러지) 방치와 화재수신기 임의 차단, 불법 증축이
+            지목됐고, 처벌을 피하려 안전 관련 서류를 사후에 위·변조하려 한 정황도 확인됐습니다. 2026년 9월,
+            경찰은 대표이사 등 13명을 검찰에 송치했고, 관할 노동청도 대표이사를 중대재해처벌법 위반 혐의로
+            함께 송치했습니다.{' '}
+            <span className="font-semibold text-ink">아직 수사·송치 단계이며, 기소나 유죄가 확정된 것은 아닙니다.</span>
+          </p>
+          <p className="text-xs text-ink-5 mt-3">
+            출처: 연합뉴스TV·뉴시스 (2026.9.17), 경향신문 (2026.3.22)
+          </p>
+        </div>
+
+        {/* Real Case 4 — 반복 사고 + 구형 단계 (확정 전 명시) */}
+        <div className="bg-white border border-sand-200 rounded-lg p-7 mb-10">
+          <span className="text-xs font-bold text-semantic-red-text uppercase tracking-[1.2px] block mb-2.5">
+            실제 사례
+          </span>
+          <p className="text-sm text-ink-3 leading-relaxed">
+            전북 군산의 세아베스틸 공장에서는 중대재해처벌법이 시행된 2022년 1월 이후 지게차 사고, 상차작업 중
+            끼임 사고 등으로 노동자 5명이 반복해서 숨졌습니다. 2026년 9월 전주지법 군산지원 결심공판에서 검찰은
+            전 대표이사에게 징역 5년, 전 공장장에게 징역 3년, 법인에는 벌금 5억 5,000만원을 구형했습니다.{' '}
+            <span className="font-semibold text-ink">아직 선고 전이며, 검찰의 구형일 뿐 확정된 형량이 아닙니다.</span> 같은
+            사업장에서 사고가 반복될수록 처벌 수위도 함께 높아진다는 것을 보여주는 사례입니다.
+          </p>
+          <p className="text-xs text-ink-5 mt-3">
+            출처: 세계일보 (2026.9.29)
           </p>
         </div>
 
