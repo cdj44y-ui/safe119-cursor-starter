@@ -27,6 +27,9 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">연계</h4>
               <div className="flex flex-col gap-2">
+                <a href="https://risk119.site" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                  RISK119 근로감독 진단
+                </a>
                 <a href="https://free119.site" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
                   FREE119 근로자성 진단
                 </a>
