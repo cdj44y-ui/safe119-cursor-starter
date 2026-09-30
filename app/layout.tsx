@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import 'pretendard/dist/web/variable/pretendardvariable.css';
 import '@/styles/globals.css';
 import { getSiteUrl } from '@/lib/site';
+import FloatingConsultButton from '@/components/layout/FloatingConsultButton';
 
 const siteUrl = getSiteUrl();
 
@@ -43,7 +44,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="font-pretendard">{children}</body>
+      <body className="font-pretendard">
+        {children}
+        <FloatingConsultButton />
+      </body>
     </html>
   );
 }
