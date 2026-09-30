@@ -257,6 +257,30 @@ export default function ResultPage() {
             </div>
           </div>
 
+          {/* ═══════ 5-1. 연계 진단 추천 (등급 C/D 시) ═══════ */}
+          {(result.overallGrade === 'C' || result.overallGrade === 'D') && (
+            <div className="bg-white border border-sand-200 rounded-lg p-5 mb-8">
+              <p className="text-xs font-bold text-ink-4 uppercase tracking-wide mb-3">함께 확인하면 좋은 진단</p>
+              <a
+                href="https://risk119.site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 rounded-lg border border-sand-200 bg-sand-50 p-4 hover:shadow-md transition-shadow"
+              >
+                <div className="w-10 h-10 bg-sand-100 rounded-lg flex items-center justify-center text-sm font-extrabold text-ink shrink-0">
+                  R<span className="text-copper">119</span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-bold text-ink">안전보건관리체계뿐 아니라 근로감독 리스크도 확인해보세요</p>
+                  <p className="text-xs text-ink-4 mt-0.5">
+                    임금체불·연장근로 등 50여개 항목을 RISK119에서 무료로 점검할 수 있습니다.
+                  </p>
+                </div>
+                <span className="text-ink-5 text-lg shrink-0">→</span>
+              </a>
+            </div>
+          )}
+
           {/* ═══════ 6. 듀얼 CTA ═══════ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button
