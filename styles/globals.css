@@ -16,10 +16,10 @@
 @layer components {
   .btn-primary {
     @apply inline-flex items-center gap-2 bg-copper text-white font-bold py-3.5 px-8 rounded transition-all duration-200 hover:bg-copper-hover hover:-translate-y-0.5;
-    box-shadow: 0 2px 8px rgba(181,105,79,0.2);
+    box-shadow: 0 2px 8px rgba(49,130,246,0.2);
   }
   .btn-primary:hover {
-    box-shadow: 0 4px 16px rgba(181,105,79,0.25);
+    box-shadow: 0 4px 16px rgba(49,130,246,0.25);
   }
   .btn-secondary {
     @apply inline-flex items-center gap-2 bg-ink text-white font-semibold py-3 px-6 rounded transition-all duration-200 hover:bg-ink-2;
