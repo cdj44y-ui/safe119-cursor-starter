@@ -87,9 +87,8 @@ export default function AboutPage() {
                     로 판단되는 근로자성, 위장고용·가짜 3.3%에 대한 고용부 감독 강화, 그리고 중대재해처벌법상
                     안전보건관리체계 이행 — 이슈가 겹칠 때 단일 분야만으로는 방어가 어렵습니다. 사고·책임·성과를
                     하나의 시스템으로 다루는{' '}
+                    통합 전문가입니다.
                   </span>
-                  <span className="text-ink font-semibold">트라이브리드</span>
-                  <span className="text-ink-4"> 전문가입니다.</span>
                 </p>
               </div>
               <div className="shrink-0 flex flex-wrap gap-2 md:justify-end">
