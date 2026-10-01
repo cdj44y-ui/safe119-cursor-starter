@@ -300,6 +300,23 @@ export default function ResultPage() {
             </Link>
           </div>
 
+
+          {/* ═══════ 6-1. 카카오톡 채널 — 가장 낮은 진입장벽 ═══════ */}
+          <div className="bg-[#FFFBE6] border border-[#FEE500]/60 rounded-lg p-5 mb-8 text-center">
+            <p className="text-sm font-bold text-ink mb-1">💬 지금 바로 소식 받아보기</p>
+            <p className="text-xs text-ink-4 mb-4">
+              상담이 아직 부담스러우시다면, 카카오톡 채널 추가만으로 법 개정·안전보건 이슈를 가장 먼저 받아보세요.
+            </p>
+            <a
+              href="https://pf.kakao.com/_yxexbaX/friend"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded bg-[#FEE500] px-6 py-3 text-sm font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
+            >
+              카카오톡 채널 추가하기
+            </a>
+          </div>
+
           {/* 면책 고지 */}
           <Disclaimer variant="compact" />
         </div>
