@@ -60,56 +60,43 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a0908] text-sand-600">
-        {/* Hero — 다크 브루탈 + 그라데이션 */}
-        <section className="relative overflow-hidden border-b border-white/[0.08]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.35]"
-            style={{
-              backgroundImage:
-                'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(181,105,79,0.45), transparent 55%), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255,255,255,0.06), transparent 50%)',
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            }}
-          />
+      <main className="min-h-screen bg-sand-50 text-ink">
+        {/* Hero — 사이트 공통 라이트 에디토리얼 톤 */}
+        <section className="relative overflow-hidden border-b border-sand-200 bg-white">
           <div className="relative max-w-[1100px] mx-auto px-7 pt-16 pb-20 md:pt-24 md:pb-28">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
               <div className="max-w-3xl">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Expert · 노무법인 위너스
                 </p>
-                <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold text-white leading-[1.05] tracking-tight">
+                <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold text-ink leading-[1.05] tracking-tight">
                   조대진
-                  <span className="text-sand-500 font-bold"> 노무사</span>
+                  <span className="text-ink-3 font-bold"> 노무사</span>
                 </h1>
                 <div className="mt-8 h-px w-24 bg-gradient-to-r from-copper to-transparent" />
-                <p className="mt-8 text-base md:text-base leading-relaxed text-sand-400 max-w-2xl">
-                  <span className="text-white font-semibold">
+                <p className="mt-8 text-base md:text-base leading-relaxed text-ink-4 max-w-2xl">
+                  <span className="text-ink font-semibold">
                     안전공학 박사 × 공인노무사 × 근로자성·고용감독 리스크 실무
                   </span>
                   <br />
-                  <span className="text-sand-500">
+                  <span className="text-ink-4">
                     현대카드·삼성서울병원 인사팀 출신. 계약서 제목이 아니라{' '}
-            </span>
-                  <span className="text-white">실질관계</span>
-                  <span className="text-sand-500">
+                  </span>
+                  <span className="text-ink font-semibold">실질관계</span>
+                  <span className="text-ink-4">
                     로 판단되는 근로자성, 위장고용·가짜 3.3%에 대한 고용부 감독 강화, 그리고 중대재해처벌법상
                     안전보건관리체계 이행 — 이슈가 겹칠 때 단일 분야만으로는 방어가 어렵습니다. 사고·책임·성과를
                     하나의 시스템으로 다루는{' '}
-            </span>
-                  <span className="text-white font-semibold">트라이브리드</span>
-                  <span className="text-sand-500"> 전문가입니다.</span>
+                  </span>
+                  <span className="text-ink font-semibold">트라이브리드</span>
+                  <span className="text-ink-4"> 전문가입니다.</span>
                 </p>
               </div>
               <div className="shrink-0 flex flex-wrap gap-2 md:justify-end">
                 {['안전공학 박사', '공인노무사 15년', '대기업 HR', '근로자성 자문'].map((badge) => (
                   <span
                     key={badge}
-                    className="font-mono text-xs uppercase tracking-wider text-sand-300 border border-white/15 px-3 py-1.5 bg-white/[0.03]"
+                    className="text-xs bg-copper-light text-copper px-3 py-1.5 rounded font-semibold"
                   >
                     {badge}
                   </span>
@@ -119,21 +106,21 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 리스크 — 라이트 카드 on 다크 */}
-        <section className="border-b border-white/[0.06] bg-[#0c0b09]">
+        {/* 리스크 — 라이트 카드 */}
+        <section className="border-b border-sand-200 bg-sand-50">
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
               <div className="lg:w-[38%] shrink-0">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Risk layer
                 </p>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-ink leading-snug tracking-tight">
                   왜 근로자성·고용형태 리스크가
                   <br />
-                  <span className="text-sand-500">안전·중처법과 함께 붙는가</span>
+                  <span className="text-ink-3">안전·중처법과 함께 붙는가</span>
                 </h2>
               </div>
-              <div className="flex-1 space-y-px bg-white/[0.08] border border-white/[0.08]">
+              <div className="flex-1 space-y-px bg-sand-200 border border-sand-200 rounded-lg overflow-hidden">
                 {[
                   {
                     title: '형식이 아니라 실질로 판단됩니다.',
@@ -151,9 +138,9 @@ export default function AboutPage() {
                       '도급·플랫폼·특수형태 노동에서 산업재해·중대재해 이슈가 발생하면, 사용자·수급인 책임과 근로자성 논점이 동시에 올라옵니다. SAFE119 자가진단이 다루는 안전보건관리체계와도 연결해 보아야 합니다.',
                   },
                 ].map((row) => (
-                  <div key={row.title} className="bg-[#0a0908] p-6 md:p-8">
-                    <h3 className="text-sm font-bold text-white mb-3">{row.title}</h3>
-                    <p className="text-sm text-sand-500 leading-relaxed">{row.body}</p>
+                  <div key={row.title} className="bg-white p-6 md:p-8">
+                    <h3 className="text-sm font-bold text-ink mb-3">{row.title}</h3>
+                    <p className="text-sm text-ink-4 leading-relaxed">{row.body}</p>
                   </div>
                 ))}
               </div>
@@ -162,35 +149,35 @@ export default function AboutPage() {
         </section>
 
         {/* 전문 영역 — 그리드 */}
-        <section className="bg-[#0a0908] border-b border-white/[0.06]">
+        <section className="bg-white border-b border-sand-200">
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
                   Scope
                 </p>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">전문 영역</h2>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-ink tracking-tight">전문 영역</h2>
               </div>
-              <p className="text-sm text-sand-500 max-w-md lg:text-right">
+              <p className="text-sm text-ink-4 max-w-md lg:text-right">
                 근로자성·고용 구조 문제는{' '}
-                <span className="text-white font-semibold">진단 → 방어 → 재설계</span> 순서로 정리할 때 같은
+                <span className="text-ink font-semibold">진단 → 방어 → 재설계</span> 순서로 정리할 때 같은
                 분쟁이 반복되지 않습니다.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.1] border border-white/[0.1]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-sand-200 border border-sand-200 rounded-lg overflow-hidden">
               {expertiseBlocks.map((block) => (
                 <div
                   key={block.title}
-                  className="bg-[#0a0908] p-6 md:p-8 flex flex-col min-h-[280px] group hover:bg-[#0e0d0b] transition-colors duration-300"
+                  className="bg-white p-6 md:p-8 flex flex-col min-h-[280px] group hover:bg-sand-50 transition-colors duration-300"
                 >
                   <div className="flex items-start justify-between gap-4 mb-6">
-                    <h3 className="text-base font-extrabold text-white leading-snug">{block.title}</h3>
+                    <h3 className="text-base font-extrabold text-ink leading-snug">{block.title}</h3>
                     <span className="font-mono text-xs text-copper shrink-0 pt-1">{'//'}</span>
                   </div>
-                  <p className="text-sm font-medium text-sand-400 mb-6 border-l-2 border-copper/60 pl-3">
+                  <p className="text-sm font-medium text-ink-3 mb-6 border-l-2 border-copper/60 pl-3">
                     {block.subtitle}
                   </p>
-                  <ul className="space-y-3 text-sm text-sand-500 leading-snug mt-auto">
+                  <ul className="space-y-3 text-sm text-ink-4 leading-snug mt-auto">
                     {block.items.map((item) => (
                       <li key={item} className="flex gap-3">
                         <span className="text-copper/80 font-mono text-xs mt-0.5">—</span>
@@ -205,28 +192,28 @@ export default function AboutPage() {
         </section>
 
         {/* 왜 조대진 — 번호 스트립 */}
-        <section className="bg-[#0c0b09]">
+        <section className="bg-sand-50">
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-6">
               Method
             </p>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-ink tracking-tight mb-2">
               왜 조대진 노무사인가
             </h2>
-            <p className="text-sm text-sand-500 mb-12 max-w-xl">데이터·판례·현장 구조를 같은 축에 둡니다.</p>
+            <p className="text-sm text-ink-4 mb-12 max-w-xl">데이터·판례·현장 구조를 같은 축에 둡니다.</p>
 
             <div className="space-y-0">
               {whyBlocks.map((b) => (
                 <div
                   key={b.step}
-                  className="grid grid-cols-1 md:grid-cols-[minmax(0,88px)_1fr] gap-6 md:gap-10 py-10 border-t border-white/[0.08] first:border-t-0 first:pt-0"
+                  className="grid grid-cols-1 md:grid-cols-[minmax(0,88px)_1fr] gap-6 md:gap-10 py-10 border-t border-sand-200 first:border-t-0 first:pt-0"
                 >
-                  <div className="font-mono text-4xl md:text-5xl font-bold text-white/[0.12] leading-none">
+                  <div className="font-mono text-4xl md:text-5xl font-bold text-sand-300 leading-none">
                     {b.step}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-3">{b.title}</h3>
-                    <p className="text-sm text-sand-500 leading-relaxed max-w-2xl">{b.body}</p>
+                    <h3 className="text-lg font-bold text-ink mb-3">{b.title}</h3>
+                    <p className="text-sm text-ink-4 leading-relaxed max-w-2xl">{b.body}</p>
                   </div>
                 </div>
               ))}
@@ -235,18 +222,18 @@ export default function AboutPage() {
         </section>
 
         {/* 연계 + CTA */}
-        <section className="relative border-t border-white/[0.08] bg-gradient-to-b from-[#0a0908] to-[#121110]">
+        <section className="relative border-t border-sand-200 bg-white">
           <div className="max-w-[1100px] mx-auto px-7 py-16 md:py-20">
             <div className="flex flex-col lg:flex-row gap-10 lg:items-stretch">
-              <div className="flex-1 border border-white/10 p-6 md:p-8 bg-white/[0.02]">
+              <div className="flex-1 border border-sand-200 rounded-lg p-6 md:p-8 bg-sand-50">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-copper mb-4">Link</p>
-                <p className="text-sm text-sand-500 leading-relaxed">
-                  <span className="text-white font-semibold">연계 안내:</span> 근로자성 자가진단·프리랜서 구분 점검은{' '}
+                <p className="text-sm text-ink-4 leading-relaxed">
+                  <span className="text-ink font-semibold">연계 안내:</span> 근로자성 자가진단·프리랜서 구분 점검은{' '}
                   <a
                     href="https://free119.site"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-copper font-semibold underline underline-offset-4 decoration-copper/40 hover:text-white transition-colors"
+                    className="text-copper font-semibold underline underline-offset-4 decoration-copper/40 hover:text-ink transition-colors"
                   >
                     FREE119 (free119.site)
                   </a>
@@ -255,7 +242,7 @@ export default function AboutPage() {
                     href="https://risk119.site"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-copper font-semibold underline underline-offset-4 decoration-copper/40 hover:text-white transition-colors"
+                    className="text-copper font-semibold underline underline-offset-4 decoration-copper/40 hover:text-ink transition-colors"
                   >
                     RISK119 (risk119.site)
                   </a>
@@ -265,13 +252,13 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:w-[min(100%,360px)] shrink-0">
                 <Link
                   href="/diagnosis"
-                  className="inline-flex items-center justify-center gap-2 bg-copper text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-copper-hover transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-copper text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-copper-hover transition-colors rounded"
                 >
                   무료 진단 시작
                 </Link>
                 <Link
                   href="/consult"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-ink font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-sand-200 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-ink text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-ink-2 transition-colors rounded"
                 >
                   전문가 상담 신청
                 </Link>
@@ -279,7 +266,7 @@ export default function AboutPage() {
                   href="https://free119.site/about"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold py-4 px-6 text-sm hover:border-copper hover:text-copper transition-colors"
+                  className="inline-flex items-center justify-center gap-2 border border-sand-300 text-ink font-semibold py-4 px-6 text-sm hover:border-copper hover:text-copper transition-colors rounded"
                 >
                   FREE119 근로자성 소개
                 </a>
