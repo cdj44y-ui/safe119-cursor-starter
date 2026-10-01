@@ -36,7 +36,7 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">소식 구독</h4>
+              <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">법 개정 알림</h4>
               <div className="flex flex-col gap-2">
                 <a
                   href="https://pf.kakao.com/_yxexbaX/friend"
@@ -44,7 +44,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#FEE500] px-3 py-1 text-xs font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
                 >
-                  💬 카카오톡 채널 추가
+                  💬 먼저 알기 — 채널 추가
                 </a>
               </div>
             </div>
