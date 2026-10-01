@@ -4,6 +4,7 @@
 
 @layer base {
   html {
+    font-size: 18px;
     font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: 'ss01', 'ss02';
