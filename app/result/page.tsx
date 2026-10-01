@@ -303,9 +303,9 @@ export default function ResultPage() {
 
           {/* ═══════ 6-1. 카카오톡 채널 — 가장 낮은 진입장벽 ═══════ */}
           <div className="bg-[#FFFBE6] border border-[#FEE500]/60 rounded-lg p-5 mb-8 text-center">
-            <p className="text-sm font-bold text-ink mb-1">💬 지금 바로 소식 받아보기</p>
+            <p className="text-sm font-bold text-ink mb-1">💬 이 점수, 다음 달에도 유지될까요?</p>
             <p className="text-xs text-ink-4 mb-4">
-              상담이 아직 부담스러우시다면, 카카오톡 채널 추가만으로 법 개정·안전보건 이슈를 가장 먼저 받아보세요.
+              안전보건 법령은 계속 바뀝니다. 상담은 아직 부담스러우셔도, 채널 추가 한 번이면 중대재해처벌법 개정과 실제 판결 소식을 가장 먼저 받아보실 수 있어요.
             </p>
             <a
               href="https://pf.kakao.com/_yxexbaX/friend"
@@ -313,7 +313,7 @@ export default function ResultPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded bg-[#FEE500] px-6 py-3 text-sm font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
             >
-              카카오톡 채널 추가하기
+              놓치기 전에 채널 추가하기
             </a>
           </div>
 
