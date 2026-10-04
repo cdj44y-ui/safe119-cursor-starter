@@ -135,8 +135,10 @@ export default function ResultPage() {
             </div>
             <ul className="space-y-2">
               {LEGAL_UPDATES.map((u, i) => (
-                <li key={i} className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
-                  <span className="shrink-0 font-mono text-xs text-ink-5">{u.date}</span>
+                <li key={i} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+                  <span className="shrink-0 inline-flex items-center rounded-full border border-sand-200 bg-sand-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-ink-4">
+                    {u.date}
+                  </span>
                   <span className="text-ink-3">{u.text}</span>
                 </li>
               ))}
