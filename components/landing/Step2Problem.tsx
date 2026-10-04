@@ -123,7 +123,7 @@ export default function Step2Problem() {
           <p className="text-sm text-white/50 mb-5">
             — {presidentQuote.author}, {presidentQuote.date}
           </p>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap mb-5">
             {presidentQuote.policies.map((policy) => (
               <span
                 key={policy}
@@ -132,6 +132,13 @@ export default function Step2Problem() {
                 {policy}
               </span>
             ))}
+          </div>
+          <div className="border-t border-white/10 pt-4 flex items-start gap-2">
+            <span className="shrink-0 text-xs font-bold text-emerald-400 mt-0.5">✓ 현실화</span>
+            <p className="text-xs text-white/60 leading-relaxed">
+              2026.10.1 국회 본회의에서 반복 산재 사망 사업장 대상 영업이익 최대 5% 과징금, 반복 중대재해 건설사 등록말소 등을 담은 산업안전보건법 개정안이 실제로 통과됐습니다.
+              <span className="text-white/40"> (연합뉴스 2026.10.01, 공포·시행 전)</span>
+            </p>
           </div>
         </div>
       </div>
