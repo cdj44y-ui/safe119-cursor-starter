@@ -36,7 +36,7 @@ export default function Step6Offer() {
           {/* Urgency Box */}
           <div className="mt-8 bg-semantic-amber-bg border border-semantic-amber-text/20 rounded-lg p-4 text-left">
             <p className="text-sm text-semantic-amber-text font-semibold leading-relaxed">
-              ⚠️ 징벌적 손해배상 검토 중 — 감독·수사 강도가 높아지고 있습니다.
+              ⚠️ 감독·제재 강화 법안 국회 통과 — 반복 산재 사망 시 영업이익 최대 5% 과징금(2026.10.1 통과, 공포·시행 전).
               <br />
               체계 점검을 미루면, 예고 없는 감독에 무방비 상태가 됩니다.
             </p>
