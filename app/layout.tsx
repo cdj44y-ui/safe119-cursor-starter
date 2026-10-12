@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: siteUrl,
     siteName: 'SAFE119',
-    images: [{ url: '/og/home.png', width: 1200, height: 630, alt: 'SAFE119 안전보건관리체계 자가진단 - 조대진 대표노무사' }],
+    images: [{ url: '/og/home.png', width: 1200, height: 630, alt: 'SAFE119 안전보건관리체계 자가진단' }],
     title: 'SAFE119 — 안전보건관리체계 자가진단',
     description:
       '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 67문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
