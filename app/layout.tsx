@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: '%s | SAFE119',
   },
   description:
-    '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 67문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
+    '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 38문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
   keywords: '중대재해처벌법, 안전보건관리체계, 자가진단, 경영책임자, 중처법, 안전보건',
   applicationName: 'SAFE119',
   openGraph: {
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     images: [{ url: '/og/home.png', width: 1200, height: 630, alt: 'SAFE119 안전보건관리체계 자가진단' }],
     title: 'SAFE119 — 안전보건관리체계 자가진단',
     description:
-      '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 67문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
+      '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 38문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
   },
   twitter: {
     card: 'summary_large_image',
     images: ['/og/home.png'],
     title: 'SAFE119 — 안전보건관리체계 자가진단',
     description:
-      '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 67문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
+      '중대재해처벌법 시행령 제4조 9대 핵심요소 기준, 38문항 자가진단. 경영책임자 의무 이행 수준을 10분 안에 확인하세요.',
   },
   robots: {
     index: true,
