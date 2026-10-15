@@ -26,7 +26,7 @@ export default function Step1Hero() {
           <span className="bg-semantic-amber-bg text-semantic-amber-text px-1.5 py-0.5 rounded text-sm font-semibold">
             9대 핵심요소
           </span>{' '}
-          기준 67문항 자가진단.
+          기준 38문항 자가진단.
           <br />
           법적 근거·조치 가이드까지 한 번에 확인하세요.
         </p>
@@ -64,7 +64,7 @@ export default function Step1Hero() {
         <div className="flex gap-2 mt-7 flex-wrap">
           {[
             { val: '9대', lbl: '핵심요소' },
-            { val: '67', lbl: '문항' },
+            { val: '38', lbl: '문항' },
             { val: 'A~D', lbl: '리스크등급' },
             { val: 'PDF', lbl: '리포트' },
             { val: '~10분', lbl: '소요시간' },
