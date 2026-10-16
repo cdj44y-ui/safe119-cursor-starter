@@ -21,7 +21,7 @@ export default function Step6Offer() {
 
           {/* Free Points */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {['회원가입 불필요', '개인정보 수집 없음', 'PDF 리포트 무료', '38문항 전체 무료'].map((point) => (
+            {['회원가입 불필요', '개인정보 수집 없음', '결과 리포트 즉시 확인', '38문항 전체 무료'].map((point) => (
               <span key={point} className="text-sm text-ink-3 font-medium">
                 ✓ {point}
               </span>

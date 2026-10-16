@@ -7,7 +7,7 @@ export default function Step5Product() {
     { num: '①', title: '사업장 정보 입력', desc: '업종·규모 선택' },
     { num: '②', title: '38문항 응답', desc: 'O/X/△/N·A 선택' },
     { num: '③', title: '결과 리포트 확인', desc: '등급·리스크 분석' },
-    { num: '④', title: 'PDF 다운로드', desc: '액션플랜 포함' },
+    { num: '④', title: '액션플랜 확인', desc: '즉시·단기·중기 우선순위' },
   ];
 
   return (

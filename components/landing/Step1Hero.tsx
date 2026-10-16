@@ -36,7 +36,7 @@ export default function Step1Hero() {
           <span className="bg-semantic-green-bg text-semantic-green-text px-2.5 py-0.5 rounded text-xs font-bold">
             무료
           </span>
-          <span>회원가입 없음 · 10분 소요 · PDF 결과 리포트 즉시 제공</span>
+          <span>회원가입 없음 · 10분 소요 · 결과 리포트 즉시 확인</span>
         </div>
 
         {/* CTA */}
@@ -66,7 +66,7 @@ export default function Step1Hero() {
             { val: '9대', lbl: '핵심요소' },
             { val: '38', lbl: '문항' },
             { val: 'A~D', lbl: '리스크등급' },
-            { val: 'PDF', lbl: '리포트' },
+            { val: '0원', lbl: '이용료' },
             { val: '~10분', lbl: '소요시간' },
           ].map((c) => (
             <div key={c.lbl} className="bg-white border border-sand-200 rounded-md px-3.5 py-2 text-center min-w-[88px]">
