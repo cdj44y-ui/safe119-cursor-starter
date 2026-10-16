@@ -297,15 +297,6 @@ export default function ResultPage() {
 
           {/* ═══════ 6. 듀얼 CTA ═══════ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button
-              onClick={() => {
-                // PDF 다운로드 — Cursor에서 lib/generatePdf.ts 구현 후 연결
-                alert('PDF 다운로드 기능은 Cursor에서 lib/generatePdf.ts를 구현한 후 연결하세요.');
-              }}
-              className="btn-primary text-base"
-            >
-              📋 결과 PDF 다운로드
-            </button>
             <Link
               href="/consult"
               className="inline-flex items-center justify-center gap-2 bg-ink text-white font-semibold py-3.5 px-8 rounded transition-all duration-200 hover:bg-ink-2"
