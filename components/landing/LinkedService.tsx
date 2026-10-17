@@ -9,7 +9,7 @@ export default function LinkedService() {
         </span>
         <div className="w-8 h-0.5 bg-sand-400 mb-6" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a
             href="https://risk119.site"
             target="_blank"
@@ -43,7 +43,27 @@ export default function LinkedService() {
               <div>
                 <h3 className="text-sm font-bold text-ink mb-0.5">FREE119 — 근로자성 자가진단</h3>
                 <p className="text-xs text-ink-4">
-                  프리랜서인가, 근로자인가? 5개 영역 19문항으로 근로자성을 무료 진단합니다.
+                  프리랜서인가, 근로자인가? 5개 영역 19문항으로 근로자성을 점검합니다.
+                </p>
+              </div>
+              <span className="ml-auto text-ink-5 text-lg">→</span>
+            </div>
+          </a>
+
+          <a
+            href="https://audit119.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-white border border-sand-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-sand-100 rounded-lg flex items-center justify-center text-xl font-extrabold text-ink">
+                A<span className="text-copper">119</span>
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-ink mb-0.5">AUDIT119 — 직장 내 괴롭힘 독립조사</h3>
+                <p className="text-xs text-ink-4">
+                  사내 조사체계를 진단하고, 외부 독립 조사로 회사가 방어할 수 있는 기록을 남깁니다.
                 </p>
               </div>
               <span className="ml-auto text-ink-5 text-lg">→</span>
