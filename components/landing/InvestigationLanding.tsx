@@ -68,6 +68,14 @@ export default function InvestigationLanding() {
         </div>
       </section>
 
+      {/* 대응 실적 띠 */}
+      <section className="border-b border-[#D9D0BE] bg-[#EFE8DA]">
+        <div className="mx-auto flex max-w-[1140px] flex-col gap-3 px-6 py-6 md:flex-row md:items-center md:gap-8 md:px-9">
+          <p className="shrink-0 text-[15px] font-bold text-[#C8912E]">중대재해처벌법 대응 컨설팅</p>
+          <p className="text-[18px] font-semibold leading-[1.6] md:text-[19px]">대형 건설사 · 한국지역난방공사 · 한국가스공사 · 중소 제조업체 50여 곳</p>
+        </div>
+      </section>
+
       {/* 01 사고 이후 */}
       <section id="after" className="border-t border-[#D9D0BE] py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
@@ -162,11 +170,24 @@ export default function InvestigationLanding() {
             <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width={240} height={312} className="h-[312px] w-[240px] object-cover" />
             <div>
               <p className="text-[24px] leading-[1.55] md:text-[28px]" style={serif}>현장의 위험과 법적 책임은 따로 움직이지 않습니다. 안전공학과 노동법을 함께 보는 이유입니다.</p>
+              <div className="mt-7 grid gap-3 md:grid-cols-3">
+                {[
+                  ['대형 건설사', '다수 현장과 협력업체가 얽힌 건설 현장의 중대재해처벌법 대응 체계를 함께 만들었습니다.'],
+                  ['공공기관', '한국지역난방공사, 한국가스공사의 중대재해처벌법 대응 컨설팅을 수행했습니다.'],
+                  ['중소 제조업체 50여 곳', '인력과 예산이 빠듯한 제조 현장에서 바로 작동하는 안전보건관리체계를 세웠습니다.'],
+                ].map(([t, d]) => (
+                  <div key={t} className="border border-[#D9D0BE] bg-white p-5">
+                    <p className="text-[19px] font-bold" style={serif}>{t}</p>
+                    <p className="mt-2 text-[16px] leading-[1.65] text-[#3D4540]">{d}</p>
+                  </div>
+                ))}
+              </div>
               <div className="mt-7">
                 {[
                   ['소속', '노무법인 위너스 대표노무사'],
                   ['자격·학위', '공인노무사 16년 · 안전공학 박사'],
                   ['실무 이력', '현대카드 · 삼성서울병원 인사 출신'],
+                  ['중대재해 대응', '대형 건설사 · 한국지역난방공사 · 한국가스공사 · 중소 제조업체 50여 곳'],
                   ['자문', '금융 · IT · 보건의료 · 제조 자문사 안전보건 체계 구축'],
                 ].map(([k, v]) => (
                   <div key={k} className="grid grid-cols-[110px_1fr] gap-3 border-t border-[#D9D0BE] py-3.5 text-[18px] last:border-b md:grid-cols-[130px_1fr]">
