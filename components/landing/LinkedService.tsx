@@ -51,7 +51,7 @@ export default function LinkedService() {
           </a>
 
           <a
-            href="https://audit119.vercel.app"
+            href="https://www.audit119.site"
             target="_blank"
             rel="noopener noreferrer"
             className="block bg-white border border-sand-200 rounded-lg p-6 hover:shadow-md transition-shadow"

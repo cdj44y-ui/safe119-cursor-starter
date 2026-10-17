@@ -36,7 +36,7 @@ export default function Step1Hero() {
           <span className="bg-semantic-green-bg text-semantic-green-text px-2.5 py-0.5 rounded text-xs font-bold">
             무료
           </span>
-          <span>회원가입 없음 · 10분 소요 · 결과 리포트 즉시 확인</span>
+          <span>무료 진단 · 회원가입 없음 · 입력 내용 저장 안 함</span>
         </div>
 
         {/* CTA */}

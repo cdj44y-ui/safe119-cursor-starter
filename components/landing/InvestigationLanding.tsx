@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import LawCalendar from '@/components/brand/LawCalendar';
+import { PROMISE } from '@/components/brand/constants';
 
 // 수사 기록형 랜딩 (2026-10-17) — 사업장 실명 미사용, 모든 법적 서술은 국가법령정보센터 원문 대조
 const STATS = [
@@ -28,13 +30,6 @@ const NINE = [
   ['제9호', '도급·용역·위탁 기준', '반기 1회 점검'],
 ];
 
-const CALENDAR = [
-  { d: '2026.10.01', s: '공포 전', tone: 'pre', h: '반복 산재 사망 사업장, 영업이익 최대 5% 과징금', n: '산업안전보건법 개정안 국회 본회의 통과' },
-  { d: '2027.01.01', s: '시행 예정', tone: 'next', h: '위험성평가 미이행 과태료 (상시 50명 이상)', n: '산업안전보건법 제175조 · 부칙(법률 제21374호) · 건설업은 공사금액 50억 원 이상' },
-  { d: '2027.01.08', s: '시행 예정', tone: 'next', h: '외국인 근로자 기초안전보건교육 의무화', n: '산업안전보건법 제31조의2 신설' },
-  { d: '2028.01.01', s: '시행 예정', tone: 'next', h: '위험성평가 미이행 과태료 (상시 50명 미만)', n: '산업안전보건법 제175조 · 부칙(법률 제21374호)' },
-];
-
 const serif = { fontFamily: "'Noto Serif KR', serif" };
 
 export default function InvestigationLanding() {
@@ -52,10 +47,10 @@ export default function InvestigationLanding() {
               시행령 제4조 9가지 의무와 위험성평가를 38문항으로 점검합니다. 지금 남아 있는 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-7">
-              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#3182F6] px-8 text-[19px] font-bold text-white hover:bg-[#1B64DA]">무료로 진단 시작하기</Link>
+              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">무료로 진단 시작하기</Link>
               <a href="#after" className="border-b-2 border-white pb-0.5 text-[18px] font-bold text-white">사고 이후 절차 보기 →</a>
             </div>
-            <p className="mt-5 text-[15px] text-[#9AA29C]">회원가입 없음 · 입력 내용은 서버에 저장되지 않습니다</p>
+            <p className="mt-5 text-[15px] text-[#9AA29C]">{PROMISE}</p>
           </div>
           <div className="rounded-xl border border-[#3A4540] px-7 py-1.5">
             {STATS.map((s) => (
@@ -72,7 +67,7 @@ export default function InvestigationLanding() {
       <section className="border-b border-[#D9D0BE] bg-[#EFE8DA]">
         <div className="mx-auto flex max-w-[1140px] flex-col gap-3 px-6 py-6 md:flex-row md:items-center md:gap-8 md:px-9">
           <p className="shrink-0 text-[15px] font-bold text-[#C8912E]">중대재해처벌법 대응 컨설팅</p>
-          <p className="text-[18px] font-semibold leading-[1.6] md:text-[19px]">대형 건설사 · 한국지역난방공사 · 한국가스공사 · 중소 제조업체 50여 곳</p>
+          <p className="text-[18px] font-semibold leading-[1.6] md:text-[19px]">대형 건설사 · 에너지 공기업 · 중소 제조업체 50여 곳</p>
         </div>
       </section>
 
@@ -138,22 +133,11 @@ export default function InvestigationLanding() {
       {/* 03 법령 달력 */}
       <section className="border-t border-[#D9D0BE] py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-11 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
+          <div className="mb-8 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>03</p>
-            <div>
-              <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>앞으로 강화되는 안전보건 법령</h2>
-              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">국가법령정보센터 원문을 확인해 갱신합니다. 시행 전 법령은 시행일을 함께 적습니다.</p>
-            </div>
+            <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 한 장 · 위너스 기준진단 네 사이트가 같은 내용으로 안내합니다.</p>
           </div>
-          <div className="border-t-2 border-[#1C2421]">
-            {CALENDAR.map((c) => (
-              <div key={c.d + c.h} className="grid gap-2 border-b border-[#D9D0BE] py-6 md:grid-cols-[180px_1fr_120px] md:items-baseline md:gap-8">
-                <p className="text-[22px] font-bold" style={serif}>{c.d}</p>
-                <div><h3 className="text-[20px] font-bold leading-[1.5]">{c.h}</h3><p className="text-[16px] text-[#6A706B]">{c.n}</p></div>
-                <p className={'text-[15px] font-bold md:text-right ' + (c.tone === 'pre' ? 'text-[#6A706B]' : 'text-[#1B64DA]')}>{c.s}</p>
-              </div>
-            ))}
-          </div>
+          <LawCalendar />
           <Link href="/risk-assessment" className="group mt-9 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
             <div>
               <p className="text-[15px] font-bold text-[#D9A44A]">2027.1.1 상시 50명 이상 · 2028.1.1 50명 미만 과태료 시행</p>
@@ -165,7 +149,7 @@ export default function InvestigationLanding() {
                 ))}
               </div>
             </div>
-            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#3182F6] px-7 text-[18px] font-bold text-white group-hover:bg-[#1B64DA]">3분 점검 시작 →</span>
+            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#D32F2F] px-7 text-[18px] font-bold text-white group-hover:bg-[#B71C1C]">3분 점검 시작 →</span>
           </Link>
           <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
         </div>
@@ -176,17 +160,19 @@ export default function InvestigationLanding() {
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
           <div className="mb-11 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>04</p>
-            <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>이 점검표를 설계한 사람</h2>
+            <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>이 진단을 설계한 사람</h2>
           </div>
           <div className="grid items-start gap-10 md:grid-cols-[240px_1fr] md:gap-14">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width={240} height={312} className="h-[312px] w-[240px] object-cover" />
             <div>
-              <p className="text-[24px] leading-[1.55] md:text-[28px]" style={serif}>현장의 위험과 법적 책임은 따로 움직이지 않습니다. 안전공학과 노동법을 함께 보는 이유입니다.</p>
+              <p className="text-[17px] font-bold text-[#6A706B]">대기업 인사팀 출신 노무사, 조대진</p>
+              <p className="mt-1 text-[16px] font-semibold text-[#1C2421]">공인노무사 16년 · 안전공학 박사</p>
+              <p className="mt-4 text-[24px] leading-[1.55] md:text-[28px]" style={serif}>현장의 위험과 법적 책임은 따로 움직이지 않습니다. 안전공학과 노동법을 함께 보는 이유입니다.</p>
               <div className="mt-7 grid gap-3 md:grid-cols-3">
                 {[
                   ['대형 건설사', '다수 현장과 협력업체가 얽힌 건설 현장의 중대재해처벌법 대응 체계를 함께 만들었습니다.'],
-                  ['공공기관', '한국지역난방공사, 한국가스공사의 중대재해처벌법 대응 컨설팅을 수행했습니다.'],
+                  ['에너지 공기업', '에너지 분야 공기업의 중대재해처벌법 대응 컨설팅을 수행했습니다.'],
                   ['중소 제조업체 50여 곳', '인력과 예산이 빠듯한 제조 현장에서 바로 작동하는 안전보건관리체계를 세웠습니다.'],
                 ].map(([t, d]) => (
                   <div key={t} className="border border-[#D9D0BE] bg-white p-5">
@@ -200,7 +186,7 @@ export default function InvestigationLanding() {
                   ['소속', '노무법인 위너스 대표노무사'],
                   ['자격·학위', '공인노무사 16년 · 안전공학 박사'],
                   ['실무 이력', '현대카드 · 삼성서울병원 인사 출신'],
-                  ['중대재해 대응', '대형 건설사 · 한국지역난방공사 · 한국가스공사 · 중소 제조업체 50여 곳'],
+                  ['중대재해 대응', '대형 건설사 · 에너지 공기업 · 중소 제조업체 50여 곳'],
                   ['자문', '금융 · IT · 보건의료 · 제조 자문사 안전보건 체계 구축'],
                 ].map(([k, v]) => (
                   <div key={k} className="grid grid-cols-[110px_1fr] gap-3 border-t border-[#D9D0BE] py-3.5 text-[18px] last:border-b md:grid-cols-[130px_1fr]">
@@ -217,10 +203,10 @@ export default function InvestigationLanding() {
       <section className="bg-[#1C2421] py-16 text-center text-white md:py-[88px]">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
           <h2 className="text-[32px] font-bold leading-[1.35] md:text-[44px]" style={serif}>기록이 남기 전에, 먼저 점검하십시오</h2>
-          <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">무료 진단 · 회원가입 없음 · 약 10분<br />상담은 유료 자문으로 진행되며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
+          <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">{PROMISE} · 약 10분<br />상담은 유료 자문으로 진행되며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#3182F6] px-8 text-[19px] font-bold text-white hover:bg-[#1B64DA]">무료로 진단 시작하기</Link>
-            <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg border-[1.5px] border-white px-8 text-[19px] font-bold text-white hover:bg-white/10">상담 신청서 작성</Link>
+            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">무료로 진단 시작하기</Link>
+            <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg bg-[#1F4E79] px-8 text-[19px] font-bold text-white hover:bg-[#173B5C]">상담 신청서 작성</Link>
           </div>
         </div>
       </section>
