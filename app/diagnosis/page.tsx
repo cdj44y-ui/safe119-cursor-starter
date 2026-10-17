@@ -1,181 +1,175 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useDiagnosisStore } from '@/store/diagnosisStore';
 import { STEPS, questions, getQuestionsByStep, AnswerValue } from '@/data/questions';
-import ProgressBar from '@/components/diagnosis/ProgressBar';
-import StepIndicator from '@/components/diagnosis/StepIndicator';
-import QuestionCard from '@/components/diagnosis/QuestionCard';
-import NavigationBar from '@/components/diagnosis/NavigationBar';
-import Disclaimer from '@/components/layout/Disclaimer';
-import Link from 'next/link';
+
+// 2026-10-18 가독성 개편: 한 화면 한 질문, 큰 글씨·큰 버튼, 법 조문 순서 단계 목록
+const OPTIONS: { value: Exclude<AnswerValue, null>; label: string; hint: string }[] = [
+  { value: 'O', label: '이행 완료 (O)', hint: '갖추고 있고 기록도 있습니다' },
+  { value: 'triangle', label: '일부 이행 (△)', hint: '일부만 갖추었거나 기록이 부족합니다' },
+  { value: 'X', label: '미이행 (X)', hint: '아직 갖추지 못했습니다' },
+  { value: 'NA', label: '해당없음 (N/A)', hint: '우리 사업장에는 해당하지 않습니다' },
+];
 
 export default function DiagnosisPage() {
   const router = useRouter();
   const {
-    answers,
-    currentStep,
-    currentQuestionIndex,
-    startedAt,
-    setAnswer,
-    nextQuestion,
-    prevQuestion,
-    startDiagnosis,
-    completeDiagnosis,
-    getProgress,
-    getCurrentQuestion,
-    isAllComplete,
+    answers, currentStep, currentQuestionIndex, startedAt,
+    setAnswer, nextQuestion, prevQuestion, goToStep, startDiagnosis, completeDiagnosis,
+    getProgress, getCurrentQuestion, isAllComplete,
   } = useDiagnosisStore();
+  const [showGuide, setShowGuide] = useState(false);
 
-  // 진단 시작 시 타이머 세팅
-  useEffect(() => {
-    if (!startedAt) {
-      startDiagnosis();
-    }
-  }, [startedAt, startDiagnosis]);
+  useEffect(() => { if (!startedAt) startDiagnosis(); }, [startedAt, startDiagnosis]);
 
   const progress = getProgress();
-  const currentQuestion = getCurrentQuestion();
+  const q = getCurrentQuestion();
   const stepQuestions = useMemo(() => getQuestionsByStep(currentStep), [currentStep]);
   const stepInfo = STEPS.find((s) => s.step === currentStep);
 
-  // 전체 문항 중 현재 인덱스 계산
-  const globalIndex = useMemo(() => {
-    let idx = 0;
-    for (let s = 1; s < currentStep; s++) {
-      idx += getQuestionsByStep(s).length;
-    }
-    return idx + currentQuestionIndex;
+  useEffect(() => {
+    setShowGuide(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentStep, currentQuestionIndex]);
 
-  // 네비게이션 조건
   const canGoPrev = currentStep > 1 || currentQuestionIndex > 0;
-  const isLastQuestion = currentStep === STEPS.length && currentQuestionIndex === stepQuestions.length - 1;
+  const isLast = currentStep === STEPS.length && currentQuestionIndex === stepQuestions.length - 1;
+  const allDone = isAllComplete();
 
   const handleAnswer = (answer: AnswerValue) => {
-    if (!currentQuestion) return;
-    const prev = answers[currentQuestion.id];
+    if (!q) return;
+    const prev = answers[q.id];
     const wasUnanswered = prev === undefined || prev === null;
-    const isChange = wasUnanswered || prev !== answer;
-
-    setAnswer(currentQuestion.id, answer);
-
-    // 마지막 문항을 처음 응답한 경우 → 근로자성 진단(free119)처럼 바로 결과로
-    if (isLastQuestion && wasUnanswered) {
+    setAnswer(q.id, answer);
+    if (isLast && wasUnanswered) {
       completeDiagnosis();
       router.push('/result');
       return;
     }
-
-    // 같은 응답을 다시 누른 경우(복귀 후 확인 등)에는 이동하지 않음
-    if (!isChange) return;
-
-    if (!isLastQuestion) {
-      nextQuestion();
-    }
+    if (!wasUnanswered && prev === answer) return;
+    if (!isLast) setTimeout(() => nextQuestion(), 220);
   };
 
-  const handleComplete = () => {
-    completeDiagnosis();
-    router.push('/result');
-  };
+  const finish = () => { completeDiagnosis(); router.push('/result'); };
 
-  if (!currentQuestion) {
-    return <div className="min-h-screen flex items-center justify-center text-ink-4">로딩 중...</div>;
-  }
+  if (!q) return <div className="flex min-h-screen items-center justify-center text-[18px] text-[#6A706B]">불러오는 중…</div>;
+
+  const stepDone = (s: number) => {
+    const qs = getQuestionsByStep(s);
+    return { done: qs.filter((x) => answers[x.id] != null).length, total: qs.length };
+  };
 
   return (
-    <div className="min-h-screen bg-sand-50">
-      {/* 상단 고정바 */}
-      <div className="sticky top-0 z-50 bg-sand-50/95 backdrop-blur-md border-b border-sand-200">
-        <div className="max-w-[960px] mx-auto px-7 py-3">
-          {/* Header row */}
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <Link href="/consult" className="text-xs text-ink-4 hover:text-ink font-medium">
-                비대면 상담
-              </Link>
-              <Link href="/" className="text-xs text-ink-4 hover:text-ink font-medium">
-                처음으로
-              </Link>
+    <div className="min-h-screen bg-[#F4EFE4] pb-28 text-[#1C2421] [word-break:keep-all] md:pb-16">
+      {/* 상단 */}
+      <header className="sticky top-0 z-50 border-b border-[#D9D0BE] bg-white">
+        <div className="mx-auto flex max-w-[1140px] items-center gap-6 px-5 py-4 md:px-8">
+          <Link href="/" className="shrink-0 text-[20px] font-extrabold text-[#1C2421]">SAFE<span className="text-[#3182F6]">119</span></Link>
+          <div className="flex-1">
+            <div className="flex items-baseline justify-between text-[16px]">
+              <span className="font-bold">진행 {progress.answered} / {progress.total} 문항</span>
+              <span className="font-bold text-[#1B64DA]">{progress.percentage}%</span>
             </div>
-            <div className="text-sm font-extrabold text-ink tracking-tight">
-              SAFE<span className="text-copper">119</span>{' '}
-              <span className="text-xs font-normal text-ink-5">자가진단</span>
+            <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[#E6DFD0]">
+              <div className="h-full rounded-full bg-[#3182F6] transition-all" style={{ width: progress.percentage + '%' }} />
             </div>
-            <a
-              href="https://free119.site"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-ink-4 hover:text-ink font-medium"
-            >
-              FREE119 근로자성 진단
-            </a>
-          </div>
-
-          {/* Progress bar */}
-          <ProgressBar
-            answered={progress.answered}
-            total={progress.total}
-            percentage={progress.percentage}
-          />
-
-          {/* Step indicator */}
-          <div className="mt-3">
-            <StepIndicator />
           </div>
         </div>
+      </header>
+
+      <div className="mx-auto mt-6 grid max-w-[1140px] gap-6 px-5 md:mt-8 md:grid-cols-[290px_1fr] md:px-8">
+        {/* 단계 목록 */}
+        <aside className="hidden md:block">
+          <p className="mb-3 text-[15px] font-bold text-[#6A706B]">점검 순서 · 법 조문 순</p>
+          <nav className="overflow-hidden rounded-[14px] border border-[#D9D0BE] bg-white">
+            {STEPS.map((s) => {
+              const st = stepDone(s.step);
+              const active = s.step === currentStep;
+              const done = st.done === st.total;
+              return (
+                <button key={s.step} type="button" onClick={() => goToStep(s.step)}
+                  className={'grid w-full grid-cols-[64px_1fr_auto] items-center gap-2 border-b border-[#EFE8DA] px-4 py-3 text-left last:border-b-0 ' + (active ? 'bg-[#1C2421] text-white' : 'bg-white hover:bg-[#FAF6EE]')}>
+                  <span className={'text-[13px] font-bold ' + (active ? 'text-[#D9A44A]' : 'text-[#C8912E]')}>{s.label}</span>
+                  <span className={'text-[15px] leading-snug ' + (active ? 'font-bold' : 'text-[#3D4540]')}>{s.name}</span>
+                  <span className={'text-[13px] font-bold ' + (done ? (active ? 'text-[#9CC3FF]' : 'text-[#1B64DA]') : active ? 'text-[#CFC9BB]' : 'text-[#9A9384]')}>{done ? '완료' : st.done + '/' + st.total}</span>
+                </button>
+              );
+            })}
+          </nav>
+        </aside>
+
+        {/* 질문 */}
+        <main>
+          <div className="rounded-[16px] border border-[#D9D0BE] bg-white p-6 md:p-10">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="rounded-md bg-[#1C2421] px-2.5 py-1 text-[14px] font-bold text-white">{stepInfo?.article}</span>
+              <span className="text-[16px] font-bold text-[#6A706B]">{stepInfo?.name} · {currentQuestionIndex + 1} / {stepQuestions.length}</span>
+              {q.riskLevel === 'high' && <span className="rounded-md bg-[#FBEDEA] px-2 py-0.5 text-[13px] font-bold text-[#A4262C]">핵심 의무</span>}
+            </div>
+            <h1 className="mt-4 text-[24px] font-bold leading-[1.55] tracking-[-0.4px] md:text-[29px]">{q.question}</h1>
+            {q.plainTip && <p className="mt-3 text-[18px] leading-[1.7] text-[#3D4540]"><b className="text-[#C8912E]">쉽게 말하면 · </b>{q.plainTip}</p>}
+
+            <div className="mt-6 rounded-xl border border-[#E6DFD0] bg-[#FAF7F0] px-5 py-4">
+              <div className="grid gap-1 md:grid-cols-[86px_1fr] md:gap-3">
+                <p className="text-[15px] font-bold text-[#6A706B]">법적 근거</p>
+                <p className="text-[17px] leading-[1.6]">{q.legalBasis}{q.reference ? <span className="block text-[15px] text-[#6A706B]">참고: {q.reference}</span> : null}</p>
+              </div>
+              {q.guidance && (
+                <div className="mt-3 border-t border-[#E6DFD0] pt-3">
+                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#1B64DA]">
+                    {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
+                  </button>
+                  {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4540]">{q.guidance}</p>}
+                </div>
+              )}
+            </div>
+
+            <div className="mt-7 grid gap-3">
+              {OPTIONS.map((o) => {
+                const sel = answers[q.id] === o.value;
+                return (
+                  <button key={o.value} type="button" onClick={() => handleAnswer(o.value)} aria-pressed={sel}
+                    className={'flex min-h-[68px] w-full items-center justify-between gap-4 rounded-xl border-2 px-6 text-left transition ' + (sel ? 'border-[#3182F6] bg-[#EAF2FE]' : 'border-[#E0D8C8] bg-white hover:border-[#8FB8F7] hover:bg-[#FAF7F0]')}>
+                    <span>
+                      <span className="block text-[20px] font-bold leading-tight">{o.label}</span>
+                      <span className="mt-0.5 block text-[15px] text-[#6A706B]">{o.hint}</span>
+                    </span>
+                    <span className={'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold ' + (sel ? 'border-[#3182F6] bg-[#3182F6] text-white' : 'border-[#CFC6B4] text-transparent')} aria-hidden>✓</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-center justify-between gap-3">
+            <button type="button" onClick={prevQuestion} disabled={!canGoPrev} className="h-[56px] rounded-[10px] border-[1.5px] border-[#CFC6B4] bg-white px-6 text-[18px] font-bold text-[#3D4540] disabled:opacity-40">← 이전 질문</button>
+            {allDone ? (
+              <button type="button" onClick={finish} className="h-[56px] rounded-[10px] bg-[#3182F6] px-8 text-[18px] font-bold text-white hover:bg-[#1B64DA]">결과 보기 →</button>
+            ) : (
+              <span className="text-[15px] text-[#6A706B]">답을 고르면 다음 질문으로 넘어갑니다</span>
+            )}
+          </div>
+          <p className="mt-6 text-[14px] leading-[1.7] text-[#6A706B]">본 진단은 중대재해처벌법 시행령 제4조 등을 바탕으로 한 참고용 자가진단이며 법적 효력이 없습니다. 구체적인 판단은 전문가 상담으로 확인하시기 바랍니다.</p>
+        </main>
       </div>
 
-      {/* Main content */}
-      <main className="max-w-[960px] mx-auto px-7 py-8">
-        {/* Step Header */}
-        <div className="mb-6">
-          <span className="text-xs font-bold text-copper uppercase tracking-[1.2px]">
-            STEP {currentStep} / {STEPS.length}
-          </span>
-          <h2 className="text-xl font-extrabold text-ink mt-1 mb-1">{stepInfo?.name}</h2>
-          <p className="text-sm text-ink-4 leading-relaxed">{stepInfo?.description}</p>
-          <p className="text-xs text-ink-5 mt-1">
-            관련 조문: {stepInfo?.article}
-          </p>
+      {/* 모바일 단계 이동 */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D9D0BE] bg-white px-3 py-2.5 md:hidden">
+        <div className="flex gap-2 overflow-x-auto">
+          {STEPS.map((s) => {
+            const st = stepDone(s.step);
+            return (
+              <button key={s.step} type="button" onClick={() => goToStep(s.step)}
+                className={'shrink-0 whitespace-nowrap rounded-lg border px-3 py-2 text-[15px] ' + (s.step === currentStep ? 'border-[#1C2421] bg-[#1C2421] font-bold text-white' : 'border-[#D9D0BE] bg-white text-[#3D4540]')}>
+                {s.label} {st.done}/{st.total}
+              </button>
+            );
+          })}
         </div>
-
-        {/* Disclaimer (collapsible) */}
-        <details className="mb-6 bg-sand-100 border border-sand-200 rounded-lg">
-          <summary className="px-4 py-2.5 text-xs text-ink-5 cursor-pointer font-medium">
-            면책 안내 (클릭하여 펼치기)
-          </summary>
-          <div className="px-4 pb-3 text-xs text-ink-5 leading-relaxed">
-            본 진단은 중처법 시행령 제4조·KOSHA 7대 핵심요소를 참고한 자가진단입니다.
-            법적 효력이 없으며, 정확한 법률 검토는 전문가 상담을 이용하세요.
-          </div>
-        </details>
-
-        {/* Question Card */}
-        <QuestionCard
-          question={currentQuestion}
-          questionIndexInStep={currentQuestionIndex}
-          totalInStep={stepQuestions.length}
-          globalIndex={globalIndex}
-          totalGlobal={questions.length}
-          selectedAnswer={answers[currentQuestion.id] ?? null}
-          onAnswer={handleAnswer}
-        />
-
-        {/* Navigation — 다음 버튼 없이 응답 선택으로 이동(연계 근로자성 진단과 동일 UX) */}
-        <NavigationBar
-          onPrev={prevQuestion}
-          canGoPrev={canGoPrev}
-          showResultCta={isAllComplete()}
-          onComplete={handleComplete}
-        />
-
-      </main>
-
-      {/* Footer Disclaimer */}
-      <Disclaimer variant="compact" />
+      </div>
     </div>
   );
 }
