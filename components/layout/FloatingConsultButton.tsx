@@ -7,7 +7,8 @@ import { usePathname } from 'next/navigation';
 export default function FloatingConsultButton() {
   const pathname = usePathname();
   // 상담 신청 페이지 자체에서는 숨김(이미 해당 페이지에 있으므로 중복 방지)
-  if (pathname === '/consult') return null;
+  // 결과 페이지는 자체 하단 고정 상담 바가 있어 중복 방지
+  if (pathname === '/consult' || pathname === '/result') return null;
 
   return (
     <Link
