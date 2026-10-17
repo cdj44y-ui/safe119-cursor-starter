@@ -8,6 +8,7 @@ import { questions, STEPS } from '@/data/questions';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
+import ResultSheet from '@/components/brand/ResultSheet';
 
 const LEGAL_UPDATES = [
   {
@@ -60,7 +61,7 @@ export default function ResultPage() {
           <div className="w-full max-w-[560px] border border-[#D9D0BE] bg-white p-10 text-center">
             <p className="text-[22px] font-bold">아직 진단 결과가 없습니다</p>
             <p className="mt-2 text-[17px] text-[#6A706B]">38개 질문에 답하시면 비어 있는 기록과 법적 근거를 정리해 드립니다.</p>
-            <Link href="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-lg bg-[#3182F6] px-8 text-[18px] font-bold text-white">진단 시작하기 →</Link>
+            <Link href="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-lg bg-[#D32F2F] px-8 text-[18px] font-bold text-white hover:bg-[#B71C1C]">진단 시작하기 →</Link>
           </div>
         </main>
         <Footer />
@@ -79,11 +80,42 @@ export default function ResultPage() {
   const rest = gaps.length - shown.length;
   const gapSteps = Array.from(new Set(gaps.map((q) => STEPS.find((s) => s.step === q.step)?.label))).filter(Boolean);
   const [gTxt, gColor] = tone(result.overallPercentage);
+  // A4 결과지 데이터 (표시 방식만, 점수 로직 불변)
+  const sheetFixes = gaps.slice(0, 3).map((q) => ({
+    title: `${STEPS.find((s) => s.step === q.step)?.label ?? ''} · ${q.question} (${answers[q.id] === 'X' ? '미이행' : '일부 이행'})`,
+    basis: q.legalBasis,
+  }));
+  const sheetRows = result.stepScores.map((ss) => {
+    const st = STEPS.find((s) => s.step === ss.step);
+    return {
+      label: `${st?.label ?? ''} ${ss.stepName}`,
+      value: ss.applicableQuestions === 0 ? '해당없음' : `${ss.percentage}% · ${tone(ss.percentage)[0]}`,
+      basis: st?.article ?? '',
+    };
+  });
+  const naCount = questions.filter((q) => answers[q.id] === 'NA').length;
+  const triCount = questions.filter((q) => answers[q.id] === 'triangle').length;
+  const sheetPending = [
+    ...(triCount > 0 ? [`일부 이행으로 답한 ${triCount}개 문항 — 이행했다는 서면 기록이 남아 있는지 확인이 필요합니다.`] : []),
+    ...(naCount > 0 ? [`해당 없음으로 답한 ${naCount}개 문항 — 실제로 적용 대상이 아닌지 확인이 필요합니다.`] : []),
+    '반복 산재 사망 사업장 영업이익 최대 5% 과징금 — 산업안전보건법 개정안 국회 통과(2026.10.1), 공포 전이라 시행일 확정 후 적용 여부를 확인해야 합니다.',
+  ];
 
   return (
     <>
       <Header />
       <main className="bg-[#F4EFE4] pb-28 text-[#1C2421] [word-break:keep-all]">
+        {/* A4 결과지 (브랜드 v1.1 공통 형식) */}
+        <section className="bg-[#1C2421] pt-10 md:pt-14">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <ResultSheet conclusion={`${gradeInfo.label}입니다`} score={`${result.overallPercentage}점`} fixes={sheetFixes} rows={sheetRows} pending={sheetPending} siteUrl="https://safe119.site" />
+            <div className="mt-5 flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
+              <p className="text-[16px] text-[#CFC9BB]">진단 결과는 상담 신청서에 자동으로 담깁니다. 상담은 유료 자문으로 진행됩니다.</p>
+              <Link href="/consult" className="inline-flex h-[56px] shrink-0 items-center rounded-lg bg-[#1F4E79] px-7 text-[18px] font-bold text-white hover:bg-[#173B5C]">상담 신청서 작성 →</Link>
+            </div>
+          </div>
+        </section>
+
         {/* 1. 결과 */}
         <section className="bg-[#1C2421] text-white">
           <div className="mx-auto grid max-w-[1140px] gap-10 px-6 py-14 md:grid-cols-[1fr_1.15fr] md:px-9 md:py-[72px]">
@@ -224,9 +256,9 @@ export default function ResultPage() {
             <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width={210} height={273} className="h-[273px] w-[210px] object-cover" />
             <div>
               <p className="text-[16px] font-bold text-[#C8912E]">이 결과를 함께 정리할 사람</p>
-              <h2 className="mt-2 text-[30px] font-bold md:text-[34px]" style={serif}>조대진 대표노무사</h2>
-              <p className="mt-1 text-[17px] text-[#6A706B]">노무법인 위너스 · 공인노무사 16년 · 안전공학 박사</p>
-              <p className="mt-5 text-[19px] font-semibold leading-[1.65]">대형 건설사, 한국지역난방공사, 한국가스공사, 중소 제조업체 50여 곳의 중대재해처벌법 대응을 함께해 왔습니다. 비어 있는 기록을 어떤 순서로, 어떤 서류로 채워야 하는지 알고 있습니다.</p>
+              <h2 className="mt-2 text-[30px] font-bold md:text-[34px]" style={serif}>대기업 인사팀 출신 노무사, 조대진</h2>
+              <p className="mt-1 text-[17px] text-[#6A706B]">공인노무사 16년 · 안전공학 박사 · 노무법인 위너스 대표노무사</p>
+              <p className="mt-5 text-[19px] font-semibold leading-[1.65]">대형 건설사, 에너지 공기업, 중소 제조업체 50여 곳의 중대재해처벌법 대응을 함께해 왔습니다. 비어 있는 기록을 어떤 순서로, 어떤 서류로 채워야 하는지 알고 있습니다.</p>
               <div className="mt-6 border-t-2 border-[#1C2421]">
                 {[
                   ['1', '결과 검토', '신청서에 담긴 진단 결과를 검토해 먼저 채울 기록을 정합니다.'],
@@ -248,7 +280,7 @@ export default function ResultPage() {
           <div className="mx-auto max-w-[780px] px-6">
             <h2 className="text-[32px] font-bold leading-[1.35] md:text-[40px]" style={serif}>기록이 비어 있는 채로<br />사고를 맞지 않도록</h2>
             <p className="mt-4 text-[19px] leading-[1.7] text-[#CFC9BB]">진단 결과는 상담 신청서에 자동으로 담깁니다. 다시 설명하실 필요가 없습니다.</p>
-            <Link href="/consult" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-xl bg-[#3182F6] text-[21px] font-bold text-white hover:bg-[#1B64DA] md:w-auto md:px-12">상담 신청서 작성하기 →</Link>
+            <Link href="/consult" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-xl bg-[#1F4E79] text-[21px] font-bold text-white hover:bg-[#173B5C] md:w-auto md:px-12">상담 신청서 작성하기 →</Link>
             <p className="mt-4 text-[16px] leading-[1.7] text-[#9AA29C]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
             <div className="mt-6 flex flex-wrap justify-center gap-6 text-[16px]">
               <Link href="/diagnosis" className="text-[#CFC9BB] underline underline-offset-4">다시 진단하기</Link>
@@ -277,7 +309,7 @@ export default function ResultPage() {
           <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D9D0BE] bg-white/95 backdrop-blur">
             <div className="mx-auto flex max-w-[1140px] items-center justify-between gap-3 px-6 py-3 md:px-9">
               <p className="text-[16px] font-bold md:text-[18px]">비어 있는 기록 <span className="text-[#A4262C]">{gaps.length}건</span><span className="hidden font-normal text-[#6A706B] md:inline"> · 진단 결과가 신청서에 자동으로 담깁니다</span></p>
-              <Link href="/consult" className="inline-flex h-[52px] shrink-0 items-center rounded-lg bg-[#3182F6] px-6 text-[17px] font-bold text-white">상담 신청서 작성</Link>
+              <Link href="/consult" className="inline-flex h-[52px] shrink-0 items-center rounded-lg bg-[#1F4E79] px-6 text-[17px] font-bold text-white hover:bg-[#173B5C]">상담 신청서 작성</Link>
             </div>
           </div>
         )}
