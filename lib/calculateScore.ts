@@ -182,13 +182,13 @@ function generateInvestigatorView(
   const police: string[] = [];
 
   // 감독관 관점 — 서류·절차 미비 중심
-  const docRelatedSteps = stepScores.filter(s => s.step === 12);
+  const docRelatedSteps = stepScores.filter(s => s.step === 12 || s.step === 13);
   docRelatedSteps.forEach(ss => {
     if (ss.xCount > 0) {
-      inspector.push(`이행점검·서류보존 영역에서 ${ss.xCount}건의 미이행 발견 → 시정명령 대상`);
+      inspector.push(`${ss.stepName} 영역에서 ${ss.xCount}건의 미이행 발견 → 시정명령 대상`);
     }
   });
-  const step3 = stepScores.find(s => s.step === 3);
+  const step3 = stepScores.find(s => s.step === 2); // 시행령 제4조 제1호(목표·경영방침)
   if (step3 && step3.percentage < 70) {
     inspector.push('안전보건 목표·경영방침 미흡 → 체계 미구축으로 판단 가능');
   }
@@ -204,9 +204,9 @@ function generateInvestigatorView(
   }
 
   // 경찰 관점 — 증거 확보 중심
-  const step12 = stepScores.find(s => s.step === 12);
-  if (step12 && step12.xCount > 5) {
-    police.push(`이행 증빙 서류 ${step12.xCount}건 미비 → 수사 시 불리한 증거 상황`);
+  const evidX = stepScores.filter(s => s.step === 12 || s.step === 13).reduce((n, s) => n + s.xCount, 0);
+  if (evidX > 5) {
+    police.push(`이행 증빙 관련 ${evidX}건 미비 → 수사 시 불리한 증거 상황`);
   }
   const naCount = Object.values(answers).filter(a => a === 'NA').length;
   if (naCount > 10) {
