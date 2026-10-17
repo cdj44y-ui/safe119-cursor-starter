@@ -19,6 +19,8 @@ export default function ConsultPage() {
       percentage: result.overallPercentage,
       grade: result.overallGrade,
       label: GRADE_DESCRIPTIONS[result.overallGrade].label,
+      xCount: result.xCount,
+      triCount: result.triangleCount,
     };
   }, [answers, isAllComplete]);
 
@@ -27,6 +29,7 @@ export default function ConsultPage() {
       buildTallyEmbedUrl({
         grade: diagnosisSummary ? `[SAFE119] ${diagnosisSummary.label}` : '[SAFE119]',
         score: diagnosisSummary ? `${diagnosisSummary.percentage}점` : undefined,
+        items: diagnosisSummary ? `미이행 ${diagnosisSummary.xCount}건 · 일부 이행 ${diagnosisSummary.triCount}건` : undefined,
       }),
     [diagnosisSummary]
   );
@@ -58,7 +61,7 @@ export default function ConsultPage() {
             <div className="bg-white border border-sand-200 rounded-lg p-8">
               <h2 className="text-lg font-extrabold text-ink mb-4">상담 신청 폼</h2>
               <p className="text-sm text-ink-4 leading-relaxed mb-4">
-                아래 폼을 제출하시면 담당 노무사(조대진)에게 바로 접수됩니다.
+                아래 폼을 제출하시면 바로 접수됩니다. 상담은 유료 자문으로 진행되며, 신청서를 확인한 뒤 일정과 비용을 안내드립니다. 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.
               </p>
               <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
             </div>
