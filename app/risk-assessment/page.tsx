@@ -7,6 +7,8 @@ import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
 import TallyEmbed from '@/components/ui/TallyEmbed';
 import { buildTallyEmbedUrl } from '@/lib/tally';
+import ResultSheet from '@/components/brand/ResultSheet';
+import { PROMISE } from '@/components/brand/constants';
 
 type AnswerValue = 'O' | 'TRIANGLE' | 'X' | null;
 
@@ -129,7 +131,7 @@ export default function RiskAssessmentPage() {
               <p className="mt-5 text-[19px] leading-[1.75] text-[#CFC9BB]">
                 실시·근로자 참여·근로자대표 참여·공유·기록보존, 5가지 의무를 모두 지켜야 합니다. 항목별로 이행 여부를 고르면 어느 의무에서 과태료 대상이 되는지 바로 보입니다.
               </p>
-              <p className="mt-5 text-[15px] text-[#9AA29C]">약 3분 · 회원가입 없음 · 입력 내용은 서버에 저장되지 않습니다</p>
+              <p className="mt-5 text-[15px] text-[#9AA29C]">약 3분 · {PROMISE}</p>
             </div>
             <div className="rounded-xl border border-[#3A4540] p-6">
               <p className="text-[15px] font-bold text-[#D9A44A]">우리 회사 규모를 먼저 고르십시오</p>
@@ -226,6 +228,20 @@ export default function RiskAssessmentPage() {
                   <p className="mt-2 text-[18px] text-[#CFC9BB]">{answeredCount} / {ITEMS.length}개 항목 응답{!allAnswered && ' · 나머지 항목도 답하면 결과가 더 정확해집니다'}</p>
                 </div>
               </div>
+              <div className="mb-8">
+                <ResultSheet
+                  conclusion={violations.length > 0 ? `과태료 대상이 될 수 있는 의무가 ${violations.length}건 있습니다` : partials.length > 0 ? '보완이 필요한 의무가 있습니다' : '응답 기준 미이행 의무가 없습니다'}
+                  score={`이행 ${answers.filter((a) => a === 'O').length} / ${ITEMS.length}`}
+                  fixes={[...violations, ...partials].map((it) => ({ title: `${it.code}. ${it.title} — ${answers[ITEMS.indexOf(it)] === 'X' ? '미이행' : '일부 이행'}`, basis: it.lawRef }))}
+                  rows={ITEMS.map((it, i) => ({ label: `${it.code}. ${it.title}`, value: answers[i] === 'O' ? '이행' : answers[i] === 'X' ? '미이행' : answers[i] === 'TRIANGLE' ? '일부 이행' : '미응답', basis: `${it.lawRef} · 위반 시 1차 ${won(FINE_GROUPS[it.fineGroup].tier1)}` }))}
+                  pending={[
+                    ...(partials.length > 0 ? [`일부 이행 ${partials.length}건 — 참여·공유·기록이 서면으로 남아 있는지 확인이 필요합니다.`] : []),
+                    ...(answeredCount < ITEMS.length ? [`미응답 ${ITEMS.length - answeredCount}건 — 나머지 항목도 답해야 결과가 완성됩니다.`] : []),
+                    '「사업장 위험성평가에 관한 지침」 전부개정안 — 행정예고 후 확정 고시 전이라 최종 내용 확인이 필요합니다.',
+                  ]}
+                  siteUrl="https://safe119.site/risk-assessment"
+                />
+              </div>
               <div className="grid gap-4 md:grid-cols-3">
                 {[['미이행', violations.length, '#F2B8B5'], ['일부 이행', partials.length, '#E9C98A'], ['이행', answers.filter((a) => a === 'O').length, '#A9D3BC']].map(([l, n, c]) => (
                   <div key={l as string} className="rounded-xl border border-[#3A4540] p-6">
@@ -288,7 +304,7 @@ export default function RiskAssessmentPage() {
             </div>
           </div>
           <div className="mx-auto mt-10 max-w-[1140px] px-6 md:px-9">
-            <Link href="/" className="text-[17px] font-bold text-[#1B64DA] underline underline-offset-4">← SAFE119 홈으로</Link>
+            <Link href="/" className="text-[17px] font-bold text-[#D32F2F] underline underline-offset-4">← SAFE119 홈으로</Link>
           </div>
         </section>
 
