@@ -251,7 +251,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:w-[min(100%,360px)] shrink-0">
                 <Link
                   href="/diagnosis"
-                  className="inline-flex items-center justify-center gap-2 bg-copper text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-copper-hover transition-colors rounded"
+                  className="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-navy-hover transition-colors rounded"
                 >
                   무료 진단 시작
                 </Link>
