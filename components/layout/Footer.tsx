@@ -1,76 +1,32 @@
-'use client';
-
 import Link from 'next/link';
+import { BRAND_FAMILY, FAMILY, KAKAO_URL, PROMISE } from '@/components/brand/constants';
 
+/** A5 공통 푸터 — 네 사이트 동일 문구·순서 */
 export default function Footer() {
   return (
-    <footer className="bg-sand-900 text-sand-500 py-12">
-      <div className="max-w-[960px] mx-auto px-7">
-        <div className="flex flex-col sm:flex-row justify-between gap-8 mb-8">
-          <div>
-            <div className="text-base font-extrabold text-white tracking-tight mb-2">
-              SAFE<span className="text-copper">119</span>
-            </div>
-            <p className="text-xs text-sand-500 leading-relaxed max-w-xs">
-              중대재해처벌법 안전보건관리체계 구축·이행점검 자가진단
-            </p>
-          </div>
-          <div className="flex gap-12">
-            <div>
-              <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">서비스</h4>
-              <div className="flex flex-col gap-2">
-                <Link href="/diagnosis" className="text-xs hover:text-white transition-colors">자가진단</Link>
-                <Link href="/about" className="text-xs hover:text-white transition-colors">전문가 소개</Link>
-                <Link href="/consult" className="text-xs hover:text-white transition-colors">상담 신청</Link>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">연계</h4>
-              <div className="flex flex-col gap-2">
-                <a href="https://risk119.site" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
-                  RISK119 근로감독 진단
-                </a>
-                <a href="https://free119.site" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
-                  FREE119 근로자성 진단
-                </a>
-                <a href="https://audit119.vercel.app" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
-                  AUDIT119 괴롭힘 독립조사
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-sand-400 uppercase tracking-wider mb-3">법 개정 알림</h4>
-              <div className="flex flex-col gap-2">
-                <a
-                  href="https://pf.kakao.com/_yxexbaX/friend"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#FEE500] px-3 py-1 text-xs font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
-                >
-                  💬 먼저 알기 — 채널 추가
-                </a>
-              </div>
-            </div>
-          </div>
+    <footer className="bg-[#1C2421] py-12 text-[#CFC9BB] [word-break:keep-all]">
+      <div className="mx-auto max-w-[1140px] space-y-4 px-6 text-[15px] leading-[1.7] md:px-9">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-6">
+          <p className="text-[16px] font-bold text-white">{BRAND_FAMILY}</p>
+          <nav className="flex flex-wrap gap-x-5 gap-y-1" aria-label="위너스 진단 서비스">
+            {FAMILY.map((f) => (
+              <a key={f.key} href={f.url} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline">{f.label}</a>
+            ))}
+          </nav>
         </div>
-        <div className="border-t border-sand-800 pt-6 flex flex-col sm:flex-row justify-between gap-4">
-          <p className="text-xs text-sand-600 leading-relaxed max-w-lg">
-            노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666
-            <br />
-            Tel.{' '}
-            <a href="tel:0221380240" className="hover:text-sand-400">
-              02-2138-0240
-            </a>{' '}
-            | Email.{' '}
-            <a href="mailto:cdj44y@gmail.com" className="hover:text-sand-400 break-all">
-              cdj44y@gmail.com
-            </a>
-            <br />
-            본 자가진단은 참고용이며 법적 효력이 없습니다. 정확한 법률 검토는 전문가 상담을 이용하세요.
-          </p>
-          <p className="text-xs text-sand-600">
-            &copy; {new Date().getFullYear()} SAFE119. All rights reserved.
-          </p>
+        <p className="font-semibold text-white">{PROMISE}</p>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 text-[14px]">
+          <Link href="/diagnosis" className="hover:text-white">자가진단</Link>
+          <Link href="/risk-assessment" className="hover:text-white">위험성평가 점검</Link>
+          <Link href="/about" className="hover:text-white">전문가 소개</Link>
+          <Link href="/consult" className="hover:text-white">상담 신청</Link>
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full bg-[#FEE500] px-3 text-[13px] font-bold text-[#391B1B] hover:bg-[#F5D800]">법 바뀌기 전에 먼저 알기 — 채널 추가</a>
+        </div>
+        <div className="border-t border-[#3A4540] pt-4 text-[14px] text-[#9AA29C]">
+          <p>노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666</p>
+          <p>서울시 강서구 마곡중앙로 171, 304호 | Tel. <a href="tel:0221380240" className="hover:text-white">02-2138-0240</a> | Email. <a href="mailto:cdj44y@gmail.com" className="break-all hover:text-white">cdj44y@gmail.com</a></p>
+          <p className="mt-2">본 자가진단은 법령·판례·공개 자료에 근거한 참고용 점검이며 법적 효력이 없습니다. 개별 사안은 전문가 검토가 필요합니다.</p>
+          <p className="mt-2">© 2026 노무법인 위너스</p>
         </div>
       </div>
     </footer>

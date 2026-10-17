@@ -13,12 +13,12 @@ export default function Header() {
           <Link href="/about" className="text-sm font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
             전문가 소개
           </Link>
-          <Link href="/consult" className="text-sm font-medium text-ink-4 hover:text-ink transition-colors hidden sm:block">
+          <Link href="/consult" className="hidden rounded-md bg-[#1F4E79] px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#173B5C] sm:block">
             상담 신청
           </Link>
           <Link
             href="/diagnosis"
-            className="bg-ink text-white px-4 py-1.5 rounded-md text-xs font-semibold hover:bg-ink-2 transition-colors"
+            className="bg-[#D32F2F] text-white px-4 py-1.5 rounded-md text-xs font-semibold hover:bg-[#B71C1C] transition-colors"
           >
             진단 시작
           </Link>
