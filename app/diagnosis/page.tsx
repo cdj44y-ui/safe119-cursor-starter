@@ -67,14 +67,14 @@ export default function DiagnosisPage() {
       {/* 상단 */}
       <header className="sticky top-0 z-50 border-b border-[#D9D0BE] bg-white">
         <div className="mx-auto flex max-w-[1140px] items-center gap-6 px-5 py-4 md:px-8">
-          <Link href="/" className="shrink-0 text-[20px] font-extrabold text-[#1C2421]">SAFE<span className="text-[#3182F6]">119</span></Link>
+          <Link href="/" className="shrink-0 text-[20px] font-extrabold text-[#1C2421]">SAFE<span className="text-[#D32F2F]">119</span></Link>
           <div className="flex-1">
             <div className="flex items-baseline justify-between text-[16px]">
               <span className="font-bold">진행 {progress.answered} / {progress.total} 문항</span>
-              <span className="font-bold text-[#1B64DA]">{progress.percentage}%</span>
+              <span className="font-bold text-[#B71C1C]">{progress.percentage}%</span>
             </div>
             <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[#E6DFD0]">
-              <div className="h-full rounded-full bg-[#3182F6] transition-all" style={{ width: progress.percentage + '%' }} />
+              <div className="h-full rounded-full bg-[#D32F2F] transition-all" style={{ width: progress.percentage + '%' }} />
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function DiagnosisPage() {
                   className={'grid w-full grid-cols-[64px_1fr_auto] items-center gap-2 border-b border-[#EFE8DA] px-4 py-3 text-left last:border-b-0 ' + (active ? 'bg-[#1C2421] text-white' : 'bg-white hover:bg-[#FAF6EE]')}>
                   <span className={'text-[13px] font-bold ' + (active ? 'text-[#D9A44A]' : 'text-[#C8912E]')}>{s.label}</span>
                   <span className={'text-[15px] leading-snug ' + (active ? 'font-bold' : 'text-[#3D4540]')}>{s.name}</span>
-                  <span className={'text-[13px] font-bold ' + (done ? (active ? 'text-[#9CC3FF]' : 'text-[#1B64DA]') : active ? 'text-[#CFC9BB]' : 'text-[#9A9384]')}>{done ? '완료' : st.done + '/' + st.total}</span>
+                  <span className={'text-[13px] font-bold ' + (done ? (active ? 'text-[#F2B8B5]' : 'text-[#B71C1C]') : active ? 'text-[#CFC9BB]' : 'text-[#9A9384]')}>{done ? '완료' : st.done + '/' + st.total}</span>
                 </button>
               );
             })}
@@ -119,7 +119,7 @@ export default function DiagnosisPage() {
               </div>
               {q.guidance && (
                 <div className="mt-3 border-t border-[#E6DFD0] pt-3">
-                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#1B64DA]">
+                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#B71C1C]">
                     {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
                   </button>
                   {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4540]">{q.guidance}</p>}
@@ -151,7 +151,7 @@ export default function DiagnosisPage() {
           <div className="mt-5 flex items-center justify-between gap-3">
             <button type="button" onClick={prevQuestion} disabled={!canGoPrev} className="h-[56px] rounded-[10px] border-[1.5px] border-[#CFC6B4] bg-white px-6 text-[18px] font-bold text-[#3D4540] disabled:opacity-40">← 이전 질문</button>
             {allDone ? (
-              <button type="button" onClick={finish} className="h-[56px] rounded-[10px] bg-[#3182F6] px-8 text-[18px] font-bold text-white hover:bg-[#1B64DA]">결과 보기 →</button>
+              <button type="button" onClick={finish} className="h-[56px] rounded-[10px] bg-[#D32F2F] px-8 text-[18px] font-bold text-white hover:bg-[#B71C1C]">결과 보기 →</button>
             ) : (
               <span className="text-[15px] text-[#6A706B]">답을 고르면 다음 질문으로 넘어갑니다</span>
             )}
