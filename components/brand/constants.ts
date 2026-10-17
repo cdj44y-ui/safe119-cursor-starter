@@ -14,3 +14,4 @@ export const FAMILY = [
   { key: 'FREE119', label: 'FREE119 근로자성', url: 'https://free119.site' },
   { key: 'AUDIT119', label: 'AUDIT119 괴롭힘 조사', url: 'https://www.audit119.site' },
 ];
+export const COMPANY_URL = 'https://risk119.site/winners.html';
