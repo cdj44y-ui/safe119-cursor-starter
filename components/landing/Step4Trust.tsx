@@ -40,7 +40,7 @@ export default function Step4Trust() {
             </p>
 
             <div className="flex flex-wrap gap-1.5 mb-4">
-              {['안전공학 박사', '공인노무사 15년', '근로자성 자문', '대기업 HR 실무'].map((badge) => (
+              {['안전공학 박사', '공인노무사 16년', '근로자성 자문', '대기업 HR 실무'].map((badge) => (
                 <span key={badge} className="text-xs bg-copper-light text-copper px-2 py-0.5 rounded font-semibold">
                   {badge}
                 </span>
