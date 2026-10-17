@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
-import Badge from '@/components/ui/Badge';
 import TallyEmbed from '@/components/ui/TallyEmbed';
 import { buildTallyEmbedUrl } from '@/lib/tally';
 
@@ -73,11 +72,27 @@ const ITEMS: ChecklistItem[] = [
   },
 ];
 
-const ANSWER_OPTIONS: { value: AnswerValue; label: string; emoji: string }[] = [
-  { value: 'O', label: '이행', emoji: '✅' },
-  { value: 'TRIANGLE', label: '일부 이행', emoji: '⚠️' },
-  { value: 'X', label: '미이행', emoji: '❌' },
+// 2026-10-18 수사 기록형 서식으로 재구성 — 금액은 시행령 [별표 35](대통령령 제36540호) 기준, 합산 추정치는 표시하지 않음
+const ANSWER_OPTIONS: { value: Exclude<AnswerValue, null>; label: string; mark: string; on: string }[] = [
+  { value: 'O', label: '이행', mark: 'O', on: 'border-[#2F6B4F] bg-[#EEF5F0] text-[#2F6B4F]' },
+  { value: 'TRIANGLE', label: '일부 이행', mark: '△', on: 'border-[#9A6A16] bg-[#FBF3E4] text-[#8A5A12]' },
+  { value: 'X', label: '미이행', mark: 'X', on: 'border-[#A4262C] bg-[#FBEDEA] text-[#A4262C]' },
 ];
+
+const serif = { fontFamily: "'Noto Serif KR', serif" };
+const won = (n: number) => n.toLocaleString('ko-KR') + '만원';
+
+function SectionHead({ no, title, sub }: { no: string; title: string; sub?: string }) {
+  return (
+    <div className="mb-9 grid gap-3 md:grid-cols-[96px_1fr] md:gap-8">
+      <p className="text-[40px] leading-none text-[#C8912E]" style={serif}>{no}</p>
+      <div>
+        <h2 className="text-[28px] font-bold leading-[1.35] tracking-[-0.6px] md:text-[34px]" style={serif}>{title}</h2>
+        {sub ? <p className="mt-2 text-[18px] leading-[1.7] text-[#6A706B]">{sub}</p> : null}
+      </div>
+    </div>
+  );
+}
 
 export default function RiskAssessmentPage() {
   const [answers, setAnswers] = useState<AnswerValue[]>(ITEMS.map(() => null));
@@ -85,263 +100,197 @@ export default function RiskAssessmentPage() {
 
   const answeredCount = answers.filter((a) => a !== null).length;
   const allAnswered = answeredCount === ITEMS.length;
-
-  const violations = useMemo(
-    () => ITEMS.filter((_, i) => answers[i] === 'X'),
-    [answers],
-  );
-  const partials = useMemo(
-    () => ITEMS.filter((_, i) => answers[i] === 'TRIANGLE'),
-    [answers],
-  );
-
-  const estimatedFine = useMemo(
-    () => violations.reduce((sum, item) => sum + FINE_GROUPS[item.fineGroup].tier1, 0),
-    [violations],
-  );
-  const estimatedFineMax = useMemo(
-    () => violations.reduce((sum, item) => sum + FINE_GROUPS[item.fineGroup].tier3, 0),
-    [violations],
-  );
-
+  const violations = useMemo(() => ITEMS.filter((_, i) => answers[i] === 'X'), [answers]);
+  const partials = useMemo(() => ITEMS.filter((_, i) => answers[i] === 'TRIANGLE'), [answers]);
   const applyDate = companySize === 'over50' ? '2027년 1월 1일' : '2028년 1월 1일';
 
   const tallySrc = useMemo(
     () =>
       buildTallyEmbedUrl({
-        grade: allAnswered || answeredCount > 0
-          ? `[SAFE119-위험성평가] 미이행 ${violations.length}건 · 일부이행 ${partials.length}건`
+        grade: answeredCount > 0
+          ? `[SAFE119-위험성평가] 미이행 ${violations.length}건 · 일부이행 ${partials.length}건 · ${companySize === 'over50' ? '50명 이상' : '50명 미만'}`
           : '[SAFE119-위험성평가]',
-        score: estimatedFine > 0 ? `예상 과태료 약 ${estimatedFine}만원(1차 기준)` : undefined,
       }),
-    [allAnswered, answeredCount, violations.length, partials.length, estimatedFine],
+    [answeredCount, violations.length, partials.length, companySize],
   );
 
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-sand-50">
-        <div className="max-w-[720px] mx-auto px-7 py-12">
-          {/* 상단 타이틀 */}
-          <Badge variant="warning">산업안전보건법 제36조 · 과태료 부과기준 반영</Badge>
-          <h1 className="text-2xl md:text-[28px] font-extrabold text-ink tracking-tight mt-3 mb-3">
-            위험성평가 자가진단표
-          </h1>
-          <p className="text-sm text-ink-3 leading-relaxed mb-8">
-            위험성평가는 실시했는지 여부만이 아니라, <strong className="text-ink">근로자 참여·공유·기록보존까지 5가지 의무</strong>를
-            모두 지켜야 과태료 대상에서 벗어납니다. 항목별로 O/△/X로 답하면 예상 과태료를 바로 확인할 수 있습니다.
-          </p>
-
-          {/* 시행일 안내 */}
-          <div className="bg-white border border-semantic-amber-text/25 rounded-lg p-5 mb-8">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-base">⏳</span>
-              <h2 className="text-sm font-bold text-ink">과태료 시행일 안내 (아직 시행 전)</h2>
-            </div>
-            <p className="text-sm text-ink-3 leading-relaxed mb-3">
-              위험성평가 과태료는 법령상 이미 확정된 금액이지만, 사업장 규모별로 적용 시작일이 다릅니다. 오늘
-              기준으로는 아래 어느 규모든 <strong className="text-ink">아직 과태료가 실제로 부과되지 않는 시행 전 상태</strong>입니다.
-            </p>
-            <div className="flex gap-2 mb-3">
-              <button
-                type="button"
-                onClick={() => setCompanySize('over50')}
-                className={`flex-1 text-xs font-semibold rounded-md py-2 px-3 border transition-colors ${
-                  companySize === 'over50'
-                    ? 'bg-ink text-white border-ink'
-                    : 'bg-white text-ink-3 border-sand-300 hover:border-ink/40'
-                }`}
-              >
-                상시근로자 50인 이상
-                <br />
-                (건설업 공사금액 50억원 이상)
-              </button>
-              <button
-                type="button"
-                onClick={() => setCompanySize('under50')}
-                className={`flex-1 text-xs font-semibold rounded-md py-2 px-3 border transition-colors ${
-                  companySize === 'under50'
-                    ? 'bg-ink text-white border-ink'
-                    : 'bg-white text-ink-3 border-sand-300 hover:border-ink/40'
-                }`}
-              >
-                상시근로자 50인 미만
-                <br />
-                (건설업 공사금액 50억원 미만)
-              </button>
-            </div>
-            <p className="text-sm text-ink-2 leading-relaxed bg-semantic-amber-bg rounded-md px-3 py-2">
-              귀사는 <strong>{applyDate}부터</strong> 아래 과태료 부과 대상이 됩니다. 시행 전이라도 지금부터
-              준비해야 시행일에 바로 대응할 수 있습니다.
-            </p>
-            <p className="mt-2 text-xs text-ink-5">
-              근거: 산업안전보건법 시행령 [별표35] 과태료의 부과기준(제119조 관련), 대통령령 제36540호(2026.7.28.
-              일부개정, 2026.8.1. 시행) 부칙 · 연합뉴스 등 보도(2026.7.21, 고용노동부 국무회의 의결)
-            </p>
-          </div>
-
-          {/* 체크리스트 */}
-          <div className="space-y-4 mb-8">
-            {ITEMS.map((item, i) => {
-              const fine = FINE_GROUPS[item.fineGroup];
-              return (
-                <div key={item.code} className="bg-white border border-sand-200 rounded-lg p-5">
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-copper-light text-copper text-xs font-extrabold">
-                      {item.code}
-                    </span>
-                    <h3 className="text-sm font-extrabold text-ink">{item.title}</h3>
-                    <span className="text-xs text-ink-5">{item.lawRef}</span>
-                    <Badge variant={item.fineGroup === 'A' ? 'danger' : item.fineGroup === 'B' ? 'warning' : 'neutral'}>
-                      위반 시 최대 {fine.tier3.toLocaleString('ko-KR')}만원
-                    </Badge>
-                  </div>
-                  <p className="text-[15px] font-semibold text-ink leading-relaxed mb-2">{item.question}</p>
-                  <p className="text-sm text-ink-4 leading-relaxed mb-3">💡 {item.plainTip}</p>
-                  <div className="flex gap-2">
-                    {ANSWER_OPTIONS.map((opt) => (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() =>
-                          setAnswers((prev) => {
-                            const next = [...prev];
-                            next[i] = opt.value;
-                            return next;
-                          })
-                        }
-                        className={`flex-1 inline-flex items-center justify-center gap-1.5 rounded-md py-2.5 text-sm font-semibold border transition-colors ${
-                          answers[i] === opt.value
-                            ? 'bg-ink text-white border-ink'
-                            : 'bg-white text-ink-3 border-sand-300 hover:border-ink/40'
-                        }`}
-                      >
-                        <span>{opt.emoji}</span>
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* 결과 요약 */}
-          {answeredCount > 0 && (
-            <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-              <h2 className="text-lg font-extrabold text-ink mb-1">진단 결과</h2>
-              <p className="text-xs text-ink-4 mb-4">
-                {answeredCount} / {ITEMS.length}개 항목 응답{!allAnswered && ' · 나머지 항목도 답하면 결과가 더 정확해집니다'}
+      <main className="min-h-screen bg-[#F4EFE4] text-[#1C2421] [word-break:keep-all]">
+        {/* 히어로 */}
+        <section className="bg-[#1C2421] text-white">
+          <div className="mx-auto grid max-w-[1140px] items-end gap-10 px-6 py-14 md:grid-cols-[1.3fr_1fr] md:gap-14 md:px-9 md:py-[68px]">
+            <div>
+              <p className="text-[16px] font-bold text-[#D9A44A]">산업안전보건법 제36조 · 위험성평가 자가진단</p>
+              <h1 className="mt-4 text-[36px] font-bold leading-[1.32] tracking-[-1px] md:text-[48px]" style={serif}>
+                위험성평가, 했다는 것만으로는<br />과태료를 피할 수 없습니다
+              </h1>
+              <p className="mt-5 text-[19px] leading-[1.75] text-[#CFC9BB]">
+                실시·근로자 참여·근로자대표 참여·공유·기록보존, 5가지 의무를 모두 지켜야 합니다. 항목별로 이행 여부를 고르면 어느 의무에서 과태료 대상이 되는지 바로 보입니다.
               </p>
+              <p className="mt-5 text-[15px] text-[#9AA29C]">약 3분 · 회원가입 없음 · 입력 내용은 서버에 저장되지 않습니다</p>
+            </div>
+            <div className="rounded-xl border border-[#3A4540] p-6">
+              <p className="text-[15px] font-bold text-[#D9A44A]">우리 회사 규모를 먼저 고르십시오</p>
+              <div className="mt-4 grid gap-2.5">
+                {([['over50', '상시근로자 50명 이상', '건설업은 공사금액 50억원 이상', '2027.1.1'], ['under50', '상시근로자 50명 미만', '건설업은 공사금액 50억원 미만', '2028.1.1']] as const).map(([k, t, s, d]) => (
+                  <button key={k} type="button" onClick={() => setCompanySize(k)} aria-pressed={companySize === k}
+                    className={'grid grid-cols-[1fr_auto] items-center gap-3 rounded-lg border px-5 py-4 text-left transition-colors ' + (companySize === k ? 'border-[#F4EFE4] bg-[#F4EFE4] text-[#1C2421]' : 'border-[#3A4540] text-white hover:border-[#9AA29C]')}>
+                    <span><b className="block text-[18px]">{t}</b><span className={'text-[14px] ' + (companySize === k ? 'text-[#6A706B]' : 'text-[#9AA29C]')}>{s}</span></span>
+                    <span className="text-right"><span className={'block text-[13px] font-bold ' + (companySize === k ? 'text-[#A4262C]' : 'text-[#D9A44A]')}>과태료 시행</span><b className="text-[20px]" style={serif}>{d}</b></span>
+                  </button>
+                ))}
+              </div>
+              <p className="mt-4 text-[14px] leading-[1.6] text-[#9AA29C]">의무 자체는 지금도 적용됩니다. 과태료만 규모별로 위 날짜부터 부과됩니다.</p>
+            </div>
+          </div>
+        </section>
 
-              {violations.length === 0 && partials.length === 0 && answeredCount > 0 && (
-                <div className="bg-semantic-green-bg border border-semantic-green-text/15 rounded-lg p-4 text-sm text-semantic-green-text font-semibold">
-                  ✅ 응답한 항목 기준으로는 미이행 사항이 없습니다. 다만 {applyDate} 시행에 대비해 정기평가(매년 1회
-                  이상) 이력을 계속 관리하세요.
+        {/* 01 과태료 기준 */}
+        <section className="py-14 md:py-[72px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <SectionHead no="01" title="위반하면 부과되는 과태료" sub={`귀사는 ${applyDate}부터 아래 기준이 적용됩니다. 같은 위반으로 최근 5년간 처분을 받은 횟수에 따라 2차·3차 금액이 적용됩니다.`} />
+            <div className="overflow-x-auto border-t-2 border-[#1C2421] bg-white">
+              <table className="w-full min-w-[640px] text-left">
+                <thead><tr className="border-b border-[#D9D0BE] text-[15px] text-[#6A706B]"><th className="px-5 py-3 font-semibold">위반 내용</th><th className="px-5 py-3 font-semibold">해당 의무</th><th className="px-4 py-3 text-right font-semibold">1차</th><th className="px-4 py-3 text-right font-semibold">2차</th><th className="px-5 py-3 text-right font-semibold">3차 이상</th></tr></thead>
+                <tbody>
+                  {(['A', 'B', 'C'] as FineGroupKey[]).map((g) => (
+                    <tr key={g} className="border-b border-[#E6DFD0] text-[17px]">
+                      <td className="px-5 py-4 font-bold">{FINE_GROUPS[g].label}</td>
+                      <td className="px-5 py-4 text-[15px] text-[#6A706B]">{ITEMS.filter((it) => it.fineGroup === g).map((it) => it.code).join(' · ')}</td>
+                      <td className="px-4 py-4 text-right tabular-nums">{won(FINE_GROUPS[g].tier1)}</td>
+                      <td className="px-4 py-4 text-right tabular-nums">{won(FINE_GROUPS[g].tier2)}</td>
+                      <td className="px-5 py-4 text-right font-bold tabular-nums text-[#A4262C]">{won(FINE_GROUPS[g].tier3)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-[14px] leading-[1.7] text-[#6A706B]">근거: 산업안전보건법 제175조, 같은 법 시행령 [별표 35] 과태료의 부과기준(대통령령 제36540호, 2026.7.28. 일부개정) 및 부칙 · 고용노동부 국무회의 의결 발표(2026.7.21)</p>
+          </div>
+        </section>
+
+        {/* 02 점검표 */}
+        <section className="border-t border-[#D9D0BE] py-14 md:py-[72px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <SectionHead no="02" title="5가지 의무 점검표" sub="항목마다 지금 상태에 가장 가까운 답을 고르십시오." />
+            <div className="mb-5 flex items-center gap-4">
+              <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-[#E6DFD0]"><div className="h-full rounded-full bg-[#1C2421] transition-all" style={{ width: `${(answeredCount / ITEMS.length) * 100}%` }} /></div>
+              <p className="shrink-0 text-[16px] font-bold tabular-nums">{answeredCount} / {ITEMS.length}</p>
+            </div>
+            <div className="border-t-2 border-[#1C2421]">
+              {ITEMS.map((item, i) => {
+                const fine = FINE_GROUPS[item.fineGroup];
+                return (
+                  <div key={item.code} className="grid gap-5 border-b border-[#D9D0BE] py-8 md:grid-cols-[96px_1fr] md:gap-8">
+                    <div>
+                      <p className="text-[34px] leading-none text-[#C8912E]" style={serif}>{item.code}</p>
+                      <p className="mt-2 text-[17px] font-bold">{item.title}</p>
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                        <span className="text-[15px] font-semibold text-[#6A706B]">{item.lawRef}</span>
+                        <span className="rounded bg-[#FBEDEA] px-2 py-0.5 text-[14px] font-bold text-[#A4262C]">위반 시 1차 {won(fine.tier1)} · 최대 {won(fine.tier3)}</span>
+                      </div>
+                      <p className="mt-3 text-[21px] font-bold leading-[1.6] md:text-[22px]">{item.question}</p>
+                      <p className="mt-3 border-l-[3px] border-[#C8912E] bg-white/60 py-2 pl-4 text-[17px] leading-[1.7] text-[#4A524D]">{item.plainTip}</p>
+                      <div className="mt-5 grid grid-cols-3 gap-2.5">
+                        {ANSWER_OPTIONS.map((opt) => {
+                          const on = answers[i] === opt.value;
+                          return (
+                            <button key={opt.value} type="button" aria-pressed={on}
+                              onClick={() => setAnswers((prev) => { const next = [...prev]; next[i] = opt.value; return next; })}
+                              className={'flex min-h-[60px] items-center justify-center gap-2 rounded-lg border-2 text-[18px] font-bold transition-colors ' + (on ? opt.on : 'border-[#D9D0BE] bg-white text-[#4A524D] hover:border-[#1C2421]')}>
+                              <span className="text-[20px]" aria-hidden>{opt.mark}</span>{opt.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* 03 결과 */}
+        {answeredCount > 0 && (
+          <section className="border-t border-[#D9D0BE] bg-[#1C2421] py-14 text-white md:py-[72px]">
+            <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+              <div className="mb-9 grid gap-3 md:grid-cols-[96px_1fr] md:gap-8">
+                <p className="text-[40px] leading-none text-[#D9A44A]" style={serif}>03</p>
+                <div>
+                  <h2 className="text-[28px] font-bold leading-[1.35] md:text-[34px]" style={serif}>점검 결과</h2>
+                  <p className="mt-2 text-[18px] text-[#CFC9BB]">{answeredCount} / {ITEMS.length}개 항목 응답{!allAnswered && ' · 나머지 항목도 답하면 결과가 더 정확해집니다'}</p>
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {[['미이행', violations.length, '#F2B8B5'], ['일부 이행', partials.length, '#E9C98A'], ['이행', answers.filter((a) => a === 'O').length, '#A9D3BC']].map(([l, n, c]) => (
+                  <div key={l as string} className="rounded-xl border border-[#3A4540] p-6">
+                    <p className="text-[16px] font-bold" style={{ color: c as string }}>{l}</p>
+                    <p className="mt-1 text-[48px] font-bold leading-none" style={serif}>{n}<span className="ml-1 text-[18px] font-semibold text-[#9AA29C]">건</span></p>
+                  </div>
+                ))}
+              </div>
+              {violations.length === 0 && partials.length === 0 ? (
+                <p className="mt-6 rounded-xl border border-[#3A4540] p-6 text-[18px] leading-[1.7] text-[#E8E3D6]">응답한 항목 기준으로는 미이행 사항이 없습니다. {applyDate} 시행에 대비해 정기평가(매년 1회 이상)와 참여·공유 기록을 계속 남겨 두십시오.</p>
+              ) : (
+                <div className="mt-6 border-t-2 border-[#E8E3D6]">
+                  {[...violations.map((it) => ({ it, kind: 'X' })), ...partials.map((it) => ({ it, kind: 'T' }))].map(({ it, kind }) => (
+                    <div key={it.code} className="grid gap-2 border-b border-[#3A4540] py-5 md:grid-cols-[150px_1fr_auto] md:items-baseline md:gap-6">
+                      <p className={'text-[16px] font-bold ' + (kind === 'X' ? 'text-[#F2B8B5]' : 'text-[#E9C98A]')}>{kind === 'X' ? '미이행' : '일부 이행 · 보완 권장'}</p>
+                      <p className="text-[19px] font-bold">{it.code}. {it.title} <span className="text-[15px] font-normal text-[#9AA29C]">{it.lawRef}</span></p>
+                      <p className="text-[16px] text-[#E8E3D6] md:text-right">{FINE_GROUPS[it.fineGroup].label} · 1차 {won(FINE_GROUPS[it.fineGroup].tier1)} ~ 3차 {won(FINE_GROUPS[it.fineGroup].tier3)}</p>
+                    </div>
+                  ))}
+                  <p className="mt-4 text-[14px] leading-[1.7] text-[#9AA29C]">{applyDate} 이후 적발 시 적용되는 항목별 기준입니다. 실제 부과 여부와 금액은 감독 결과와 위반 횟수에 따라 달라집니다.</p>
                 </div>
               )}
-
-              {(violations.length > 0 || partials.length > 0) && (
-                <>
-                  <div className="bg-semantic-red-bg border border-semantic-red-text/10 rounded-lg p-4 mb-4">
-                    <p className="text-xs text-ink-4 mb-1">
-                      1차 적발 기준 예상 과태료 합(단순 합산 추정치, {applyDate} 시행 이후 기준)
-                    </p>
-                    <p className="text-2xl font-extrabold text-semantic-red-text">
-                      약 {estimatedFine.toLocaleString('ko-KR')}만원
-                      <span className="ml-2 text-sm font-semibold text-ink-4">
-                        (반복 위반 시 최대 {estimatedFineMax.toLocaleString('ko-KR')}만원)
-                      </span>
-                    </p>
-                    <p className="mt-2 text-xs text-ink-5 leading-relaxed">
-                      실제 부과액은 위반 항목이 동일한 위험성평가에서 함께 지적되는 경우 등 사업장 상황에 따라
-                      달라질 수 있는 참고 추정치입니다.
-                    </p>
-                  </div>
-
-                  {violations.length > 0 && (
-                    <div className="mb-3">
-                      <h3 className="text-xs font-bold text-ink-4 uppercase tracking-wide mb-2">미이행 항목</h3>
-                      <ul className="space-y-2">
-                        {violations.map((item) => (
-                          <li key={item.code} className="text-sm text-ink-2 leading-relaxed">
-                            ❌ <strong>{item.code}. {item.title}</strong> — {FINE_GROUPS[item.fineGroup].label}, 1차{' '}
-                            {FINE_GROUPS[item.fineGroup].tier1}만원 · 2차 {FINE_GROUPS[item.fineGroup].tier2}만원 · 3차 이상{' '}
-                            {FINE_GROUPS[item.fineGroup].tier3}만원
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {partials.length > 0 && (
-                    <div>
-                      <h3 className="text-xs font-bold text-ink-4 uppercase tracking-wide mb-2">일부 이행 항목(개선 권장)</h3>
-                      <ul className="space-y-1.5">
-                        {partials.map((item) => (
-                          <li key={item.code} className="text-sm text-ink-3 leading-relaxed">
-                            ⚠️ {item.code}. {item.title}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </>
-              )}
-
             </div>
-          )}
+          </section>
+        )}
 
-          {/* 상담 신청 — 진단 결과 자동 반영 */}
-          <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-extrabold text-ink mb-1">🔒 위험성평가 준비 상담 신청</h2>
-            <p className="text-sm text-ink-4 leading-relaxed mb-4">
-              {answeredCount > 0
-                ? '방금 진행한 위험성평가 자가진단 결과가 문의 내용에 함께 전달됩니다.'
-                : '위 체크리스트에 먼저 답하면 진단 결과가 문의 내용에 자동으로 함께 전달됩니다.'}
-            </p>
-            <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
-          </div>
-
-          {/* 정책 동향 (확정 전) */}
-          <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              <Badge variant="neutral">확정 전 · 의견수렴 중</Badge>
+        {/* 04 상담 */}
+        <section className="border-t border-[#D9D0BE] py-14 md:py-[72px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <SectionHead no={answeredCount > 0 ? '04' : '03'} title="위험성평가 준비 상담 신청" sub={answeredCount > 0 ? '방금 점검한 결과(미이행·일부 이행 건수, 사업장 규모)가 신청서에 함께 전달됩니다.' : '점검표에 먼저 답하시면 결과가 신청서에 함께 전달됩니다.'} />
+            <p className="mb-5 text-[16px] leading-[1.7] text-[#4A524D]">상담은 유료 자문으로 진행됩니다. 신청서 확인 후 일정과 비용을 안내드리며, 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
+            <div className="rounded-xl border border-[#D9D0BE] bg-white p-4 md:p-6">
+              <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
             </div>
-            <h2 className="text-base font-extrabold text-ink mb-2">
-              📋 정책 동향: 위험성평가 지침 개정안 행정예고
-            </h2>
-            <p className="text-sm text-ink-3 leading-relaxed mb-3">
-              고용노동부가 2026년 9월 23일 「사업장 위험성평가에 관한 지침」 전부개정 고시안을 행정예고했습니다
-              (고용노동부 공고 제2026-461호). 의견 제출 마감은 <strong className="text-ink">2026년 10월 13일</strong>이며,
-              아직 확정되지 않았습니다. 주요 방향은 다음과 같습니다.
-            </p>
-            <ul className="space-y-1.5 text-sm text-ink-3 leading-relaxed mb-3">
-              <li>· 도급인·수급인의 공동 위험성평가 실시 근거 마련</li>
-              <li>· 근로자 참여 단계, 근로자대표 협의사항 구체화</li>
-              <li>· 중대재해 발생 시 사업장 전체 재평가 의무 명시</li>
-              <li>· 위험성평가 실시규정 작성 의무화 검토(상시근로자 5인 미만 사업장은 제외 예정)</li>
-            </ul>
-            <p className="text-xs text-ink-5 leading-relaxed bg-sand-100 rounded-md px-3 py-2">
-              ⚠️ 위 내용은 확정된 법령이 아니라 의견수렴 중인 고시 개정안입니다. 최종 확정 시 이 페이지에 반영해
-              드립니다.
-            </p>
           </div>
+        </section>
 
-          {/* 법적 근거 원문 */}
-          <div className="bg-sand-100 border border-sand-200 rounded-lg p-5 mb-8">
-            <h2 className="text-xs font-bold text-ink-4 uppercase tracking-wider mb-2">관련 법령 원문 요약</h2>
-            <p className="text-sm text-ink-3 leading-relaxed">
-              산업안전보건법 제36조는 사업주에게 유해·위험요인을 찾아 위험성을 평가하고 개선대책을 수립·이행할
-              의무(제1항), 근로자 참여 의무(제2항), 근로자대표 참여 의무(제3항), 근로자 공유·주지 의무(제4항),
-              결과 기록·보존 의무(제5항)를 각각 규정하고 있습니다.
-            </p>
+        {/* 정책 동향 · 근거 */}
+        <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-14 md:py-[72px]">
+          <div className="mx-auto grid max-w-[1140px] gap-10 px-6 md:grid-cols-2 md:px-9">
+            <div>
+              <span className="inline-block rounded bg-white px-2.5 py-1 text-[14px] font-bold text-[#6A706B]">확정 전 · 행정예고안</span>
+              <h3 className="mt-3 text-[24px] font-bold leading-[1.4]" style={serif}>위험성평가 지침 전부개정안</h3>
+              <p className="mt-3 text-[17px] leading-[1.75] text-[#4A524D]">고용노동부가 2026년 9월 23일 「사업장 위험성평가에 관한 지침」 전부개정고시안을 행정예고했습니다(공고 제2026-461호). 의견 제출 기간은 10월 13일에 끝났고, 2026년 10월 18일 기준 확정 고시 전입니다.</p>
+              <ul className="mt-4 border-t border-[#D9D0BE]">
+                {['도급인·수급인의 공동 위험성평가 실시 근거', '근로자 참여 단계와 근로자대표 협의사항 구체화', '중대재해 발생 시 사업장 전체 재평가', '위험성평가 실시규정 작성(상시 5명 미만 제외 예정)'].map((t) => (
+                  <li key={t} className="border-b border-[#D9D0BE] py-3 text-[17px]">{t}</li>
+                ))}
+              </ul>
+              <p className="mt-3 text-[14px] text-[#6A706B]">확정되면 이 페이지에 반영합니다. 최종 내용은 달라질 수 있습니다.</p>
+            </div>
+            <div>
+              <span className="inline-block rounded bg-white px-2.5 py-1 text-[14px] font-bold text-[#6A706B]">법령 원문 요약</span>
+              <h3 className="mt-3 text-[24px] font-bold leading-[1.4]" style={serif}>산업안전보건법 제36조</h3>
+              <ol className="mt-4 border-t border-[#D9D0BE]">
+                {[['제1항', '유해·위험요인을 찾아 위험성을 평가하고 개선대책을 수립·이행'], ['제2항', '위험성평가에 해당 작업장 근로자 참여'], ['제3항', '근로자대표가 요구하면 참여'], ['제4항', '평가 결과를 근로자에게 공유·주지'], ['제5항', '평가 결과 기록·보존']].map(([k, v]) => (
+                  <li key={k} className="grid grid-cols-[64px_1fr] gap-3 border-b border-[#D9D0BE] py-3 text-[17px]"><b className="text-[#C8912E]">{k}</b><span>{v}</span></li>
+                ))}
+              </ol>
+            </div>
           </div>
-
-          <Link href="/" className="text-sm font-semibold text-copper hover:underline">
-            ← SAFE119 홈으로 돌아가기
-          </Link>
-        </div>
+          <div className="mx-auto mt-10 max-w-[1140px] px-6 md:px-9">
+            <Link href="/" className="text-[17px] font-bold text-[#1B64DA] underline underline-offset-4">← SAFE119 홈으로</Link>
+          </div>
+        </section>
 
         <Disclaimer variant="compact" />
       </main>
