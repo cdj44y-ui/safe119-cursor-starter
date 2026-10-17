@@ -3,6 +3,7 @@ import 'pretendard/dist/web/variable/pretendardvariable.css';
 import '@/styles/globals.css';
 import { getSiteUrl } from '@/lib/site';
 import FloatingConsultButton from '@/components/layout/FloatingConsultButton';
+import FamilyBar from '@/components/brand/FamilyBar';
 
 const siteUrl = getSiteUrl();
 
@@ -47,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="font-pretendard">
+        <FamilyBar />
         {children}
         <FloatingConsultButton />
       </body>
