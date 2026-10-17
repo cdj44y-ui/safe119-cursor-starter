@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BRAND_FAMILY, FAMILY, KAKAO_URL, PROMISE } from '@/components/brand/constants';
+import { BRAND_FAMILY, COMPANY_URL, FAMILY, KAKAO_URL, PROMISE } from '@/components/brand/constants';
 
 /** A5 공통 푸터 — 네 사이트 동일 문구·순서 */
 export default function Footer() {
@@ -9,6 +9,7 @@ export default function Footer() {
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-6">
           <p className="text-[16px] font-bold text-white">{BRAND_FAMILY}</p>
           <nav className="flex flex-wrap gap-x-5 gap-y-1" aria-label="위너스 진단 서비스">
+            <a href={COMPANY_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">회사 소개</a>
             {FAMILY.map((f) => (
               <a key={f.key} href={f.url} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline">{f.label}</a>
             ))}
