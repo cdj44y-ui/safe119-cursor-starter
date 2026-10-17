@@ -154,7 +154,20 @@ export default function InvestigationLanding() {
               </div>
             ))}
           </div>
-          <Link href="/risk-assessment" className="mt-7 inline-flex text-[18px] font-bold text-[#1B64DA] underline underline-offset-4">위험성평가 과태료 대상인지 3분 점검하기 →</Link>
+          <Link href="/risk-assessment" className="group mt-9 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
+            <div>
+              <p className="text-[15px] font-bold text-[#D9A44A]">2027.1.1 상시 50명 이상 · 2028.1.1 50명 미만 과태료 시행</p>
+              <p className="mt-2 text-[26px] font-bold leading-[1.4] md:text-[30px]" style={serif}>우리 회사, 위험성평가 과태료 대상일까요?</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-[#CFC9BB]">실시·근로자 참여·근로자대표 참여·공유·기록보존 5가지 의무를 3분 만에 점검합니다.</p>
+              <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-[#3A4540] pt-4">
+                {[['미실시', '1차 500만원 · 최대 1,000만원'], ['참여·공유 위반', '최대 500만원'], ['기록 미보존', '최대 300만원']].map(([k, v]) => (
+                  <p key={k} className="text-[15px]"><span className="text-[#9AA29C]">{k}</span> <b className="ml-1">{v}</b></p>
+                ))}
+              </div>
+            </div>
+            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#3182F6] px-7 text-[18px] font-bold text-white group-hover:bg-[#1B64DA]">3분 점검 시작 →</span>
+          </Link>
+          <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
         </div>
       </section>
 
