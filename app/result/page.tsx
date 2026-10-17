@@ -88,7 +88,7 @@ export default function ResultPage() {
   const sheetRows = result.stepScores.map((ss) => {
     const st = STEPS.find((s) => s.step === ss.step);
     return {
-      label: `${st?.label ?? ''} ${ss.stepName}`,
+      label: st && !ss.stepName.startsWith(st.label) ? `${st.label} ${ss.stepName}` : ss.stepName,
       value: ss.applicableQuestions === 0 ? '해당없음' : `${ss.percentage}% · ${tone(ss.percentage)[0]}`,
       basis: st?.article ?? '',
     };
