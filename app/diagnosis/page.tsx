@@ -7,11 +7,11 @@ import { useDiagnosisStore } from '@/store/diagnosisStore';
 import { STEPS, questions, getQuestionsByStep, AnswerValue } from '@/data/questions';
 
 // 2026-10-18 가독성 개편: 한 화면 한 질문, 큰 글씨·큰 버튼, 법 조문 순서 단계 목록
-const OPTIONS: { value: Exclude<AnswerValue, null>; label: string; hint: string }[] = [
-  { value: 'O', label: '이행 완료 (O)', hint: '갖추고 있고 기록도 있습니다' },
-  { value: 'triangle', label: '일부 이행 (△)', hint: '일부만 갖추었거나 기록이 부족합니다' },
-  { value: 'X', label: '미이행 (X)', hint: '아직 갖추지 못했습니다' },
-  { value: 'NA', label: '해당없음 (N/A)', hint: '우리 사업장에는 해당하지 않습니다' },
+const OPTIONS: { value: Exclude<AnswerValue, null>; label: string; hint: string; mark: string; c: string; tint: string }[] = [
+  { value: 'O', label: '이행 완료 (O)', hint: '갖추고 있고 기록도 있습니다', mark: 'O', c: '#2F6B4F', tint: '#EDF4EF' },
+  { value: 'triangle', label: '일부 이행 (△)', hint: '일부만 갖추었거나 기록이 부족합니다', mark: '△', c: '#A06C14', tint: '#FBF3E2' },
+  { value: 'X', label: '미이행 (X)', hint: '아직 갖추지 못했습니다', mark: 'X', c: '#A4262C', tint: '#FBEDEB' },
+  { value: 'NA', label: '해당없음 (N/A)', hint: '우리 사업장에는 해당하지 않습니다', mark: '–', c: '#5E6670', tint: '#F1F2F3' },
 ];
 
 export default function DiagnosisPage() {
@@ -132,12 +132,16 @@ export default function DiagnosisPage() {
                 const sel = answers[q.id] === o.value;
                 return (
                   <button key={o.value} type="button" onClick={() => handleAnswer(o.value)} aria-pressed={sel}
-                    className={'flex min-h-[68px] w-full items-center justify-between gap-4 rounded-xl border-2 px-6 text-left transition ' + (sel ? 'border-[#3182F6] bg-[#EAF2FE]' : 'border-[#E0D8C8] bg-white hover:border-[#8FB8F7] hover:bg-[#FAF7F0]')}>
-                    <span>
-                      <span className="block text-[20px] font-bold leading-tight">{o.label}</span>
-                      <span className="mt-0.5 block text-[15px] text-[#6A706B]">{o.hint}</span>
+                    className="group flex min-h-[72px] w-full items-center gap-4 overflow-hidden rounded-xl border-2 bg-white pr-5 text-left transition hover:-translate-y-px"
+                    style={{ borderColor: sel ? o.c : '#E3DBCB', background: sel ? o.tint : '#FFFFFF' }}>
+                    <span className="flex h-full min-h-[72px] w-[64px] shrink-0 items-center justify-center text-[24px] font-extrabold transition"
+                      style={{ background: sel ? o.c : o.tint, color: sel ? '#FFFFFF' : o.c }} aria-hidden>{o.mark}</span>
+                    <span className="flex-1 py-3">
+                      <span className="block text-[20px] font-bold leading-tight" style={{ color: sel ? o.c : '#1C2421' }}>{o.label}</span>
+                      <span className="mt-1 block text-[15px] text-[#6A706B]">{o.hint}</span>
                     </span>
-                    <span className={'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold ' + (sel ? 'border-[#3182F6] bg-[#3182F6] text-white' : 'border-[#CFC6B4] text-transparent')} aria-hidden>✓</span>
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold transition"
+                      style={{ borderColor: sel ? o.c : '#D6CDBB', background: sel ? o.c : 'transparent', color: sel ? '#FFFFFF' : 'transparent' }} aria-hidden>✓</span>
                   </button>
                 );
               })}
