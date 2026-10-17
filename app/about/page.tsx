@@ -92,7 +92,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="shrink-0 flex flex-wrap gap-2 md:justify-end">
-                {['안전공학 박사', '공인노무사 15년', '대기업 HR', '근로자성 자문'].map((badge) => (
+                {['안전공학 박사', '공인노무사 16년', '대기업 HR', '근로자성 자문'].map((badge) => (
                   <span
                     key={badge}
                     className="text-xs bg-copper-light text-copper px-3 py-1.5 rounded font-semibold"
