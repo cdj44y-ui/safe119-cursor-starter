@@ -33,6 +33,9 @@ export default function Footer() {
                 <a href="https://free119.site" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
                   FREE119 근로자성 진단
                 </a>
+                <a href="https://audit119.vercel.app" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                  AUDIT119 괴롭힘 독립조사
+                </a>
               </div>
             </div>
             <div>
