@@ -124,7 +124,7 @@ export default function RiskAssessmentPage() {
             <div>
               <p className="text-[16px] font-bold text-[#D9A44A]">산업안전보건법 제36조 · 위험성평가 자가진단</p>
               <h1 className="mt-4 text-[36px] font-bold leading-[1.32] tracking-[-1px] md:text-[48px]" style={serif}>
-                위험성평가, 했다는 것만으로는<br />과태료를 피할 수 없습니다
+                위험성평가,<br />했다는 것만으로는<br />과태료를 피할 수 없습니다
               </h1>
               <p className="mt-5 text-[19px] leading-[1.75] text-[#CFC9BB]">
                 실시·근로자 참여·근로자대표 참여·공유·기록보존, 5가지 의무를 모두 지켜야 합니다. 항목별로 이행 여부를 고르면 어느 의무에서 과태료 대상이 되는지 바로 보입니다.
