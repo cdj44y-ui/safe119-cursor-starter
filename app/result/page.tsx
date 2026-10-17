@@ -3,14 +3,11 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { useDiagnosisStore } from '@/store/diagnosisStore';
-import { calculateTotalResult, GRADE_DESCRIPTIONS, Grade } from '@/lib/calculateScore';
+import { calculateTotalResult, GRADE_DESCRIPTIONS } from '@/lib/calculateScore';
+import { questions, STEPS } from '@/data/questions';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
-import Badge from '@/components/ui/Badge';
-
-const gradeEmoji: Record<Grade, string> = { A: '🟢', B: '🟡', C: '🟠', D: '🔴' };
-const riskVariant = { high: 'danger' as const, medium: 'warning' as const, low: 'success' as const };
 
 const LEGAL_UPDATES = [
   {
@@ -47,288 +44,243 @@ const LEGAL_UPDATES = [
   },
 ];
 
-function ScoreDonut({ percentage, color }: { percentage: number; color: string }) {
-  const size = 160;
-  const stroke = 14;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const dashOffset = circumference * (1 - percentage / 100);
-
-  return (
-    <div className="relative mx-auto mb-4" style={{ width: size, height: size }}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)' }}>
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#F0ECE5" strokeWidth={stroke} />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke={color}
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={dashOffset}
-          style={{ transition: 'stroke-dashoffset 0.7s ease' }}
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-extrabold leading-none text-ink">{percentage}</span>
-        <span className="mt-1 text-xs text-ink-4">/ 100</span>
-      </div>
-    </div>
-  );
-}
+const serif = { fontFamily: "'Noto Serif KR', serif" };
+const tone = (p: number) => (p >= 90 ? ['양호', '#2F6B4F', '#EDF4EF'] : p >= 70 ? ['보통', '#A06C14', '#FBF3E2'] : p >= 50 ? ['미흡', '#C2581E', '#FCEEE4'] : ['위험', '#A4262C', '#FBEDEB']);
 
 export default function ResultPage() {
-  const { answers, companyName } = useDiagnosisStore();
+  const { answers } = useDiagnosisStore();
   const result = useMemo(() => calculateTotalResult(answers), [answers]);
   const gradeInfo = GRADE_DESCRIPTIONS[result.overallGrade];
 
-  // 만약 답변이 없으면 리다이렉트 안내
   if (Object.keys(answers).length === 0) {
     return (
       <>
         <Header />
-        <main className="min-h-screen flex flex-col items-center justify-center gap-4 px-7">
-          <p className="text-ink-3 text-center">진단 데이터가 없습니다. 먼저 진단을 완료해주세요.</p>
-          <Link href="/diagnosis" className="btn-primary">
-            진단 시작하기
-          </Link>
+        <main className="flex min-h-screen items-center justify-center bg-[#F4EFE4] px-6">
+          <div className="w-full max-w-[560px] border border-[#D9D0BE] bg-white p-10 text-center">
+            <p className="text-[22px] font-bold">아직 진단 결과가 없습니다</p>
+            <p className="mt-2 text-[17px] text-[#6A706B]">38개 질문에 답하시면 비어 있는 기록과 법적 근거를 정리해 드립니다.</p>
+            <Link href="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-lg bg-[#3182F6] px-8 text-[18px] font-bold text-white">진단 시작하기 →</Link>
+          </div>
         </main>
         <Footer />
       </>
     );
   }
 
+  const gaps = questions
+    .filter((q) => answers[q.id] === 'X' || answers[q.id] === 'triangle')
+    .sort((a, b) => {
+      const r = (q: typeof a) => (answers[q.id] === 'X' ? 0 : 2) + (q.riskLevel === 'high' ? 0 : 1);
+      return r(a) - r(b) || a.id - b.id;
+    });
+  const coreMissing = gaps.filter((q) => answers[q.id] === 'X' && q.riskLevel === 'high').length;
+  const shown = gaps.slice(0, 6);
+  const rest = gaps.length - shown.length;
+  const gapSteps = Array.from(new Set(gaps.map((q) => STEPS.find((s) => s.step === q.step)?.label))).filter(Boolean);
+  const [gTxt, gColor] = tone(result.overallPercentage);
+
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-sand-50">
-        <div className="max-w-[960px] mx-auto px-7 py-12">
-          {/* Title */}
-          <h1 className="text-2xl font-extrabold text-ink tracking-tight mb-2">
-            안전보건관리체계 진단 결과
-          </h1>
-          {companyName && (
-            <p className="text-sm text-ink-4 mb-8">{companyName}</p>
-          )}
-
-          {/* ═══════ 1. 종합 등급 카드 ═══════ */}
-          <div className="bg-white border border-sand-200 rounded-lg p-8 mb-8 text-center">
-            <ScoreDonut percentage={result.overallPercentage} color={gradeInfo.color} />
-            <div className="text-3xl mb-1">{gradeEmoji[result.overallGrade]}</div>
-            <h2 className="text-2xl font-extrabold mb-2" style={{ color: gradeInfo.color }}>
-              {gradeInfo.label}
-            </h2>
-            <p className="text-sm text-ink-4 leading-relaxed max-w-md mx-auto mb-6">
-              {gradeInfo.description}
-            </p>
-
-            {/* O/△/X 요약 */}
-            <div className="flex justify-center gap-6 flex-wrap">
-              <div className="text-center">
-                <div className="text-xl font-extrabold text-semantic-green-text">{result.oCount}</div>
-                <div className="text-xs text-ink-5">이행(O)</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl font-extrabold text-semantic-amber-text">{result.triangleCount}</div>
-                <div className="text-xs text-ink-5">일부이행(△)</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl font-extrabold text-semantic-red-text">{result.xCount}</div>
-                <div className="text-xs text-ink-5">미이행(X)</div>
-              </div>
+      <main className="bg-[#F4EFE4] pb-28 text-[#1C2421] [word-break:keep-all]">
+        {/* 1. 결과 */}
+        <section className="bg-[#1C2421] text-white">
+          <div className="mx-auto grid max-w-[1140px] gap-10 px-6 py-14 md:grid-cols-[1fr_1.15fr] md:px-9 md:py-[72px]">
+            <div>
+              <p className="text-[16px] font-bold text-[#D9A44A]">안전보건관리체계 진단 결과</p>
+              <p className="mt-3 text-[92px] leading-none tracking-[-3px] md:text-[108px]" style={serif}>{result.overallPercentage}<span className="ml-1 text-[30px] tracking-normal text-[#CFC9BB]">점</span></p>
+              <p className="mt-4 inline-block rounded-md bg-white px-3 py-1.5 text-[18px] font-extrabold" style={{ color: gColor }}>{gradeInfo.label}</p>
+              <p className="mt-3 max-w-[420px] text-[17px] leading-[1.7] text-[#CFC9BB]">{gradeInfo.description}</p>
+            </div>
+            <div className="self-end">
+              {gaps.length > 0 ? (
+                <>
+                  <p className="text-[30px] font-bold leading-[1.4] md:text-[36px]" style={serif}>수사에서 비어 보일 수 있는<br />기록이 <span className="text-[#FFB4A8]">{gaps.length}건</span> 있습니다</p>
+                  {coreMissing > 0 && <p className="mt-4 text-[19px] leading-[1.6] text-[#E8E3D6]">그중 <b className="text-white">{coreMissing}건</b>은 핵심 의무를 아직 갖추지 못한 항목입니다.</p>}
+                  <p className="mt-2 text-[16px] text-[#9AA29C]">해당 조문: {gapSteps.join(' · ')}</p>
+                  <div className="mt-6 grid grid-cols-3 border-t border-[#3A4540] pt-5 text-center">
+                    {[['이행', result.oCount, '#9FD0B4'], ['일부 이행', result.triangleCount, '#F0C978'], ['미이행', result.xCount, '#FFB4A8']].map(([l, n, c]) => (
+                      <div key={l as string}><p className="text-[36px] leading-none" style={{ ...serif, color: c as string }}>{n}</p><p className="mt-2 text-[15px] text-[#CFC9BB]">{l}</p></div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className="text-[28px] font-bold leading-[1.45]" style={serif}>응답 기준으로 비어 있는 기록이 확인되지 않았습니다. 반기 점검으로 이 상태를 유지하는 것이 중요합니다.</p>
+              )}
             </div>
           </div>
+        </section>
 
-          {/* ═══════ 1-1. 법령·판례 업데이트 신뢰 배지 ═══════ */}
-          <div className="bg-white border border-sand-200 rounded-lg p-5 mb-8">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-copper text-[11px] font-bold text-white">
-                ✓
-              </span>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-ink-4">법령·판례 업데이트 반영 현황</h2>
+        {/* 2. 비어 있는 기록 */}
+        {gaps.length > 0 && (
+          <section className="border-b border-[#D9D0BE] py-14 md:py-[80px]">
+            <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+              <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]" style={serif}>지금 비어 있는 기록</h2>
+              <p className="mt-2.5 text-[18px] text-[#6A706B]">미이행·일부 이행으로 답하신 항목입니다. 핵심 의무 미이행부터 보여드립니다.</p>
+              <div className="mt-8 border-t-2 border-[#1C2421]">
+                {shown.map((q, i) => {
+                  const st = STEPS.find((s) => s.step === q.step);
+                  const isX = answers[q.id] === 'X';
+                  return (
+                    <div key={q.id} className="grid gap-3 border-b border-[#D9D0BE] py-6 md:grid-cols-[52px_1fr]">
+                      <p className="text-[24px] text-[#A4262C]" style={serif}>{String(i + 1).padStart(2, '0')}</p>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="rounded bg-[#1C2421] px-2 py-0.5 text-[13px] font-bold text-white">{st?.article}</span>
+                          <span className={'rounded px-2 py-0.5 text-[13px] font-bold ' + (isX ? 'bg-[#FBEDEB] text-[#A4262C]' : 'bg-[#FBF3E2] text-[#A06C14]')}>{isX ? '미이행' : '일부 이행'}</span>
+                          {q.riskLevel === 'high' && <span className="text-[13px] font-bold text-[#6A706B]">핵심 의무</span>}
+                        </div>
+                        <h3 className="mt-2 text-[20px] font-bold leading-[1.55] md:text-[21px]">{q.question}</h3>
+                        <p className="mt-2 text-[16px] text-[#3D4540]"><b className="text-[#1C2421]">법적 근거</b> · {q.legalBasis}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {rest > 0 && <p className="mt-5 text-[18px] font-semibold">이 밖에도 <b className="text-[#A4262C]">{rest}건</b>이 더 있습니다. 전체 목록은 상담에서 함께 정리해 드립니다.</p>}
             </div>
-            <ul className="space-y-2">
-              {LEGAL_UPDATES.map((u, i) => (
-                <li key={i} className="grid grid-cols-1 items-baseline gap-x-3 gap-y-1 text-sm sm:grid-cols-[6.5rem_1fr]">
-                  <span className="shrink-0 inline-flex w-fit items-center rounded-full border border-sand-200 bg-sand-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-ink-4">
-                    {u.date}
-                  </span>
-                  <span className="text-ink-3">{u.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-3 text-xs text-ink-5">
-              본 진단 문항과 통계는 매일 최신 법령·판례 여부를 점검해 반영합니다.
-            </p>
-          </div>
+          </section>
+        )}
 
-          {/* ═══════ 2. 영역별 바 차트 ═══════ */}
-          <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-extrabold text-ink mb-6">9대 핵심요소별 진단 결과</h2>
-            <div className="space-y-4">
-              {result.stepScores.map((ss) => (
-                <div key={ss.step}>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm font-bold text-ink">
-                      {ss.stepLabel}. {ss.stepName}
-                    </span>
-                    <span className="text-sm font-bold" style={{ color: GRADE_DESCRIPTIONS[ss.grade].color }}>
-                      {ss.percentage}% {gradeEmoji[ss.grade]}
-                    </span>
-                  </div>
-                  <div className="w-full h-3 bg-sand-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{
-                        width: `${ss.percentage}%`,
-                        backgroundColor: GRADE_DESCRIPTIONS[ss.grade].color,
-                      }}
-                    />
-                  </div>
+        {/* 3. 사고 후 */}
+        <section className="border-b border-[#D9D0BE] bg-[#EFE8DA] py-14 md:py-[80px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]" style={serif}>사고가 나면, 이 기록이 이렇게 쓰입니다</h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {[
+                ['수사', '사고 이전에 안전보건관리체계를 구축하고 이행했는지를 확인합니다. 지금 비어 있는 항목이 그대로 쟁점이 됩니다.', '중대재해처벌법 제4조, 시행령 제4조'],
+                ['입증', '조치를 이행한 사실은 서면(전자문서 포함)으로 작성해 5년간 보관해야 합니다. 기록이 없으면 이행했다고 말하기 어렵습니다.', '중대재해처벌법 시행령 제13조'],
+                ['처벌', '사망사고는 경영책임자에게 1년 이상 징역 또는 10억 원 이하 벌금, 법인에는 50억 원 이하 벌금이 규정되어 있습니다.', '중대재해처벌법 제6조 제1항, 제7조'],
+              ].map(([t, d, law]) => (
+                <div key={t} className="border border-[#D9D0BE] bg-white p-7">
+                  <p className="text-[24px] font-bold" style={serif}>{t}</p>
+                  <p className="mt-3 text-[17px] leading-[1.7] text-[#3D4540]">{d}</p>
+                  <p className="mt-3 text-[14px] font-semibold text-[#6A706B]">근거: {law}</p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* ═══════ 3. 고위험 미이행 항목 ═══════ */}
-          {result.immediateActions.length > 0 && (
-            <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-              <h2 className="text-lg font-extrabold text-ink mb-1">
-                🔴 즉시 개선 필요 항목
-              </h2>
-              <p className="text-xs text-ink-4 mb-4">고위험 미이행 — 1개월 이내 조치 권고</p>
-              <div className="space-y-3">
-                {result.immediateActions.map((q) => (
-                  <div key={q.id} className="bg-semantic-red-bg border border-semantic-red-text/10 rounded-lg p-4">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-sm font-bold text-ink leading-snug">{q.question}</h3>
-                      <Badge variant="danger">고위험</Badge>
+        {/* 4. 조문별 이행률 */}
+        <section className="border-b border-[#D9D0BE] py-14 md:py-[80px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <h2 className="text-[28px] font-bold tracking-[-0.6px] md:text-[34px]" style={serif}>조문별 이행률</h2>
+                <p className="mt-1.5 text-[17px] text-[#6A706B]">법 조문 순서입니다. 점선은 양호 기준(90%)입니다.</p>
+              </div>
+              <div className="flex flex-wrap gap-3 text-[14px] font-semibold text-[#3D4540]">
+                {[['양호', '#2F6B4F'], ['보통', '#A06C14'], ['미흡', '#C2581E'], ['위험', '#A4262C']].map(([l, c]) => (
+                  <span key={l} className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm" style={{ background: c }} />{l}</span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 divide-y divide-[#EFE8DA] border border-[#D9D0BE] bg-white">
+              {result.stepScores.map((ss) => {
+                const st = STEPS.find((s) => s.step === ss.step);
+                const na = ss.applicableQuestions === 0;
+                const [t, c, b] = tone(ss.percentage);
+                return (
+                  <div key={ss.step} className="grid items-center gap-3 px-5 py-4 md:grid-cols-[300px_1fr_150px] md:px-7">
+                    <p className="text-[17px] font-bold"><span className="mr-2 text-[14px] text-[#C8912E]">{st?.label}</span>{ss.stepName}</p>
+                    <div className="relative h-[16px] rounded-full bg-[#EFE8DA]">
+                      {!na && <div className="h-full rounded-full transition-all duration-700" style={{ width: Math.max(ss.percentage, 2) + '%', background: c }} />}
+                      <div className="absolute inset-y-[-4px] w-0 border-l-2 border-dashed border-[#1C2421]/40" style={{ left: '90%' }} aria-hidden />
                     </div>
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      <span className="text-xs bg-white text-ink-4 px-1.5 py-0.5 rounded">{q.stepLabel}. {q.stepName}</span>
-                      <span className="text-xs bg-white text-ink-5 px-1.5 py-0.5 rounded">{q.legalBasis}</span>
-                    </div>
-                    {q.guidance && (
-                      <p className="text-xs text-semantic-red-text leading-relaxed">
-                        💡 {q.guidance}
-                      </p>
-                    )}
+                    <p className="flex items-baseline justify-end gap-2">
+                      {na ? <span className="text-[15px] font-bold text-[#6A706B]">해당없음</span> : (<>
+                        <span className="rounded px-2 py-0.5 text-[13px] font-bold" style={{ color: c, background: b }}>{t}</span>
+                        <span className="text-[26px] font-extrabold leading-none" style={{ color: c }}>{ss.percentage}</span><span className="text-[15px] text-[#6A706B]">%</span>
+                      </>)}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. 수사·감독 관점 */}
+        <section className="border-b border-[#D9D0BE] bg-[#EFE8DA] py-14 md:py-[72px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <h2 className="text-[28px] font-bold md:text-[32px]" style={serif}>감독관·검사·경찰은 이렇게 봅니다</h2>
+            <div className="mt-7 grid gap-5 md:grid-cols-3">
+              {([['감독관', result.investigatorView.inspector], ['검사', result.investigatorView.prosecutor], ['경찰', result.investigatorView.police]] as [string, string[]][]).map(([t, items]) => (
+                <div key={t} className="border border-[#D9D0BE] bg-white p-6">
+                  <p className="text-[20px] font-bold" style={serif}>{t} 관점</p>
+                  <ul className="mt-3 space-y-2">{items.map((s, i) => <li key={i} className="text-[16px] leading-[1.65] text-[#3D4540]">· {s}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. 전문가 */}
+        <section className="border-b border-[#D9D0BE] py-14 md:py-[80px]">
+          <div className="mx-auto grid max-w-[1140px] items-start gap-10 px-6 md:grid-cols-[210px_1fr] md:px-9">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width={210} height={273} className="h-[273px] w-[210px] object-cover" />
+            <div>
+              <p className="text-[16px] font-bold text-[#C8912E]">이 결과를 함께 정리할 사람</p>
+              <h2 className="mt-2 text-[30px] font-bold md:text-[34px]" style={serif}>조대진 대표노무사</h2>
+              <p className="mt-1 text-[17px] text-[#6A706B]">노무법인 위너스 · 공인노무사 16년 · 안전공학 박사</p>
+              <p className="mt-5 text-[19px] font-semibold leading-[1.65]">대형 건설사, 한국지역난방공사, 한국가스공사, 중소 제조업체 50여 곳의 중대재해처벌법 대응을 함께해 왔습니다. 비어 있는 기록을 어떤 순서로, 어떤 서류로 채워야 하는지 알고 있습니다.</p>
+              <div className="mt-6 border-t-2 border-[#1C2421]">
+                {[
+                  ['1', '결과 검토', '신청서에 담긴 진단 결과를 검토해 먼저 채울 기록을 정합니다.'],
+                  ['2', '체계 정비', '시행령 제4조 각 호의 절차·기준·서식을 사업장에 맞게 갖춥니다.'],
+                  ['3', '반기 점검', '반기 1회 점검과 경영책임자 보고가 실제로 돌아가도록 운영을 돕습니다.'],
+                ].map(([n, t, d]) => (
+                  <div key={n} className="grid grid-cols-[44px_1fr] gap-3 border-b border-[#D9D0BE] py-4">
+                    <span className="text-[24px] text-[#C8912E]" style={serif}>{n}</span>
+                    <p className="text-[18px] leading-[1.6]"><b>{t}</b> — <span className="text-[#3D4540]">{d}</span></p>
                   </div>
                 ))}
               </div>
             </div>
-          )}
+          </div>
+        </section>
 
-          {/* ═══════ 4. 수사·감독 관점 리스크 분석 ═══════ */}
-          <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-extrabold text-ink mb-4">수사·감독 관점 리스크 분석</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { title: '감독관 관점', icon: '🔍', items: result.investigatorView.inspector, badgeBg: 'bg-semantic-amber-bg' },
-                { title: '검사 관점', icon: '⚖️', items: result.investigatorView.prosecutor, badgeBg: 'bg-semantic-red-bg' },
-                { title: '경찰 관점', icon: '🚔', items: result.investigatorView.police, badgeBg: 'bg-copper-light' },
-              ].map((view) => (
-                <div key={view.title} className="bg-sand-50 border border-sand-200 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm ${view.badgeBg}`}>
-                      {view.icon}
-                    </span>
-                    <h3 className="text-sm font-bold text-ink">{view.title}</h3>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {view.items.map((item, i) => (
-                      <li key={i} className="text-sm text-ink-3 leading-relaxed">• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+        {/* 7. 제안 */}
+        <section className="bg-[#1C2421] py-14 text-center text-white md:py-[84px]">
+          <div className="mx-auto max-w-[780px] px-6">
+            <h2 className="text-[32px] font-bold leading-[1.35] md:text-[40px]" style={serif}>기록이 비어 있는 채로<br />사고를 맞지 않도록</h2>
+            <p className="mt-4 text-[19px] leading-[1.7] text-[#CFC9BB]">진단 결과는 상담 신청서에 자동으로 담깁니다. 다시 설명하실 필요가 없습니다.</p>
+            <Link href="/consult" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-xl bg-[#3182F6] text-[21px] font-bold text-white hover:bg-[#1B64DA] md:w-auto md:px-12">상담 신청서 작성하기 →</Link>
+            <p className="mt-4 text-[16px] leading-[1.7] text-[#9AA29C]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
+            <div className="mt-6 flex flex-wrap justify-center gap-6 text-[16px]">
+              <Link href="/diagnosis" className="text-[#CFC9BB] underline underline-offset-4">다시 진단하기</Link>
+              <a href="https://pf.kakao.com/_yxexbaX/friend" target="_blank" rel="noopener noreferrer" className="text-[#CFC9BB] underline underline-offset-4">법 개정 소식 받기(카카오톡 채널)</a>
             </div>
           </div>
+        </section>
 
-          {/* ═══════ 5. 개선 우선순위 액션플랜 ═══════ */}
-          <div className="bg-white border border-sand-200 rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-extrabold text-ink mb-4">개선 우선순위 액션플랜</h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-semantic-red-text mt-1.5 flex-shrink-0" />
-                <div>
-                  <h3 className="text-sm font-bold text-ink">즉시 (1개월 이내)</h3>
-                  <p className="text-xs text-ink-4">고위험 미이행 항목 {result.immediateActions.length}건</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-semantic-amber-text mt-1.5 flex-shrink-0" />
-                <div>
-                  <h3 className="text-sm font-bold text-ink">단기 (3개월 이내)</h3>
-                  <p className="text-xs text-ink-4">중위험 미이행 + 고위험 일부이행 {result.shortTermActions.length}건</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-semantic-green-text mt-1.5 flex-shrink-0" />
-                <div>
-                  <h3 className="text-sm font-bold text-ink">중기 (6개월 이내)</h3>
-                  <p className="text-xs text-ink-4">체계 고도화 항목 {result.midTermActions.length}건</p>
-                </div>
-              </div>
+        {/* 업데이트 이력 */}
+        <section className="py-10">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <details className="border border-[#D9D0BE] bg-white px-5 py-4">
+              <summary className="cursor-pointer text-[16px] font-bold">법령·판례 업데이트 반영 이력 보기</summary>
+              <ul className="mt-4 space-y-2">
+                {LEGAL_UPDATES.map((u, i) => (
+                  <li key={i} className="grid gap-1 text-[15px] md:grid-cols-[110px_1fr] md:gap-3"><span className="font-bold text-[#6A706B]">{u.date}</span><span className="text-[#3D4540]">{u.text}</span></li>
+                ))}
+              </ul>
+            </details>
+          </div>
+        </section>
+
+        <Disclaimer />
+
+        {gaps.length > 0 && (
+          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D9D0BE] bg-white/95 backdrop-blur">
+            <div className="mx-auto flex max-w-[1140px] items-center justify-between gap-3 px-6 py-3 md:px-9">
+              <p className="text-[16px] font-bold md:text-[18px]">비어 있는 기록 <span className="text-[#A4262C]">{gaps.length}건</span><span className="hidden font-normal text-[#6A706B] md:inline"> · 진단 결과가 신청서에 자동으로 담깁니다</span></p>
+              <Link href="/consult" className="inline-flex h-[52px] shrink-0 items-center rounded-lg bg-[#3182F6] px-6 text-[17px] font-bold text-white">상담 신청서 작성</Link>
             </div>
           </div>
-
-          {/* ═══════ 5-1. 연계 진단 추천 (등급 C/D 시) ═══════ */}
-          {(result.overallGrade === 'C' || result.overallGrade === 'D') && (
-            <div className="bg-white border border-sand-200 rounded-lg p-5 mb-8">
-              <p className="text-xs font-bold text-ink-4 uppercase tracking-wide mb-3">함께 확인하면 좋은 진단</p>
-              <a
-                href="https://risk119.site"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 rounded-lg border border-sand-200 bg-sand-50 p-4 hover:shadow-md transition-shadow"
-              >
-                <div className="w-10 h-10 bg-sand-100 rounded-lg flex items-center justify-center text-sm font-extrabold text-ink shrink-0">
-                  R<span className="text-copper">119</span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold text-ink">안전보건관리체계뿐 아니라 근로감독 리스크도 확인해보세요</p>
-                  <p className="text-xs text-ink-4 mt-0.5">
-                    임금체불·연장근로 등 50여개 항목을 RISK119에서 무료로 점검할 수 있습니다.
-                  </p>
-                </div>
-                <span className="text-ink-5 text-lg shrink-0">→</span>
-              </a>
-            </div>
-          )}
-
-          {/* ═══════ 6. 듀얼 CTA ═══════ */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link
-              href="/consult"
-              className="inline-flex items-center justify-center gap-2 bg-ink text-white font-semibold py-3.5 px-8 rounded transition-all duration-200 hover:bg-ink-2"
-            >
-              🔒 전문가 상담 신청
-            </Link>
-          </div>
-
-
-          {/* ═══════ 6-1. 카카오톡 채널 — 가장 낮은 진입장벽 ═══════ */}
-          <div className="bg-[#FFFBE6] border border-[#FEE500]/60 rounded-lg p-5 mb-8 text-center">
-            <p className="text-sm font-bold text-ink mb-1">💬 이 점수, 다음 달에도 유지될까요?</p>
-            <p className="text-xs text-ink-4 mb-4">
-              안전보건 법령은 계속 바뀝니다. 상담은 아직 부담스러우셔도, 채널 추가 한 번이면 중대재해처벌법 개정과 실제 판결 소식을 가장 먼저 받아보실 수 있어요.
-            </p>
-            <a
-              href="https://pf.kakao.com/_yxexbaX/friend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded bg-[#FEE500] px-6 py-3 text-sm font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
-            >
-              놓치기 전에 채널 추가하기
-            </a>
-          </div>
-
-          {/* 면책 고지 */}
-          <Disclaimer variant="compact" />
-        </div>
+        )}
       </main>
       <Footer />
     </>
