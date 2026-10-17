@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import { getSiteUrl } from '@/lib/site';
 import FloatingConsultButton from '@/components/layout/FloatingConsultButton';
 import FamilyBar from '@/components/brand/FamilyBar';
+import Script from 'next/script';
 
 const siteUrl = getSiteUrl();
 
@@ -51,6 +52,9 @@ export default function RootLayout({
         <FamilyBar />
         {children}
         <FloatingConsultButton />
+        {/* Vercel Web Analytics (방문 수만 집계, 쿠키·입력 내용 수집 없음) */}
+        <Script id="vercel-va-init" strategy="afterInteractive">{`window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };`}</Script>
+        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
       </body>
     </html>
   );
