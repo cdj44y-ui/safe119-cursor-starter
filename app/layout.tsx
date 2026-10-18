@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: siteUrl,
     siteName: 'SAFE119',
-    images: [{ url: '/og/home-v2.png', width: 1200, height: 630, alt: 'SAFE119 안전보건관리체계 자가진단' }],
+    images: [{ url: '/og/home-v3.png', width: 1200, height: 630, alt: 'SAFE119 안전보건관리체계 자가진단' }],
     title: 'SAFE119 — 안전보건관리체계 자가진단',
     description:
       '중대재해처벌법 시행령 제4조 9가지 의무와 위험성평가를 38문항으로 점검합니다. 수사에서 보는 기록이 남아 있는지 약 10분 만에 확인하세요.',
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/og/home-v2.png'],
+    images: ['/og/home-v3.png'],
     title: 'SAFE119 — 안전보건관리체계 자가진단',
     description:
       '중대재해처벌법 시행령 제4조 9가지 의무와 위험성평가를 38문항으로 점검합니다. 수사에서 보는 기록이 남아 있는지 약 10분 만에 확인하세요.',
