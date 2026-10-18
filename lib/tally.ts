@@ -1,5 +1,5 @@
 // Tally 문의 폼 연동 헬퍼
-// 폼: https://tally.so/forms/GxZyzz (노무 상담 문의 · 조대진 노무사)
+// 폼: https://tally.so/forms/GxZyzz (노무 상담 문의)
 // RISK119(labor-inspection-app)와 동일한 폼을 공유합니다.
 // 폼의 "어떤 도움이 필요하세요?" 항목에 "안전보건 컨설팅"이 이미 있어 SAFE119 문의에도 그대로 맞습니다.
 export const TALLY_FORM_ID = 'GxZyzz';
