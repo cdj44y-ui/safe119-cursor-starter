@@ -274,7 +274,7 @@ export default function RiskAssessmentPage() {
             <SectionHead no={answeredCount > 0 ? '04' : '03'} title="위험성평가 준비 상담 신청" sub={answeredCount > 0 ? '방금 점검한 결과(미이행·일부 이행 건수, 사업장 규모)가 신청서에 함께 전달됩니다.' : '점검표에 먼저 답하시면 결과가 신청서에 함께 전달됩니다.'} />
             <p className="mb-5 text-[16px] leading-[1.7] text-[#4A524D]">상담은 유료 자문으로 진행됩니다. 신청서 확인 후 일정과 비용을 안내드리며, 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
             <div className="rounded-xl border border-[#D9D0BE] bg-white p-4 md:p-6">
-              <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
+              <TallyEmbed src={tallySrc} title="노무 상담 문의" height={720} />
             </div>
           </div>
         </section>
