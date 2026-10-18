@@ -63,7 +63,7 @@ export default function ConsultPage() {
               <p className="text-sm text-ink-4 leading-relaxed mb-4">
                 아래 폼을 제출하시면 바로 접수됩니다. 상담은 유료 자문으로 진행되며, 신청서를 확인한 뒤 일정과 비용을 안내드립니다. 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.
               </p>
-              <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={720} />
+              <TallyEmbed src={tallySrc} title="노무 상담 문의" height={720} />
             </div>
 
             {/* Contact Info */}
