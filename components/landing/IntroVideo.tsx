@@ -34,7 +34,7 @@ export default function IntroVideo() {
               href="/diagnosis"
               className="shrink-0 inline-flex items-center justify-center border border-ink text-ink font-semibold py-2.5 px-5 rounded text-sm transition-colors duration-200 hover:bg-ink hover:text-white md:mr-28"
             >
-              바로 진단 시작하기 →
+              진단 시작하기 →
             </Link>
           </div>
         </div>

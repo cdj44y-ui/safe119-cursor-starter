@@ -10,12 +10,12 @@ const STATS = [
 ];
 
 const AFTER = [
-  { t: '사고 직후', h: '작업을 멈추고, 지체 없이 보고합니다', d: '중대재해가 발생하면 사업주는 즉시 작업을 중지시키고 근로자를 대피시켜야 하며, 지체 없이 고용노동부장관에게 보고해야 합니다.', law: '산업안전보건법 제54조' },
+  { t: '사고 직후', h: '작업을 멈추고, 지체 없이 보고합니다', d: '중대재해가 발생하면 사업주는 즉시 작업을 중지시키고 근로자를 대피시켜야 합니다. 지체 없이 고용노동부장관에게도 보고해야 합니다.', law: '산업안전보건법 제54조' },
   { t: '작업중지', h: '같은 작업이 멈출 수 있습니다', d: '재해가 다시 발생할 급박한 위험이 있다고 판단되면 고용노동부장관은 해당 작업과 동일한 작업의 중지를 명할 수 있습니다.', law: '산업안전보건법 제55조' },
   { t: '수사', h: '사고 이전의 체계를 묻습니다', d: '경영책임자가 사고 전에 안전보건관리체계를 구축하고 이행했는지, 시행령 제4조의 9가지 조치를 했는지를 확인합니다.', law: '중대재해처벌법 제4조, 시행령 제4조' },
   { t: '입증', h: '기록으로 증명해야 합니다', d: '조치의 이행 사항은 서면(전자문서 포함)으로 작성해 이행한 날부터 5년간 보관해야 합니다. 소상공인은 제외됩니다.', law: '중대재해처벌법 시행령 제13조' },
-  { t: '처벌', h: '경영책임자 개인이 처벌받습니다', d: '사망사고는 1년 이상 징역 또는 10억 원 이하 벌금(병과 가능), 부상·질병은 7년 이하 징역 또는 1억 원 이하 벌금입니다. 법인에는 50억 원 또는 10억 원 이하 벌금이 따로 부과될 수 있습니다.', law: '중대재해처벌법 제6조, 제7조' },
-  { t: '그 이후', h: '사고는 끝나도 책임은 이어집니다', d: '사업장 명칭이 공표될 수 있고, 경영책임자는 안전보건교육을 이수해야 합니다(미이수 시 5천만 원 이하 과태료). 고의 또는 중대한 과실로 의무를 위반해 중대재해가 발생하면 손해액의 5배 이내 배상책임이 생길 수 있고, 형 확정 후 5년 안에 다시 위반하면 형이 2분의 1까지 가중됩니다.', law: '중대재해처벌법 제13조, 제8조, 제15조, 제6조 제3항' },
+  { t: '처벌', h: '경영책임자 개인이 처벌받을 수 있습니다', d: '사망사고는 1년 이상 징역 또는 10억 원 이하 벌금(병과 가능)입니다. 부상·질병은 7년 이하 징역 또는 1억 원 이하 벌금입니다. 법인에는 50억 원 또는 10억 원 이하 벌금이 따로 부과될 수 있습니다.', law: '중대재해처벌법 제6조, 제7조' },
+  { t: '그 이후', h: '사고는 끝나도 책임은 이어집니다', d: '사업장 명칭이 공표될 수 있습니다. 경영책임자는 안전보건교육을 이수해야 하며, 미이수 시 5천만 원 이하 과태료입니다. 고의 또는 중대한 과실로 의무를 위반해 중대재해가 발생하면 손해액의 5배 이내 배상책임이 생길 수 있습니다. 형 확정 후 5년 안에 다시 위반하면 형이 2분의 1까지 가중됩니다.', law: '중대재해처벌법 제13조, 제8조, 제15조, 제6조 제3항' },
 ];
 
 const NINE = [
@@ -44,10 +44,10 @@ export default function InvestigationLanding() {
               수사는 사고 당일이 아니라,<br />그 전의 기록을 봅니다
             </h1>
             <p className="mt-6 text-[19px] leading-[1.75] text-[#CFC9BB] md:text-[20px]">
-              형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 펼쳐 보는 순서대로 38문항으로 점검합니다. 이번 반기 위험성평가 점검 기록부터 확인하시면, 지금 남아 있는 기록이 수사에서 어떻게 읽힐지 먼저 알 수 있습니다.
+              형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 보는 순서대로 38문항으로 점검합니다. 지금 남은 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-7">
-              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">무료로 진단 시작하기</Link>
+              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">진단 시작하기</Link>
               <a href="#after" className="border-b-2 border-white pb-0.5 text-[18px] font-bold text-white">사고 이후 절차 보기 →</a>
             </div>
             <p className="mt-5 text-[15px] text-[#9AA29C]">{PROMISE}</p>
@@ -78,7 +78,7 @@ export default function InvestigationLanding() {
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>01</p>
             <div>
               <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>사고가 나면, 경영책임자에게 일어나는 일</h2>
-              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">법이 정한 순서 그대로입니다. 이 중 사고 이후에 바꿀 수 있는 것은 없습니다. 준비는 사고 전에만 가능합니다.</p>
+              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">아래는 법이 정한 순서입니다. 사고 뒤에는 바꿀 수 없으니, 준비는 사고 전에 해야 합니다.</p>
             </div>
           </div>
           <div className="border-t-2 border-[#1C2421]">
@@ -110,7 +110,7 @@ export default function InvestigationLanding() {
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>02</p>
             <div>
               <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>수사관이 펼쳐 보는 점검표</h2>
-              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">시행령 제4조 각 호가 그대로 진단 문항이 됩니다. 다섯 가지는 반기마다 점검한 기록까지 요구됩니다.</p>
+              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">시행령 제4조 각 호가 진단의 뼈대입니다. 이 중 다섯 가지는 반기마다 점검 기록을 남겨야 합니다.</p>
             </div>
           </div>
           <div className="relative border border-[#D9D0BE] bg-white px-6 py-9 shadow-[0_12px_30px_-18px_rgba(0,0,0,0.25)] md:px-12 md:py-11">
@@ -135,21 +135,21 @@ export default function InvestigationLanding() {
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
           <div className="mb-8 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>03</p>
-            <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 한 장 · 위너스 기준진단 네 사이트가 같은 내용으로 안내합니다.</p>
+            <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 일정을 한 장으로 정리했습니다. 위너스 네 사이트에 같은 내용이 실려 있습니다.</p>
           </div>
           <LawCalendar />
           <Link href="/risk-assessment" className="group mt-9 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
             <div>
-              <p className="text-[15px] font-bold text-[#D9A44A]">2027.1.1 상시 50명 이상 · 2028.1.1 50명 미만 과태료 시행</p>
+              <p className="text-[15px] font-bold text-[#D9A44A]">과태료 시행 예정 · 2027.1.1 상시 50명 이상, 2028.1.1 50명 미만</p>
               <p className="mt-2 text-[26px] font-bold leading-[1.4] md:text-[30px]" style={serif}>우리 회사, 위험성평가 과태료 대상일까요?</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-[#CFC9BB]">실시·근로자 참여·근로자대표 참여·공유·기록보존 5가지 의무를 3분 만에 점검합니다.</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-[#CFC9BB]">5가지 의무를 3분 만에 점검합니다.</p>
               <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-[#3A4540] pt-4">
                 {[['미실시', '1차 500만원 · 최대 1,000만원'], ['참여·공유 위반', '최대 500만원'], ['기록 미보존', '최대 300만원']].map(([k, v]) => (
                   <p key={k} className="text-[15px]"><span className="text-[#9AA29C]">{k}</span> <b className="ml-1">{v}</b></p>
                 ))}
               </div>
             </div>
-            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#D32F2F] px-7 text-[18px] font-bold text-white group-hover:bg-[#B71C1C]">3분 점검 시작 →</span>
+            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#D32F2F] px-7 text-[18px] font-bold text-white group-hover:bg-[#B71C1C]">진단 시작하기 →</span>
           </Link>
           <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
         </div>
@@ -171,9 +171,9 @@ export default function InvestigationLanding() {
               <p className="mt-4 text-[24px] leading-[1.55] md:text-[28px]" style={serif}>현장의 위험과 법적 책임은 따로 움직이지 않습니다. 안전공학과 노동법을 함께 보는 이유입니다.</p>
               <div className="mt-7 grid gap-3 md:grid-cols-3">
                 {[
-                  ['대형 건설사', '다수 현장과 협력업체가 얽힌 건설 현장의 중대재해처벌법 대응 체계를 함께 만들었습니다.'],
+                  ['대형 건설사', '다수 현장과 협력업체를 아우르는 중대재해처벌법 대응 체계를 함께 구축했습니다.'],
                   ['에너지 공기업', '에너지 분야 공기업의 중대재해처벌법 대응 컨설팅을 수행했습니다.'],
-                  ['중소 제조업체 50여 곳', '인력과 예산이 빠듯한 제조 현장에서 바로 작동하는 안전보건관리체계를 세웠습니다.'],
+                  ['중소 제조업체 50여 곳', '인력과 예산이 빠듯한 제조 현장에 맞는 안전보건관리체계를 구축했습니다.'],
                 ].map(([t, d]) => (
                   <div key={t} className="border border-[#D9D0BE] bg-white p-5">
                     <p className="text-[19px] font-bold" style={serif}>{t}</p>
@@ -184,7 +184,6 @@ export default function InvestigationLanding() {
               <div className="mt-7">
                 {[
                   ['소속', '노무법인 위너스 대표노무사'],
-                  ['자격·학위', '공인노무사 16년 · 안전공학 박사'],
                   ['실무 이력', '현대카드 · 삼성서울병원 인사 출신'],
                   ['중대재해 대응', '대형 건설사 · 에너지 공기업 · 중소 제조업체 50여 곳'],
                   ['자문', '금융 · IT · 보건의료 · 제조 자문사 안전보건 체계 구축'],
@@ -202,11 +201,11 @@ export default function InvestigationLanding() {
       {/* 마무리 */}
       <section className="bg-[#1C2421] py-16 text-center text-white md:py-[88px]">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <h2 className="text-[32px] font-bold leading-[1.35] md:text-[44px]" style={serif}>기록이 남기 전에, 먼저 점검하십시오</h2>
-          <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">{PROMISE} · 약 10분<br />상담은 유료 자문으로 진행되며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
+          <h2 className="text-[32px] font-bold leading-[1.35] md:text-[44px]" style={serif}>수사관이 기록을 펼치기 전에, 먼저 점검하십시오</h2>
+          <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">{PROMISE} · 약 10분<br />상담은 유료 자문이며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">무료로 진단 시작하기</Link>
-            <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg bg-[#1F4E79] px-8 text-[19px] font-bold text-white hover:bg-[#173B5C]">상담 신청서 작성</Link>
+            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">진단 시작하기</Link>
+            <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg bg-[#1F4E79] px-8 text-[19px] font-bold text-white hover:bg-[#173B5C]">상담 신청</Link>
           </div>
         </div>
       </section>

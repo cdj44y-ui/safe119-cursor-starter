@@ -23,7 +23,7 @@ export default function LinkedService() {
               <div>
                 <h3 className="text-sm font-bold text-ink mb-0.5">RISK119 — 근로감독 자가진단</h3>
                 <p className="text-xs text-ink-4">
-                  임금체불·연장근로·연차 등 50여개 문항으로 근로감독 리스크를 점검합니다.
+                  임금체불·연장근로·연차 등 50여 개 문항으로 근로감독 리스크를 점검합니다.
                 </p>
               </div>
               <span className="ml-auto text-ink-5 text-lg">→</span>
