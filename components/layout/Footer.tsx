@@ -4,7 +4,7 @@ import { BRAND_FAMILY, COMPANY_URL, FAMILY, KAKAO_URL, PROMISE } from '@/compone
 /** A5 공통 푸터 — 네 사이트 동일 문구·순서 */
 export default function Footer() {
   return (
-    <footer className="bg-[#1C2421] py-12 text-[#CFC9BB] [word-break:keep-all]">
+    <footer className="bg-[#1C2421] pt-12 pb-28 text-[#CFC9BB] [word-break:keep-all] sm:pb-12">
       <div className="mx-auto max-w-[1140px] space-y-4 px-6 text-[15px] leading-[1.7] md:px-9">
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-6">
           <p className="text-[16px] font-bold text-white">{BRAND_FAMILY}</p>
