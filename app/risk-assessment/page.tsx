@@ -36,7 +36,7 @@ const ITEMS: ChecklistItem[] = [
     lawRef: '산업안전보건법 제36조 제1항 · 시행규칙 제37조',
     question:
       '유해·위험요인을 파악해 위험성 크기를 결정하고, 개선대책을 수립·이행하는 위험성평가를 최초(작업 개시 전)·정기(매년 1회 이상)·수시(신규 위험요인·중대산업사고·산업재해 발생 시)로 실시하고 있습니까?',
-    plainTip: '쉽게 말하면, 우리 사업장에 어떤 위험이 있는지 찾아 등급을 매기고, 개선책까지 만들어 실제로 실행하고 있는지를 묻는 항목입니다.',
+    plainTip: '위험을 찾아 등급을 매기고, 개선책을 만들어 실제로 실행하는지 묻는 항목입니다.',
     fineGroup: 'A',
   },
   {
@@ -44,7 +44,7 @@ const ITEMS: ChecklistItem[] = [
     title: '근로자 참여',
     lawRef: '산업안전보건법 제36조 제2항',
     question: '위험성평가를 실시할 때 해당 사업장 근로자를 참여시키고 있습니까?',
-    plainTip: '안전관리자나 외부 업체 혼자 평가하지 말고, 현장 근로자도 의견을 낼 수 있게 참여시켜야 합니다.',
+    plainTip: '안전관리자나 외부 업체 혼자 평가하면 안 됩니다. 현장 근로자가 의견을 낼 수 있게 참여시켜야 합니다.',
     fineGroup: 'B',
   },
   {
@@ -61,7 +61,7 @@ const ITEMS: ChecklistItem[] = [
     lawRef: '산업안전보건법 제36조 제4항',
     question:
       '위험성평가 결과를 안전보건교육·설명회·사업장 게시·서면 또는 전자적 방법으로 근로자에게 알리고 있습니까? (신규 채용자에게도 즉시 공유)',
-    plainTip: '평가만 해놓고 서랍에 넣어두면 안 됩니다. 근로자에게 실제로 알려야 하고, 새로 들어온 직원도 빠뜨리면 안 됩니다.',
+    plainTip: '평가만 하고 묻어 두면 안 됩니다. 근로자에게 실제로 알리고, 신규 입사자도 빠뜨리지 마십시오.',
     fineGroup: 'B',
   },
   {
@@ -69,7 +69,7 @@ const ITEMS: ChecklistItem[] = [
     title: '기록·보존',
     lawRef: '산업안전보건법 제36조 제5항',
     question: '위험성평가 결과를 기록하여 보존하고 있습니까?',
-    plainTip: '평가 결과 문서를 남겨서 감독 나왔을 때 바로 제시할 수 있어야 합니다.',
+    plainTip: '감독 때 바로 보여 드릴 수 있도록 평가 결과를 문서로 남겨 두십시오.',
     fineGroup: 'C',
   },
 ];
@@ -129,7 +129,7 @@ export default function RiskAssessmentPage() {
                 위험성평가,<br />했다는 것만으로는<br />과태료를 피할 수 없습니다
               </h1>
               <p className="mt-5 text-[19px] leading-[1.75] text-[#CFC9BB]">
-                실시·근로자 참여·근로자대표 참여·공유·기록보존, 5가지 의무를 모두 지켜야 합니다. 항목별로 이행 여부를 고르면 어느 의무에서 과태료 대상이 되는지 바로 보입니다.
+                5가지 의무를 모두 지켜야 합니다. 이행 여부를 고르면 과태료 대상이 되는 의무가 바로 보입니다.
               </p>
               <p className="mt-5 text-[15px] text-[#9AA29C]">약 3분 · {PROMISE}</p>
             </div>
@@ -140,7 +140,7 @@ export default function RiskAssessmentPage() {
                   <button key={k} type="button" onClick={() => setCompanySize(k)} aria-pressed={companySize === k}
                     className={'grid grid-cols-[1fr_auto] items-center gap-3 rounded-lg border px-5 py-4 text-left transition-colors ' + (companySize === k ? 'border-[#F4EFE4] bg-[#F4EFE4] text-[#1C2421]' : 'border-[#3A4540] text-white hover:border-[#9AA29C]')}>
                     <span><b className="block text-[18px]">{t}</b><span className={'text-[14px] ' + (companySize === k ? 'text-[#6A706B]' : 'text-[#9AA29C]')}>{s}</span></span>
-                    <span className="text-right"><span className={'block text-[13px] font-bold ' + (companySize === k ? 'text-[#A4262C]' : 'text-[#D9A44A]')}>과태료 시행</span><b className="text-[20px]" style={serif}>{d}</b></span>
+                    <span className="text-right"><span className={'block text-[13px] font-bold ' + (companySize === k ? 'text-[#A4262C]' : 'text-[#D9A44A]')}>과태료 시행 예정</span><b className="text-[20px]" style={serif}>{d}</b></span>
                   </button>
                 ))}
               </div>
@@ -272,7 +272,7 @@ export default function RiskAssessmentPage() {
         <section className="border-t border-[#D9D0BE] py-14 md:py-[72px]">
           <div className="mx-auto max-w-[1140px] px-6 md:px-9">
             <SectionHead no={answeredCount > 0 ? '04' : '03'} title="위험성평가 준비 상담 신청" sub={answeredCount > 0 ? '방금 점검한 결과(미이행·일부 이행 건수, 사업장 규모)가 신청서에 함께 전달됩니다.' : '점검표에 먼저 답하시면 결과가 신청서에 함께 전달됩니다.'} />
-            <p className="mb-5 text-[16px] leading-[1.7] text-[#4A524D]">상담은 유료 자문으로 진행됩니다. 신청서 확인 후 일정과 비용을 안내드리며, 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
+            <p className="mb-5 text-[16px] leading-[1.7] text-[#4A524D]">상담은 유료 자문입니다. 신청서를 확인한 뒤 일정과 비용을 안내드리며, 일정에 따라 위너스 소속 노무사가 먼저 연락드릴 수 있습니다.</p>
             <div className="rounded-xl border border-[#D9D0BE] bg-white p-4 md:p-6">
               <TallyEmbed src={tallySrc} title="노무 상담 문의" height={720} />
             </div>
