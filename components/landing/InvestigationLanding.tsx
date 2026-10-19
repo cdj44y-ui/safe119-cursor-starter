@@ -2,9 +2,9 @@ import Link from 'next/link';
 import LawCalendar from '@/components/brand/LawCalendar';
 import { PROMISE } from '@/components/brand/constants';
 
-// 수사 기록형 랜딩 (2026-10-17) — 사업장 실명 미사용, 모든 법적 서술은 국가법령정보센터 원문 대조
+// 수사 기록형 랜딩 (2026-10-17, 대문 주간 갱신 2026-10-19) — 사업장 실명 미사용, 모든 법적 서술은 국가법령정보센터 원문 대조
 const STATS = [
-  { v: '121건', l: '중대재해처벌법 검찰 기소 누적', s: '매일노동뉴스 전수조사' },
+  { v: '81곳', l: '형 확정으로 공표된 중대산업재해 사업장 누적', s: '고용노동부, 2026.10.15 발표' },
   { v: '89.3%', l: '1심 기소 사건 중 유죄 판결 비율', s: '국회입법조사처, 2025.8 기준' },
   { v: '253명', l: '2026년 상반기 재해조사 대상 사망자', s: '고용노동부, 2026.7.15 발표' },
 ];
@@ -44,7 +44,7 @@ export default function InvestigationLanding() {
               수사는 사고 당일이 아니라,<br />그 전의 기록을 봅니다
             </h1>
             <p className="mt-6 text-[19px] leading-[1.75] text-[#CFC9BB] md:text-[20px]">
-              시행령 제4조 9가지 의무와 위험성평가를 38문항으로 점검합니다. 지금 남아 있는 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
+              형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 펼쳐 보는 순서대로 38문항으로 점검합니다. 이번 반기 위험성평가 점검 기록부터 확인하시면, 지금 남아 있는 기록이 수사에서 어떻게 읽힐지 먼저 알 수 있습니다.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-7">
               <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">무료로 진단 시작하기</Link>
