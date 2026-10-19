@@ -20,11 +20,11 @@ const NEWS_ITEMS: NewsItem[] = [
   {
     body: (
       <>
-        대법원 양형위원회, <b className="text-toss font-semibold">중대재해처벌법위반죄 첫 양형기준안</b> 공개(기본
-        1년6월~최대 15년)
+        고용노동부, 10.16부터 전국 건설현장{' '}
+        <b className="text-toss font-semibold">붕괴사고 예방 집중점검·감독</b> 실시(~12.15)
       </>
     ),
-    source: '법률신문 2026.09.28 · 의견수렴 전 초안',
+    source: '고용노동부 보도자료 2026.10.16',
   },
   {
     body: (
