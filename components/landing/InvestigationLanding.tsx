@@ -63,14 +63,6 @@ export default function InvestigationLanding() {
         </div>
       </section>
 
-      {/* 대응 실적 띠 */}
-      <section className="border-b border-[#D9D0BE] bg-[#EFE8DA]">
-        <div className="mx-auto flex max-w-[1140px] flex-col gap-3 px-6 py-6 md:flex-row md:items-center md:gap-8 md:px-9">
-          <p className="shrink-0 text-[15px] font-bold text-[#C8912E]">중대재해처벌법 대응 컨설팅</p>
-          <p className="text-[18px] font-semibold leading-[1.6] md:text-[19px]">대형 건설사 · 에너지 공기업 · 중소 제조업체 50여 곳</p>
-        </div>
-      </section>
-
       {/* 01 사고 이후 */}
       <section id="after" className="border-t border-[#D9D0BE] py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
