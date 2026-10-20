@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   description:
     '형 확정 공표 사업장 81곳 중 92.6%가 유해·위험요인 확인·개선 점검을 위반했습니다(고용노동부, 2026.10.15). 시행령 제4조 9가지 의무와 위험성평가를 38문항으로 점검해 수사에서 보는 기록이 남아 있는지 확인하세요.',
   keywords: '중대재해처벌법, 안전보건관리체계, 자가진단, 경영책임자, 중처법, 안전보건',
+  alternates: {
+    canonical: siteUrl,
+  },
   applicationName: 'SAFE119',
   openGraph: {
     type: 'website',
