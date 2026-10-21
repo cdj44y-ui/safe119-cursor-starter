@@ -18,12 +18,11 @@ export default function IntroVideo() {
             className="block w-full aspect-video bg-ink/5"
             src="/video/safe119-intro.mp4"
             poster="/video/safe119-intro-poster.jpg"
-            autoPlay
             muted
             loop
             playsInline
             controls
-            preload="metadata"
+            preload="none"
             aria-label="SAFE119 소개 영상: 안전보건관리체계 자가진단 안내"
           />
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-t border-ink/10 px-5 py-4 md:px-6">
