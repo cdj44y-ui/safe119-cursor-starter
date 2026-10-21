@@ -253,7 +253,7 @@ export default function AboutPage() {
                   href="/diagnosis"
                   className="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold py-4 px-6 text-sm uppercase tracking-wide hover:bg-navy-hover transition-colors rounded"
                 >
-                  무료 진단 시작
+                  진단 시작하기
                 </Link>
                 <Link
                   href="/consult"
