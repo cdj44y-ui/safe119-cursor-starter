@@ -304,7 +304,7 @@ export default function RiskAssessmentPage() {
             </div>
           </div>
           <div className="mx-auto mt-10 max-w-[1140px] px-6 md:px-9">
-            <Link href="/" className="text-[17px] font-bold text-[#D32F2F] underline underline-offset-4">← SAFE119 홈으로</Link>
+            <Link href="/" className="text-[17px] font-bold text-[#B23B3B] underline underline-offset-4">← SAFE119 홈으로</Link>
           </div>
         </section>
 
