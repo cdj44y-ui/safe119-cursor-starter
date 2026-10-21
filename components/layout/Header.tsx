@@ -18,7 +18,7 @@ export default function Header() {
           </Link>
           <Link
             href="/diagnosis"
-            className="bg-[#D32F2F] text-white px-4 py-1.5 rounded-md text-xs font-semibold hover:bg-[#B71C1C] transition-colors"
+            className="bg-[#B23B3B] text-white px-4 py-1.5 rounded-md text-xs font-semibold hover:bg-[#963030] transition-colors"
           >
             진단 시작
           </Link>
