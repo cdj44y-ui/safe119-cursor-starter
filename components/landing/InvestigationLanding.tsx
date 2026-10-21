@@ -47,7 +47,7 @@ export default function InvestigationLanding() {
               형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 보는 순서대로 38문항으로 점검합니다. 지금 남은 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-6">
-              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#B23B3B] px-8 text-[19px] font-bold text-white hover:bg-[#963030]">진단 시작하기</Link>
+              <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#8E2B2B] px-8 text-[19px] font-bold text-white hover:bg-[#74221F]">진단 시작하기</Link>
               <a href="#after" className="border-b-2 border-white pb-0.5 text-[18px] font-bold text-white">사고 이후 절차 보기 →</a>
             </div>
             <p className="mt-5 text-[15px] text-[#9AA29C]">{PROMISE}</p>
@@ -139,7 +139,7 @@ export default function InvestigationLanding() {
                 ))}
               </div>
             </div>
-            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#B23B3B] px-7 text-[18px] font-bold text-white group-hover:bg-[#963030]">진단 시작하기 →</span>
+            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#8E2B2B] px-7 text-[18px] font-bold text-white group-hover:bg-[#74221F]">진단 시작하기 →</span>
           </Link>
           <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
         </div>
@@ -193,7 +193,7 @@ export default function InvestigationLanding() {
           <h2 className="text-[32px] font-bold leading-[1.35] md:text-[44px]" style={serif}>수사관이 기록을 펼치기 전에, 먼저 점검하십시오</h2>
           <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">{PROMISE} · 약 10분<br />상담은 유료 자문이며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#B23B3B] px-8 text-[19px] font-bold text-white hover:bg-[#963030]">진단 시작하기</Link>
+            <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#8E2B2B] px-8 text-[19px] font-bold text-white hover:bg-[#74221F]">진단 시작하기</Link>
             <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg bg-[#1F4E79] px-8 text-[19px] font-bold text-white hover:bg-[#173B5C]">상담 신청</Link>
           </div>
         </div>
