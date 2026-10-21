@@ -1,8 +1,8 @@
 // 위너스 119 브랜드 v1.1 공통 상수 (네 사이트 동일 문구)
 export const BRAND_FAMILY = '노무법인 위너스 기준진단';
 export const SITE_NAME = 'SAFE119';
-export const SITE_COLOR = '#B23B3B';
-export const SITE_COLOR_HOVER = '#963030';
+export const SITE_COLOR = '#8E2B2B';
+export const SITE_COLOR_HOVER = '#74221F';
 export const NAVY = '#1F4E79';
 export const NAVY_HOVER = '#173B5C';
 export const PROMISE = '회원가입 없음 · 입력 내용은 이 기기에만';
