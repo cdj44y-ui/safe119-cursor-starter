@@ -17,7 +17,7 @@ export default function FinalCta() {
             href="/diagnosis"
             className="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold py-3.5 px-8 rounded transition-all duration-200 hover:bg-navy-hover hover:-translate-y-0.5"
           >
-            🔍 무료 진단 시작하기
+            진단 시작하기
           </Link>
           <Link
             href="/consult"

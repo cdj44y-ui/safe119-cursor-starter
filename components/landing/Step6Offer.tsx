@@ -9,11 +9,11 @@ export default function Step6Offer() {
         <div className="bg-white border-2 border-copper/30 rounded-lg p-8 sm:p-12 text-center relative overflow-hidden">
           {/* Ribbon */}
           <div className="inline-block bg-copper text-white text-xs font-bold px-4 py-1 rounded-full mb-6 tracking-wide">
-            🎁 완전 무료 · 제한 없음
+            회원가입 없이 바로
           </div>
 
           <h2 className="text-[26px] font-extrabold text-ink tracking-tight mb-2.5">
-            지금 바로, 무료로 진단받으세요
+            지금 바로 진단해 보세요
           </h2>
           <p className="text-sm text-ink-4 mb-8">
             회원가입 없이, 10분이면 확인 가능합니다.
@@ -21,7 +21,7 @@ export default function Step6Offer() {
 
           {/* Free Points */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {['회원가입 불필요', '개인정보 수집 없음', '결과 리포트 즉시 확인', '38문항 전체 무료'].map((point) => (
+            {['회원가입 불필요', '개인정보 수집 없음', '결과 리포트 즉시 확인', '38문항 전체 진단'].map((point) => (
               <span key={point} className="text-sm text-ink-3 font-medium">
                 ✓ {point}
               </span>
@@ -30,7 +30,7 @@ export default function Step6Offer() {
 
           {/* CTA */}
           <Link href="/diagnosis" className="btn-primary text-base font-bold">
-            🔍 무료 진단 시작하기 — 10분이면 끝
+            진단 시작하기 (약 10분)
           </Link>
 
           {/* Urgency Box */}

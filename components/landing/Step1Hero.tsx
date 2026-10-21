@@ -33,18 +33,15 @@ export default function Step1Hero() {
 
         {/* Social Proof */}
         <div className="flex items-center gap-2 text-sm text-ink-4 mb-8">
-          <span className="bg-semantic-green-bg text-semantic-green-text px-2.5 py-0.5 rounded text-xs font-bold">
-            무료
-          </span>
-          <span>무료 진단 · 회원가입 없음 · 입력 내용 저장 안 함</span>
+          <span>회원가입 없음 · 입력 내용은 이 기기에만</span>
         </div>
 
         {/* CTA */}
         <Link href="/diagnosis" className="btn-primary text-base font-bold">
-          🔍 무료 진단 시작하기
+          진단 시작하기
         </Link>
         <span className="block mt-2.5 text-xs text-ink-5">
-          🔒 개인정보 수집 없음 · 100% 무료 · 결과 즉시 확인
+          개인정보 수집 없음 · 결과 즉시 확인
         </span>
 
         {/* Trust Indicators */}
