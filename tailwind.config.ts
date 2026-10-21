@@ -21,8 +21,8 @@ const config: Config = {
           900: "#1F1D1A",
         },
         copper: {
-          DEFAULT: "#D32F2F",
-          hover: "#B71C1C",
+          DEFAULT: "#B23B3B",
+          hover: "#963030",
           light: "#FBE9E9",
         },
         navy: {
