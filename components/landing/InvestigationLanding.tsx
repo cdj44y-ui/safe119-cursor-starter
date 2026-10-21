@@ -37,7 +37,7 @@ export default function InvestigationLanding() {
     <div className="bg-[#F4EFE4] text-[#1C2421] [word-break:keep-all]">
       {/* 히어로 */}
       <section className="bg-[#1C2421] text-white">
-        <div className="mx-auto grid max-w-[1140px] items-end gap-12 px-6 py-16 md:grid-cols-[1.25fr_1fr] md:gap-16 md:px-9 md:py-[76px]">
+        <div className="mx-auto grid max-w-[1140px] items-end gap-8 px-6 py-10 md:grid-cols-[1.25fr_1fr] md:gap-16 md:px-9 md:py-[60px]">
           <div>
             <p className="text-[16px] font-bold text-[#D9A44A]">중대재해처벌법 · 경영책임자 자가진단</p>
             <h1 className="mt-4 text-[40px] font-bold leading-[1.3] tracking-[-1px] md:text-[54px]" style={serif}>
@@ -46,7 +46,7 @@ export default function InvestigationLanding() {
             <p className="mt-6 text-[19px] leading-[1.75] text-[#CFC9BB] md:text-[20px]">
               형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 보는 순서대로 38문항으로 점검합니다. 지금 남은 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-7">
+            <div className="mt-7 flex flex-wrap items-center gap-6">
               <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">진단 시작하기</Link>
               <a href="#after" className="border-b-2 border-white pb-0.5 text-[18px] font-bold text-white">사고 이후 절차 보기 →</a>
             </div>
@@ -64,9 +64,9 @@ export default function InvestigationLanding() {
       </section>
 
       {/* 01 사고 이후 */}
-      <section id="after" className="border-t border-[#D9D0BE] py-16 md:py-[88px]">
+      <section id="after" className="border-t border-[#D9D0BE] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-11 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
+          <div className="mb-6 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>01</p>
             <div>
               <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>사고가 나면, 경영책임자에게 일어나는 일</h2>
@@ -75,30 +75,28 @@ export default function InvestigationLanding() {
           </div>
           <div className="border-t-2 border-[#1C2421]">
             {AFTER.map((a, i) => (
-              <div key={a.t} className="grid gap-4 border-b border-[#D9D0BE] py-7 md:grid-cols-[220px_1fr] md:gap-9">
-                <div>
-                  <div className="flex gap-1.5">
-                    {AFTER.map((_, j) => (
-                      <i key={j} className={'block h-2.5 flex-1 rounded ' + (j < i ? 'bg-[#1C2421]' : j === i ? 'bg-[#A4262C]' : 'bg-[#E2DACA]')} />
-                    ))}
+              <details key={a.t} className="group border-b border-[#D9D0BE]">
+                <summary className="grid min-h-[48px] cursor-pointer list-none gap-1 py-3.5 md:grid-cols-[220px_1fr] md:items-baseline md:gap-9 [&::-webkit-details-marker]:hidden">
+                  <p className="text-[15px] font-bold text-[#A4262C]">{String(i + 1).padStart(2, '0')} · {a.t}</p>
+                  <h3 className="flex items-baseline justify-between gap-3 text-[20px] font-bold leading-[1.45] md:text-[22px]"><span>{a.h}</span><span aria-hidden="true" className="shrink-0 text-[16px] text-[#6A706B] transition-transform group-open:rotate-180">▾</span></h3>
+                </summary>
+                <div className="pb-5 md:grid md:grid-cols-[220px_1fr] md:gap-9">
+                  <span className="hidden md:block" />
+                  <div>
+                    <p className="text-[17px] leading-[1.75] text-[#3D4540]">{a.d}</p>
+                    <p className="mt-2 text-[14px] font-semibold text-[#6A706B]">근거: {a.law}</p>
                   </div>
-                  <p className="mt-3 text-[15px] font-bold text-[#A4262C]">{String(i + 1).padStart(2, '0')} · {a.t}</p>
                 </div>
-                <div>
-                  <h3 className="text-[22px] font-bold leading-[1.45]">{a.h}</h3>
-                  <p className="mt-2 text-[17px] leading-[1.75] text-[#3D4540]">{a.d}</p>
-                  <p className="mt-2 text-[14px] font-semibold text-[#6A706B]">근거: {a.law}</p>
-                </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
       {/* 02 점검표 */}
-      <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-16 md:py-[88px]">
+      <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-11 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
+          <div className="mb-6 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>02</p>
             <div>
               <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>수사관이 펼쳐 보는 점검표</h2>
@@ -123,14 +121,14 @@ export default function InvestigationLanding() {
       </section>
 
       {/* 03 법령 달력 */}
-      <section className="border-t border-[#D9D0BE] py-16 md:py-[88px]">
+      <section className="border-t border-[#D9D0BE] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
           <div className="mb-8 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>03</p>
             <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 일정을 한 장으로 정리했습니다. 위너스 네 사이트에 같은 내용이 실려 있습니다.</p>
           </div>
           <LawCalendar />
-          <Link href="/risk-assessment" className="group mt-9 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
+          <Link href="/risk-assessment" className="group mt-6 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
             <div>
               <p className="text-[15px] font-bold text-[#D9A44A]">과태료 시행 예정 · 2027.1.1 상시 50명 이상, 2028.1.1 50명 미만</p>
               <p className="mt-2 text-[26px] font-bold leading-[1.4] md:text-[30px]" style={serif}>우리 회사, 위험성평가 과태료 대상일까요?</p>
@@ -148,20 +146,20 @@ export default function InvestigationLanding() {
       </section>
 
       {/* 04 전문가 */}
-      <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-16 md:py-[88px]">
+      <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-11 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
+          <div className="mb-6 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
             <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>04</p>
             <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>이 진단을 설계한 사람</h2>
           </div>
-          <div className="grid items-start gap-10 md:grid-cols-[240px_1fr] md:gap-14">
+          <div className="grid items-start gap-6 md:grid-cols-[240px_1fr] md:gap-14">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width={240} height={312} className="h-[312px] w-[240px] object-cover" />
             <div>
               <p className="text-[17px] font-bold text-[#6A706B]">대기업 인사팀 출신 노무사, 조대진</p>
               <p className="mt-1 text-[16px] font-semibold text-[#1C2421]">공인노무사 16년 · 안전공학 박사</p>
               <p className="mt-4 text-[24px] leading-[1.55] md:text-[28px]" style={serif}>현장의 위험과 법적 책임은 따로 움직이지 않습니다. 안전공학과 노동법을 함께 보는 이유입니다.</p>
-              <div className="mt-7 grid gap-3 md:grid-cols-3">
+              <div className="mt-5 grid gap-3 md:grid-cols-3">
                 {[
                   ['대형 건설사', '다수 현장과 협력업체를 아우르는 중대재해처벌법 대응 체계를 함께 구축했습니다.'],
                   ['에너지 공기업', '에너지 분야 공기업의 중대재해처벌법 대응 컨설팅을 수행했습니다.'],
@@ -177,7 +175,6 @@ export default function InvestigationLanding() {
                 {[
                   ['소속', '노무법인 위너스 대표노무사'],
                   ['실무 이력', '현대카드 · 삼성서울병원 인사 출신'],
-                  ['중대재해 대응', '대형 건설사 · 에너지 공기업 · 중소 제조업체 50여 곳'],
                   ['자문', '금융 · IT · 보건의료 · 제조 자문사 안전보건 체계 구축'],
                 ].map(([k, v]) => (
                   <div key={k} className="grid grid-cols-[110px_1fr] gap-3 border-t border-[#D9D0BE] py-3.5 text-[18px] last:border-b md:grid-cols-[130px_1fr]">
@@ -195,7 +192,7 @@ export default function InvestigationLanding() {
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
           <h2 className="text-[32px] font-bold leading-[1.35] md:text-[44px]" style={serif}>수사관이 기록을 펼치기 전에, 먼저 점검하십시오</h2>
           <p className="mt-4 text-[18px] leading-[1.7] text-[#CFC9BB]">{PROMISE} · 약 10분<br />상담은 유료 자문이며, 신청서 확인 후 일정과 비용을 안내드립니다.</p>
-          <div className="mt-9 flex flex-wrap justify-center gap-4">
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#D32F2F] px-8 text-[19px] font-bold text-white hover:bg-[#B71C1C]">진단 시작하기</Link>
             <Link href="/consult" className="inline-flex h-[62px] items-center rounded-lg bg-[#1F4E79] px-8 text-[19px] font-bold text-white hover:bg-[#173B5C]">상담 신청</Link>
           </div>

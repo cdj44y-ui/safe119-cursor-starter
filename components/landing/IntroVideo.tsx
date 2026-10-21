@@ -4,16 +4,13 @@ import Link from 'next/link';
 
 export default function IntroVideo() {
   return (
-    <section id="intro-video" className="py-14 md:py-16">
+    <section id="intro-video" className="py-6 md:py-8">
       <div className="max-w-[960px] mx-auto px-7">
-        <p className="text-xs font-bold tracking-[0.18em] uppercase text-ink-3 text-center mb-2">Intro</p>
-        <h2 className="text-2xl md:text-3xl font-extrabold text-ink text-center leading-snug">
-          15초로 보는 SAFE119
-        </h2>
-        <p className="text-sm md:text-base text-ink-3 text-center leading-relaxed mt-3">
-          우리 회사 안전, 어디부터 점검할지 약 10분이면 기준이 보입니다.
-        </p>
-        <div className="mt-8 overflow-hidden rounded-lg border border-ink/10 bg-white">
+        <details className="group overflow-hidden rounded-lg border border-ink/10 bg-white">
+          <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 text-base font-bold text-ink [&::-webkit-details-marker]:hidden">
+            <span>15초 소개 영상 보기</span>
+            <span aria-hidden="true" className="shrink-0 text-ink-5 transition-transform group-open:rotate-180">▾</span>
+          </summary>
           <video
             className="block w-full aspect-video bg-ink/5"
             src="/video/safe119-intro.mp4"
@@ -36,7 +33,7 @@ export default function IntroVideo() {
               진단 시작하기 →
             </Link>
           </div>
-        </div>
+        </details>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
 
 export default function LinkedService() {
   return (
-    <section className="py-16">
+    <section className="py-8">
       <div className="max-w-[960px] mx-auto px-7">
         <span className="text-xs font-bold text-ink-5 uppercase tracking-[1.2px] block mb-2.5">
           연계 서비스
