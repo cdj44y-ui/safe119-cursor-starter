@@ -61,7 +61,7 @@ export default function ResultPage() {
           <div className="w-full max-w-[560px] border border-[#D9D0BE] bg-white p-10 text-center">
             <p className="text-[22px] font-bold">아직 진단 결과가 없습니다</p>
             <p className="mt-2 text-[17px] text-[#6A706B]">38개 질문에 답하시면 비어 있는 기록과 법적 근거를 정리해 드립니다.</p>
-            <Link href="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-lg bg-[#B23B3B] px-8 text-[18px] font-bold text-white hover:bg-[#963030]">진단 시작하기 →</Link>
+            <Link href="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-lg bg-[#8E2B2B] px-8 text-[18px] font-bold text-white hover:bg-[#74221F]">진단 시작하기 →</Link>
           </div>
         </main>
         <Footer />
