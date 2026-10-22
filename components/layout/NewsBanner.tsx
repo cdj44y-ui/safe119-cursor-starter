@@ -11,11 +11,11 @@ const NEWS_ITEMS: NewsItem[] = [
   {
     body: (
       <>
-        국회 본회의, 반복 산재 사망 시{' '}
-        <b className="text-toss font-semibold">영업이익 최대 5% 과징금</b> 부과하는 산업안전보건법 개정안 통과
+        고용노동부, 2026년 3분기(누적) 재해조사 대상 사고사망자{' '}
+        <b className="text-toss font-semibold">366명(전년 동기 대비 19.9% 감소)</b>, 반복발생 사업장 감독 강화 방침
       </>
     ),
-    source: '연합뉴스 2026.10.01 · 공포·시행 전',
+    source: '고용노동부 보도자료 2026.10.20',
   },
   {
     body: (
