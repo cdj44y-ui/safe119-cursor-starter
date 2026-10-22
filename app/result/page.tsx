@@ -45,7 +45,7 @@ const LEGAL_UPDATES = [
   },
 ];
 
-const serif = { fontFamily: "'Noto Serif KR', serif" };
+const serif = { fontFamily: "'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif", fontWeight: 800, letterSpacing: '-0.03em' };
 const tone = (p: number) => (p >= 90 ? ['양호', '#2F6B4F', '#EDF4EF'] : p >= 70 ? ['보통', '#A06C14', '#FBF3E2'] : p >= 50 ? ['미흡', '#C2581E', '#FCEEE4'] : ['위험', '#A4262C', '#FBEDEB']);
 
 export default function ResultPage() {
