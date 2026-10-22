@@ -81,7 +81,7 @@ const ANSWER_OPTIONS: { value: Exclude<AnswerValue, null>; label: string; mark: 
   { value: 'X', label: '미이행', mark: 'X', on: 'border-[#A4262C] bg-[#FBEDEA] text-[#A4262C]' },
 ];
 
-const serif = { fontFamily: "'Noto Serif KR', serif" };
+const serif = { fontFamily: "'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif", fontWeight: 800, letterSpacing: '-0.03em' };
 const won = (n: number) => n.toLocaleString('ko-KR') + '만원';
 
 function SectionHead({ no, title, sub }: { no: string; title: string; sub?: string }) {
