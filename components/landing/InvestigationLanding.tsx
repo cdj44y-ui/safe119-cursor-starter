@@ -30,7 +30,7 @@ const NINE = [
   ['제9호', '도급·용역·위탁 기준', '반기 1회 점검'],
 ];
 
-const serif = { fontFamily: "'Noto Serif KR', serif" };
+const serif = { fontFamily: "'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif", fontWeight: 800, letterSpacing: '-0.03em' };
 
 export default function InvestigationLanding() {
   return (
