@@ -30,6 +30,8 @@ export default function DiagnosisPage() {
   const stepQuestions = useMemo(() => getQuestionsByStep(currentStep), [currentStep]);
   const stepInfo = STEPS.find((s) => s.step === currentStep);
 
+  useEffect(() => { try { (window as any).va?.('event', { name: 'diag_section', data: { site: 'safe', section: currentStep + '. ' + (stepInfo?.name ?? '') } }); } catch {} }, [currentStep]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     setShowGuide(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
