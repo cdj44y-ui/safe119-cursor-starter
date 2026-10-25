@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useDiagnosisStore } from '@/store/diagnosisStore';
 import { calculateTotalResult, GRADE_DESCRIPTIONS } from '@/lib/calculateScore';
@@ -52,6 +52,7 @@ export default function ResultPage() {
   const { answers } = useDiagnosisStore();
   const result = useMemo(() => calculateTotalResult(answers), [answers]);
   const gradeInfo = GRADE_DESCRIPTIONS[result.overallGrade];
+  useEffect(() => { if (Object.keys(answers).length) { try { (window as any).va?.('event', { name: 'diag_complete', data: { site: 'safe', grade: gradeInfo?.label } }); } catch {} } }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (Object.keys(answers).length === 0) {
     return (
@@ -192,6 +193,37 @@ export default function ResultPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* 3-2. 조사를 받게 되면 — 근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행) */}
+        <section className="bg-[#1C2421] py-14 text-white md:py-[80px]">
+          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
+            <p className="text-[16px] font-bold text-[#D9A44A]">감독관 수사규칙으로 본 조사</p>
+            <h2 className="mt-2 text-[32px] leading-[1.3] md:text-[42px]" style={serif}>조사를 받게 되면,<br className="md:hidden" /> 이것을 묻고 이것은 지켜집니다</h2>
+            <div className="mt-9 grid gap-5 md:grid-cols-2">
+              <div className="rounded-[4px] bg-white p-7 text-[#1C2421] md:p-9">
+                <p className="text-[24px]" style={serif}>조사 때 확인하는 것</p>
+                <ol className="mt-5 divide-y divide-[#E6DFD0] border-y border-[#E6DFD0]">
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">1</span><span className="text-[18px] leading-[1.55]">사업장 명칭·소재지와 근로자 수 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제29조 제11호)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">2</span><span className="text-[18px] leading-[1.55]">위반한 조항과 내용, 피해 근로자 수와 피해 내용 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제12·13호)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">3</span><span className="text-[18px] leading-[1.55]"><b>피해 회복 계획</b> <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제15호)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">4</span><span className="text-[18px] leading-[1.55]"><b>피의자에게 유리한 사항과 이를 증명할 자료</b> <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제9·10호)</span></span></li>
+                </ol>
+                <p className="mt-5 text-[16px] font-semibold leading-[1.65] text-[#8E2B2B]">평소 남겨 둔 이행 기록이 &lsquo;유리한 사항&rsquo;을 증명하는 자료가 될 수 있습니다.</p>
+              </div>
+              <div className="rounded-[4px] bg-white p-7 text-[#1C2421] md:p-9">
+                <p className="text-[24px]" style={serif}>조사받는 사람에게 지켜지는 것</p>
+                <ol className="mt-5 divide-y divide-[#E6DFD0] border-y border-[#E6DFD0]">
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">1</span><span className="text-[18px] leading-[1.55]">출석 날짜와 장소는 변호인과 함께 협의할 수 있습니다 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제25조 제3항)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">2</span><span className="text-[18px] leading-[1.55]">오후 9시부터 오전 6시까지는 원칙적으로 조사하지 않습니다 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제26조)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">3</span><span className="text-[18px] leading-[1.55]">총 조사시간 12시간, 실제 조사시간 8시간을 넘지 않도록 합니다 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제27조)</span></span></li>
+                  <li className="grid grid-cols-[40px_1fr] gap-3 py-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1C2421] text-[15px] font-extrabold text-white">4</span><span className="text-[18px] leading-[1.55]">조사가 길어지면 2시간마다 10분 이상 쉽니다 <span className="whitespace-nowrap text-[14px] text-[#6A706B]">(제28조)</span></span></li>
+                </ol>
+                <p className="mt-5 text-[16px] font-semibold leading-[1.65] text-[#8E2B2B]">공소시효 임박 등 예외가 있으니, 조사 전에 일정과 진술 순서를 미리 정리해 두십시오.</p>
+              </div>
+            </div>
+            <p className="mt-5 text-[14px] font-semibold text-[#CFC9BB]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
           </div>
         </section>
 
