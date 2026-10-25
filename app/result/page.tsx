@@ -209,7 +209,7 @@ export default function ResultPage() {
                   <li>· <b>피해 회복 계획</b> <span className="text-[14px] text-[#6A706B]">(제15호)</span></li>
                   <li>· <b>피의자에게 유리한 사항과 이를 증명할 자료</b> <span className="text-[14px] text-[#6A706B]">(제9·10호)</span></li>
                 </ul>
-                <p className="mt-5 border-t border-[#E6DFD0] pt-4 text-[16px] leading-[1.65]">평소 남겨 둔 이행 기록이 '유리한 사항'을 증명하는 자료가 될 수 있습니다.</p>
+                <p className="mt-5 border-t border-[#E6DFD0] pt-4 text-[16px] leading-[1.65]">평소 남겨 둔 이행 기록이 &lsquo;유리한 사항&rsquo;을 증명하는 자료가 될 수 있습니다.</p>
               </div>
               <div className="border border-[#D9D0BE] bg-white p-7">
                 <p className="text-[22px] font-bold" style={serif}>조사받는 사람에게 지켜지는 것</p>
