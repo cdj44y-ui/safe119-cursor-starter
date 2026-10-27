@@ -6,7 +6,7 @@ export const SITE_COLOR_HOVER = '#74221F';
 export const NAVY = '#1F4E79';
 export const NAVY_HOVER = '#173B5C';
 export const PROMISE = '회원가입 없음 · 입력 내용은 이 기기에만';
-export const VERIFIED_DATE = '2026.10.27';
+export const VERIFIED_DATE = '2026.10.28';
 export const KAKAO_URL = 'https://pf.kakao.com/_yxexbaX/friend';
 export const FAMILY = [
   { key: 'RISK119', label: 'RISK119 근로감독', url: 'https://risk119.site' },
