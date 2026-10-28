@@ -28,7 +28,7 @@ export default function LawCalendar() {
 
   useEffect(() => {
     let alive = true;
-    fetch(LAW_JSON_URL)
+    fetch(LAW_JSON_URL, { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('law json ' + r.status))))
       .then((json: { verifiedAt?: string; items?: RemoteItem[] }) => {
         if (!alive || !json || !Array.isArray(json.items)) return;
