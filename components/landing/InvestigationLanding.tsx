@@ -145,6 +145,23 @@ export default function InvestigationLanding() {
         </div>
       </section>
 
+      {/* 2026-10-29 실제 사례 (동의받은 사례 · 회사 이름 비공개) */}
+      <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
+          <p className="text-[15px] font-bold text-[#666]">실제 사례 · 회사 이름은 쓰지 않습니다</p>
+          <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">원청 제출용 서류를, 현장을 지키는 문서로</h2>
+          <p className="mt-2 text-[16px] font-bold" style={{ color: '#8E2B2B' }}>금속가공 중소기업 · 안전</p>
+          <div className="mt-6 grid border-t border-[#111] md:grid-cols-3">
+            {[['상황', '원청이 요구하는 서류를 그때그때 만들었습니다. 위험성평가도 작업계획서도 제출을 위한 문서에 가까웠습니다.'], ['세운 기준', '"자기 서류는 자기가 만든다"를 원칙으로 현장을 함께 걸었습니다. 위험성평가를 공정 순서로 다시 짜고, 작업계획서와 관리감독자 지정서를 회사 실정에 맞게 정리했습니다.'], ['달라진 점', '점검자가 무엇을 물어도 담당자가 자기 문서로 설명할 수 있게 됐습니다.']].map(([k, v], i) => (
+              <div key={k} className={'border-b border-[#E6E6E6] py-5 md:border-b-0 md:pr-8 ' + (i === 2 ? 'bg-[#F5F5F4] md:px-6' : '')}>
+                <p className="text-[14px] font-bold text-[#666]">{k}</p>
+                <p className={'mt-2 text-[17px] leading-[1.7] ' + (i === 2 ? 'font-bold text-[#111]' : 'text-[#333]')}>{v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 04 전문가 */}
       <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
