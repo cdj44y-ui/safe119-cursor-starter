@@ -9,6 +9,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
 import ResultSheet from '@/components/brand/ResultSheet';
+import ReportRequest from '@/components/result/ReportRequest';
 
 const LEGAL_UPDATES = [
   {
@@ -148,6 +149,9 @@ export default function ResultPage() {
             </div>
           </div>
         </section>
+
+        {/* 2026-10-29 리포트 받기 */}
+        <ReportRequest site="safe" answers={answers} tallyUrl="/consult" color="#8E2B2B" />
 
         {/* 2. 비어 있는 기록 */}
         {gaps.length > 0 && (
