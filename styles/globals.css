@@ -59,3 +59,9 @@ a[class~="h-[60px]"][class~="bg-[#1F4E79]"], a[class~="h-[62px]"][class~="bg-[#1
 section[class~="bg-[#1C2421]"] [class~="text-[#C8912E]"] { color: #E7C9C9 !important; }
 
 .btn-black-cta { background-color: #111 !important; border-radius: 2px !important; }
+
+/* 2026-10-29 모바일 길이: 카드 묶음 가로 넘김 */
+@media (max-width: 767px) {
+  [class="mt-5 grid gap-3 md:grid-cols-3"] { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px !important; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
+  [class="mt-5 grid gap-3 md:grid-cols-3"] > * { flex: 0 0 84% !important; scroll-snap-align: start; margin: 0 !important; }
+}
