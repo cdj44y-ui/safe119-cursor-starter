@@ -65,3 +65,15 @@ section[class~="bg-[#1C2421]"] [class~="text-[#C8912E]"] { color: #E7C9C9 !impor
   [class="mt-5 grid gap-3 md:grid-cols-3"] { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px !important; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
   [class="mt-5 grid gap-3 md:grid-cols-3"] > * { flex: 0 0 84% !important; scroll-snap-align: start; margin: 0 !important; }
 }
+
+
+/* 2026-10-31 easy6 — 읽기 쉬운 화면(노션·GOV.UK·토스 원칙): 모서리 4px, 그림자·빨강 없음, 기울어진 도장 제거, 표지는 회색 글자 */
+main [class*="rounded-xl"], main [class*="rounded-2xl"], main [class*="rounded-lg"], main [class*="rounded-[12px]"] { border-radius: 4px !important; }
+main [class*="shadow-"] { box-shadow: none !important; }
+.bg-semantic-red-text { background: #111 !important; }
+main span[class*="rotate-[-6deg]"] { display: none !important; }
+main span[class*="bg-[#FBEDEA]"], main li[class*="border-dashed"] > span[class*="bg-[#EEE]"] { background: transparent !important; padding: 0 !important; white-space: nowrap; }
+main span[class*="bg-[#FBEDEA]"] { color: #8E2B2B !important; }
+main li[class*="border-dashed"] > span[class*="bg-[#EEE]"] { color: #666 !important; }
+@media (max-width: 767px) { main li.flex.items-baseline[class*="border-dashed"] { flex-wrap: wrap; row-gap: 2px; } main li.flex.items-baseline[class*="border-dashed"] > span[class*="bg-[#FBEDEA]"], main li.flex.items-baseline[class*="border-dashed"] > span[class*="bg-[#EEE]"] { flex-basis: 100%; padding-left: 72px !important; font-size: 14px; } }
+main .grid > * { min-width: 0; }
