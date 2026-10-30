@@ -77,3 +77,11 @@ main span[class*="bg-[#FBEDEA]"] { color: #8E2B2B !important; }
 main li[class*="border-dashed"] > span[class*="bg-[#EEE]"] { color: #666 !important; }
 @media (max-width: 767px) { main li.flex.items-baseline[class*="border-dashed"] { flex-wrap: wrap; row-gap: 2px; } main li.flex.items-baseline[class*="border-dashed"] > span[class*="bg-[#FBEDEA]"], main li.flex.items-baseline[class*="border-dashed"] > span[class*="bg-[#EEE]"] { flex-basis: 100%; padding-left: 72px !important; font-size: 14px; } }
 main .grid > * { min-width: 0; }
+
+/* 2026-10-31 easy7 문항 화면: 쉬운 말 먼저 크게, 법 문구는 작게, 질문 → 답 → 근거 순서, 진단 중 떠 있는 상담 버튼 숨김 */
+main div[class*="md:p-10"]:has(> h1):has(> div.grid) { display: flex; flex-direction: column; }
+main div[class*="md:p-10"]:has(> h1) > p { order: 1; margin-top: 14px; font-size: 21px; line-height: 1.55; font-weight: 700; color: #1C2421; }
+main div[class*="md:p-10"]:has(> h1) > h1 { order: 2; margin-top: 10px; font-size: 16px !important; line-height: 1.65; font-weight: 500; color: #555; }
+main div[class*="md:p-10"]:has(> h1) > div.grid { order: 3; }
+main div[class*="md:p-10"]:has(> h1) > div[class*="bg-[#FAF7F0]"] { order: 5; margin-top: 20px; }
+body:has(main div[class*="md:p-10"] > h1) a[aria-label="상담 신청하기"] { display: none !important; }
