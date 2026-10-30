@@ -142,6 +142,15 @@ export default function InvestigationLanding() {
             <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#8E2B2B] px-7 text-[18px] font-bold text-white group-hover:bg-[#74221F]">진단 시작하기 →</span>
           </Link>
           <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
+          {/* 2026-10-31 고용노동부 3대 사고유형 8대 위험요인 현장 자체 점검표 */}
+          <Link href="/site-check" className="mt-6 grid gap-4 border border-[#1C2421] bg-white p-7 text-[#1C2421] no-underline md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
+            <div>
+              <p className="text-[15px] font-bold text-[#8E2B2B]">현장 자체 점검표 · 고용노동부 배포 20개 항목</p>
+              <p className="mt-2 text-[24px] font-bold leading-[1.4] md:text-[28px]" style={serif}>추락·끼임·부딪힘, 8대 위험요인을 현장에서 점검하세요</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-[#444]">비계·지붕·사다리·고소작업대·철골, 건설기계, 혼재 작업, 충돌 방지. 고칠 항목과 핵심 수칙이 바로 정리됩니다.</p>
+            </div>
+            <span className="inline-flex h-[56px] items-center justify-center bg-[#111] px-7 text-[18px] font-bold text-white">점검 시작하기 →</span>
+          </Link>
         </div>
       </section>
 
