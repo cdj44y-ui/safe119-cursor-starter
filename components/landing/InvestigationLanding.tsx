@@ -128,29 +128,24 @@ export default function InvestigationLanding() {
             <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 일정을 한 장으로 정리했습니다. 위너스 네 사이트에 같은 내용이 실려 있습니다.</p>
           </div>
           <LawCalendar />
-          <Link href="/risk-assessment" className="group mt-6 grid gap-6 rounded-xl bg-[#1C2421] p-7 text-white transition-colors hover:bg-[#26302C] md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
-            <div>
-              <p className="text-[15px] font-bold text-[#D9A44A]">과태료 시행 예정 · 2027.1.1 상시 50명 이상, 2028.1.1 50명 미만</p>
-              <p className="mt-2 text-[26px] font-bold leading-[1.4] md:text-[30px]" style={serif}>우리 회사, 위험성평가 과태료 대상일까요?</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-[#CFC9BB]">5가지 의무를 3분 만에 점검합니다.</p>
-              <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-[#3A4540] pt-4">
-                {[['미실시', '1차 500만원 · 최대 1,000만원'], ['참여·공유 위반', '최대 500만원'], ['기록 미보존', '최대 300만원']].map(([k, v]) => (
-                  <p key={k} className="text-[15px]"><span className="text-[#9AA29C]">{k}</span> <b className="ml-1">{v}</b></p>
-                ))}
-              </div>
-            </div>
-            <span className="inline-flex h-[60px] items-center justify-center rounded-lg bg-[#8E2B2B] px-7 text-[18px] font-bold text-white group-hover:bg-[#74221F]">진단 시작하기 →</span>
-          </Link>
-          <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정)</p>
-          {/* 2026-10-31 고용노동부 3대 사고유형 8대 위험요인 현장 자체 점검표 */}
-          <Link href="/site-check" className="mt-6 grid gap-4 border border-[#1C2421] bg-white p-7 text-[#1C2421] no-underline md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-9">
-            <div>
-              <p className="text-[15px] font-bold text-[#8E2B2B]">현장 자체 점검표 · 고용노동부 배포 20개 항목</p>
-              <p className="mt-2 text-[24px] font-bold leading-[1.4] md:text-[28px]" style={serif}>추락·끼임·부딪힘, 8대 위험요인을 현장에서 점검하세요</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-[#444]">비계·지붕·사다리·고소작업대·철골, 건설기계, 혼재 작업, 충돌 방지. 고칠 항목과 핵심 수칙이 바로 정리됩니다.</p>
-            </div>
-            <span className="inline-flex h-[56px] items-center justify-center bg-[#111] px-7 text-[18px] font-bold text-white">점검 시작하기 →</span>
-          </Link>
+          {/* 2026-10-31 읽기 쉽게: 큰 카드 2개 → 토스식 목록 2줄 */}
+          <div className="mt-8">
+            <p className="text-[17px] font-bold text-[#1C2421]">함께 쓰는 점검 도구</p>
+            <ul className="mt-3 border-t border-[#1C2421]">
+              {[
+                ['/risk-assessment', '위험성평가 자가진단', '5가지 의무 · 3분 · 과태료 시행 2027.1.1(50명 이상)·2028.1.1(50명 미만)'],
+                ['/site-check', '현장 자체 점검표', '추락·끼임·부딪힘 8대 위험요인 · 고용노동부 배포 20개 항목'],
+              ].map(([href, t, d]) => (
+                <li key={href} className="border-b border-[#D9D0BE]">
+                  <Link href={href} className="grid min-h-[72px] grid-cols-[1fr_auto] items-center gap-4 py-4 text-[#1C2421] no-underline hover:bg-white/60">
+                    <span><b className="block text-[19px]">{t}</b><span className="mt-1 block text-[15px] leading-[1.6] text-[#6A706B]">{d}</span></span>
+                    <span className="text-[22px] text-[#8E2B2B]" aria-hidden="true">›</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[14px] text-[#6A706B]">근거: 산업안전보건법 제36조·제175조, 시행령 [별표 35](2026.7.28. 개정) · 고용노동부 「3대 사고유형 8대 위험요인 자체 점검표」</p>
+          </div>
         </div>
       </section>
 
