@@ -181,64 +181,6 @@ export default function ResultPage() {
           </section>
         )}
 
-        {/* 더 알아보기 — 2026-10-31 읽기 쉽게: 긴 설명은 접어 두기(노션 토글) */}
-        <section className="border-b border-[#D9D0BE] py-12 md:py-[64px]">
-          <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-            <h2 className="text-[26px] font-bold tracking-[-0.6px] md:text-[30px]" style={serif}>더 알아보기</h2>
-            <div className="mt-5 border-t border-[#1C2421]">
-              <details className="border-b border-[#D9D0BE]">
-                <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">사고가 나면 이 기록이 쓰이는 곳</summary>
-                <ul className="pb-5">
-                  {[
-                    ['수사', '사고 전에 안전보건관리체계를 구축·이행했는지 확인합니다. 비어 있는 항목이 그대로 쟁점이 됩니다.', '중대재해처벌법 제4조, 시행령 제4조'],
-                    ['입증', '이행 사실은 서면(전자문서 포함)으로 작성해 5년간 보관해야 합니다.', '중대재해처벌법 시행령 제13조'],
-                    ['처벌 규정', '사망사고는 경영책임자 1년 이상 징역 또는 10억 원 이하 벌금, 법인 50억 원 이하 벌금이 규정되어 있습니다.', '중대재해처벌법 제6조 제1항, 제7조'],
-                  ].map(([t, d, law]) => (
-                    <li key={t} className="py-2.5 text-[17px] leading-[1.6]"><b>{t}</b> <span className="text-[#3D4540]">{d}</span> <span className="text-[14px] text-[#6A706B]">{law}</span></li>
-                  ))}
-                </ul>
-              </details>
-              <details className="border-b border-[#D9D0BE]">
-                <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">조사를 받게 되면 묻는 것과 지켜지는 것</summary>
-                <div className="grid gap-6 pb-5 md:grid-cols-2">
-                  <div>
-                    <p className="text-[16px] font-bold text-[#6A706B]">묻는 것</p>
-                    <ol className="mt-2 space-y-2 text-[17px] leading-[1.6]">
-                      <li>1. 사업장 명칭·소재지와 근로자 수 <span className="text-[14px] text-[#6A706B]">제29조 제11호</span></li>
-                      <li>2. 위반 조항과 내용, 피해 근로자 수와 피해 내용 <span className="text-[14px] text-[#6A706B]">제12·13호</span></li>
-                      <li>3. <b>피해 회복 계획</b> <span className="text-[14px] text-[#6A706B]">제15호</span></li>
-                      <li>4. <b>피의자에게 유리한 사항과 증명 자료</b> <span className="text-[14px] text-[#6A706B]">제9·10호</span></li>
-                    </ol>
-                    <p className="mt-3 text-[16px] font-semibold text-[#8E2B2B]">평소 남긴 이행 기록이 유리한 사항의 증명 자료가 될 수 있습니다.</p>
-                  </div>
-                  <div>
-                    <p className="text-[16px] font-bold text-[#6A706B]">지켜지는 것</p>
-                    <ol className="mt-2 space-y-2 text-[17px] leading-[1.6]">
-                      <li>1. 출석 날짜·장소는 변호인과 협의할 수 있습니다 <span className="text-[14px] text-[#6A706B]">제25조 제3항</span></li>
-                      <li>2. 오후 9시~오전 6시는 원칙적으로 조사하지 않습니다 <span className="text-[14px] text-[#6A706B]">제26조</span></li>
-                      <li>3. 총 조사 12시간, 실제 조사 8시간을 넘지 않도록 합니다 <span className="text-[14px] text-[#6A706B]">제27조</span></li>
-                      <li>4. 길어지면 2시간마다 10분 이상 쉽니다 <span className="text-[14px] text-[#6A706B]">제28조</span></li>
-                    </ol>
-                    <p className="mt-3 text-[15px] text-[#6A706B]">공소시효 임박 등 예외가 있습니다.</p>
-                  </div>
-                </div>
-                <p className="pb-5 text-[14px] text-[#6A706B]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
-              </details>
-              <details className="border-b border-[#D9D0BE]">
-                <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">감독관·검사·경찰이 보는 관점</summary>
-                <div className="grid gap-5 pb-5 md:grid-cols-3">
-                  {([['감독관', result.investigatorView.inspector], ['검사', result.investigatorView.prosecutor], ['경찰', result.investigatorView.police]] as [string, string[]][]).map(([t, list]) => (
-                    <div key={t}>
-                      <p className="text-[16px] font-bold text-[#6A706B]">{t}</p>
-                      <ul className="mt-2 space-y-1.5">{list.map((s, i) => <li key={i} className="text-[16px] leading-[1.65] text-[#3D4540]">· {s}</li>)}</ul>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            </div>
-          </div>
-        </section>
-
         {/* 6. 전문가 */}
         <section className="border-b border-[#D9D0BE] py-14 md:py-[80px]">
           <div className="mx-auto grid max-w-[1140px] items-start gap-10 px-6 md:grid-cols-[210px_1fr] md:px-9">
