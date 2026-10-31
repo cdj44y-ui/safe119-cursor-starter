@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import LawCalendar from '@/components/brand/LawCalendar';
 import { PROMISE } from '@/components/brand/constants';
 
 // 수사 기록형 랜딩 (2026-10-17, 대문 주간 갱신 2026-10-19) — 사업장 실명 미사용, 모든 법적 서술은 국가법령정보센터 원문 대조
@@ -44,78 +43,23 @@ export default function InvestigationLanding() {
               수사는 사고 당일이 아니라,<br />그 전의 기록을 봅니다
             </h1>
             <p className="mt-6 text-[19px] leading-[1.75] text-[#CFC9BB] md:text-[20px]">
-              형이 확정돼 공표된 사업장 81곳 중 92.6%에서 유해·위험요인 확인·개선 점검(시행령 제4조 제3호) 위반이 확인됐습니다(고용노동부, 2026.10.15). 9가지 의무와 위험성평가를 수사관이 보는 순서대로 38문항으로 점검합니다. 지금 남은 기록이 수사에서 어떻게 읽힐지 먼저 확인하십시오.
+              경영책임자의 9가지 의무를 수사관이 보는 순서대로 38문항, 약 10분에 점검합니다.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-6">
               <Link href="/diagnosis" className="inline-flex h-[62px] items-center rounded-lg bg-[#8E2B2B] px-8 text-[19px] font-bold text-white hover:bg-[#74221F]">진단 시작하기</Link>
-              <a href="#after" className="border-b-2 border-white pb-0.5 text-[18px] font-bold text-white">사고 이후 절차 보기 →</a>
             </div>
             <p className="mt-5 text-[15px] text-[#9AA29C]">{PROMISE}</p>
           </div>
-          <div className="rounded-xl border border-[#3A4540] px-7 py-1.5">
-            {STATS.map((s) => (
-              <div key={s.v} className="grid grid-cols-[auto_1fr] items-baseline gap-5 border-b border-[#3A4540] py-5 last:border-b-0">
-                <b className="text-[44px] leading-none tracking-[-1px] md:text-[50px]" style={serif}>{s.v}</b>
-                <p className="text-[17px] text-[#E8E3D6]">{s.l}<small className="block text-[13px] text-[#9AA29C]">{s.s}</small></p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 01 사고 이후 */}
-      <section id="after" className="border-t border-[#D9D0BE] py-10 md:py-14">
-        <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-6 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
-            <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>01</p>
-            <div>
-              <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>사고가 나면, 경영책임자에게 일어나는 일</h2>
-              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">아래는 법이 정한 순서입니다. 사고 뒤에는 바꿀 수 없으니, 준비는 사고 전에 해야 합니다.</p>
+          {/* 2026-10-31 lean: 진단에서 드리는 것 / 상담에서 하는 것 */}
+          <div className="border border-[#3A4540]">
+            <div className="border-b border-[#3A4540] px-6 py-5">
+              <p className="text-[15px] font-bold text-[#D9A44A]">진단에서 바로 확인</p>
+              <ul className="mt-2 space-y-1.5 text-[17px] leading-[1.6] text-white"><li>9가지 의무별 이행률</li><li>지금 비어 있는 기록과 해당 조문</li><li>다음 반기 점검일 · 메일 리포트</li></ul>
             </div>
-          </div>
-          <div className="border-t-2 border-[#1C2421]">
-            {AFTER.map((a, i) => (
-              <details key={a.t} className="group border-b border-[#D9D0BE]">
-                <summary className="grid min-h-[48px] cursor-pointer list-none gap-1 py-3.5 md:grid-cols-[220px_1fr] md:items-baseline md:gap-9 [&::-webkit-details-marker]:hidden">
-                  <p className="text-[15px] font-bold text-[#A4262C]">{String(i + 1).padStart(2, '0')} · {a.t}</p>
-                  <h3 className="flex items-baseline justify-between gap-3 text-[20px] font-bold leading-[1.45] md:text-[22px]"><span>{a.h}</span><span aria-hidden="true" className="shrink-0 text-[16px] text-[#6A706B] transition-transform group-open:rotate-180">▾</span></h3>
-                </summary>
-                <div className="pb-5 md:grid md:grid-cols-[220px_1fr] md:gap-9">
-                  <span className="hidden md:block" />
-                  <div>
-                    <p className="text-[17px] leading-[1.75] text-[#3D4540]">{a.d}</p>
-                    <p className="mt-2 text-[14px] font-semibold text-[#6A706B]">근거: {a.law}</p>
-                  </div>
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 02 점검표 */}
-      <section className="border-t border-[#D9D0BE] bg-[#EFE8DA] py-10 md:py-14">
-        <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-6 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
-            <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>02</p>
-            <div>
-              <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]" style={serif}>수사관이 펼쳐 보는 점검표</h2>
-              <p className="mt-2.5 text-[18px] text-[#6A706B] md:text-[19px]">시행령 제4조 각 호가 진단의 뼈대입니다. 이 중 다섯 가지는 반기마다 점검 기록을 남겨야 합니다.</p>
+            <div className="px-6 py-5">
+              <p className="text-[15px] font-bold text-[#9AA29C]">상담에서 함께</p>
+              <ul className="mt-2 space-y-1.5 text-[17px] leading-[1.6] text-[#CFC9BB]"><li>절차·기준·서식을 사업장에 맞게 정비</li><li>반기 점검과 경영책임자 보고 운영</li><li>사고·수사 대응 준비</li></ul>
             </div>
-          </div>
-          <div className="relative border border-[#D9D0BE] bg-white px-6 py-9 shadow-[0_12px_30px_-18px_rgba(0,0,0,0.25)] md:px-12 md:py-11">
-            <span className="absolute right-6 top-6 rotate-[-6deg] rounded border-[3px] border-[#A4262C] px-3 py-1 text-[16px] font-extrabold text-[#A4262C] opacity-85 md:right-10">반기 1회 점검</span>
-            <h3 className="border-b-2 border-[#1C2421] pb-3 pr-36 text-[22px] font-bold md:text-[24px]" style={serif}>안전보건관리체계 구축·이행 점검표</h3>
-            <ol className="mt-2 grid md:grid-cols-2 md:gap-x-12">
-              {NINE.map(([no, t, tag]) => (
-                <li key={no} className="flex items-baseline gap-3 border-b border-dashed border-[#D9D0BE] py-4 text-[18px]">
-                  <b className="w-[58px] shrink-0 text-[15px] text-[#C8912E]">{no}</b>
-                  <span className="flex-1">{t}</span>
-                  {tag && <span className={'shrink-0 rounded px-2 py-0.5 text-[13px] font-bold ' + (tag.includes('반기') ? 'bg-[#FBEDEA] text-[#A4262C]' : 'bg-[#EEE] text-[#555]')}>{tag}</span>}
-                </li>
-              ))}
-            </ol>
-            <p className="mt-6 text-[14px] text-[#6A706B]">근거: 중대재해처벌법 시행령 제4조 제1호~제9호 · 전담 조직은 상시근로자 500명 이상 등 해당 사업장만</p>
           </div>
         </div>
       </section>
@@ -123,13 +67,8 @@ export default function InvestigationLanding() {
       {/* 03 법령 달력 */}
       <section className="border-t border-[#D9D0BE] py-10 md:py-14">
         <div className="mx-auto max-w-[1140px] px-6 md:px-9">
-          <div className="mb-8 grid gap-4 md:grid-cols-[110px_1fr] md:gap-9">
-            <p className="text-[44px] leading-none text-[#C8912E]" style={serif}>03</p>
-            <p className="self-end text-[18px] text-[#6A706B] md:text-[19px]">법 개정 일정을 한 장으로 정리했습니다. 위너스 네 사이트에 같은 내용이 실려 있습니다.</p>
-          </div>
-          <LawCalendar />
           {/* 2026-10-31 읽기 쉽게: 큰 카드 2개 → 토스식 목록 2줄 */}
-          <div className="mt-8">
+          <div>
             <p className="text-[17px] font-bold text-[#1C2421]">함께 쓰는 점검 도구</p>
             <ul className="mt-3 border-t border-[#1C2421]">
               {[
