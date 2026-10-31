@@ -3,7 +3,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Disclaimer from '@/components/layout/Disclaimer';
 import InvestigationLanding from '@/components/landing/InvestigationLanding';
-import IntroVideo from '@/components/landing/IntroVideo';
 import Step7Faq from '@/components/landing/Step7Faq';
 import LinkedService from '@/components/landing/LinkedService';
 
@@ -15,8 +14,6 @@ export default function HomePage() {
       <main>
         {/* 수사 기록형 본문 (2026-10-17) */}
         <InvestigationLanding />
-        {/* 15초 소개 영상 */}
-        <IntroVideo />
         {/* FAQ */}
         <Step7Faq />
         {/* 연계 서비스 */}
