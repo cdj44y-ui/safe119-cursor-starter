@@ -119,14 +119,7 @@ export default function DiagnosisPage() {
                 <p className="text-[15px] font-bold text-[#6A706B]">법적 근거</p>
                 <p className="text-[17px] leading-[1.6]">{q.legalBasis}{q.reference ? <span className="block text-[15px] text-[#6A706B]">참고: {q.reference}</span> : null}</p>
               </div>
-              {q.guidance && (
-                <div className="mt-3 border-t border-[#E6DFD0] pt-3">
-                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#74221F]">
-                    {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
-                  </button>
-                  {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4540]">{q.guidance}</p>}
-                </div>
-              )}
+              {/* 2026-10-31 lean: 문항별 준비 방법은 상담에서 안내 */}
             </div>
 
             <div className="mt-7 grid gap-3">
