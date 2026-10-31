@@ -86,24 +86,17 @@ export default function ResultSheet({ conclusion, score, fixes, rows, pending, s
         )}
       </div>
 
-      <div className="border-b border-[#E5E7EB] py-5">
-        <Head n="③" t="항목별 근거" right={`원문 대조일 ${VERIFIED_DATE}`} />
-        <div className="mt-2 divide-y divide-[#F3F4F6]">
-          {rows.map((r) => (
-            <div key={r.label} className="grid gap-1 py-2.5 md:grid-cols-[1fr_120px_1fr] md:items-baseline md:gap-4">
-              <p className="text-[17px] font-semibold text-[#111827]">{r.label}</p>
-              <p className="text-[16px] font-bold md:text-right">{r.value}</p>
-              <p className="text-[14px] text-[#6B7280]">{r.basis}</p>
-            </div>
-          ))}
+      {/* 2026-10-31 부분 공개: 상세 근거·확인 필요는 메일 리포트로(정보에 걸맞은 3칸 입력 — 대표님 결정) */}
+      <div className="border-b border-[#E5E7EB] py-6">
+        <div className="border border-[#111827] bg-[#F9FAFB] px-5 py-5">
+          <p className="text-[18px] font-bold text-[#111827]">전체 결과지는 메일로 보내 드립니다</p>
+          <ul className="mt-2 space-y-1 text-[16px] leading-[1.6] text-[#374151]">
+            <li>③ 항목별 근거 · 조문 {rows.length}개</li>
+            <li>④ 확인 필요 · {pending.length}개 문항</li>
+            <li>문항별 답과 근거 조문, 다음 점검일</li>
+          </ul>
+          <a href="#report" className="mt-4 inline-flex h-[48px] items-center bg-[#111827] px-5 text-[16px] font-bold text-white no-underline visited:text-white">리포트 받기 ↓</a>
         </div>
-      </div>
-
-      <div className="border-b border-[#E5E7EB] py-5">
-        <Head n="④" t="확인 필요" />
-        {pending.length === 0 ? <p className="mt-2 text-[17px]">없음</p> : (
-          <ul className="mt-2 space-y-1.5">{pending.map((p, i) => <li key={i} className="text-[17px] leading-[1.6]">· {p}</li>)}</ul>
-        )}
       </div>
 
       <div className="py-5">
